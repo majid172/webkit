@@ -14,7 +14,7 @@
 	-o-transition: all .3s;
 	transition: all .3s;
   }
-  
+
   .copied::after {
 	position: absolute;
 	top: 8px;
@@ -31,7 +31,7 @@
 	will-change: opacity, transform;
 	animation: showcopied 1.5s ease;
   }
-  
+
   @keyframes showcopied {
 	0% {
 		opacity: 0;
@@ -58,21 +58,21 @@
 	padding: 30px;
 	color: #1E2337;
 	position:  fixed;
-	bottom: 15px;  
+	bottom: 15px;
 	left: 15px;
 	z-index: 999999;
 	transition: all .5s;
 	background: #d1d1d1;
     border-radius: 5px;
   }
-  
+
   .cookies-card.hide{
 	bottom: -500px !important;
   }
   .radius--10px {
 	border-radius: 10px;
   }
-  
+
   .cookies-card__icon {
 	width: 55px;
 	height: 55px;
@@ -84,11 +84,11 @@
 	justify-content: center;
 	align-items: center;
   }
-  
+
   .cookies-card__content {
 	margin-bottom: 0;
   }
-  
+
   .cookies-btn {
 	color: #363636;
 	text-decoration: none;
@@ -97,12 +97,12 @@
 	display: inline-block;
 	border-radius:  999px;
   }
-  
+
   .cookies-btn:hover {
 	color: #363636;
   }
 
-  
+
   @media (max-width: 767px) {
 	  .cookies-card {
 		  width:  100%;

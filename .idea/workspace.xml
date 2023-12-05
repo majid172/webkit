@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/contact.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/includes/breadcumb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/includes/breadcumb.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/includes/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/about.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/service.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/presets/default/basic/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/basic/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/presets/default/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/css/custom.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +189,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701757208369</updated>
-      <workItem from="1701757217122" duration="2938000" />
+      <workItem from="1701757217122" duration="9879000" />
     </task>
     <servers />
   </component>

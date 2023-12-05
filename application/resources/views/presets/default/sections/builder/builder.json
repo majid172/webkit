@@ -22,17 +22,24 @@
             "modal": true
         }
     },
+    "service": {
+        "builder": true,
+        "name": "Services",
+        "element": {
+            "title": "text",
+            "description": "textarea",
+            "service_icon": "icon",
+            "modal": true
+        }
+    },
     "about": {
         "builder": true,
         "name": "About Us",
         "content": {
             "images":{
-                "background_image":{
-                    "size":"500x500",
-                    "thumb":"100x100"
-                },
+
                 "about_image":{
-                    "size":"500x500",
+                    "size":"700x700",
                     "thumb":"100x100"
                 }
             },
@@ -49,34 +56,21 @@
 
         }
     },
-    "service": {
+
+    "instructor": {
         "builder": true,
-        "name": "Service Section",
+        "name": "Instructor",
         "content": {
-            "select":{
-                "name":"trx_type",
-                "options":{
-                  "deposit":"Deposit",
-                  "withdraw":"Withdraw"
-                }
-            },
             "heading": "text",
             "subheading": "text"
         },
         "element": {
-            "select":{
-                "name":"trx_type",
-                "options":{
-                  "deposit":"Deposit",
-                  "withdraw":"Withdraw"
-                }
-            },
-            "service_icon": "icon",
             "title": "text",
-            "description": "textarea",
-            "modal": false
+            "subtitle": "text",
+            "modal": true
         }
     },
+
     "counter": {
         "builder": true,
         "name": "Counter Section",
