@@ -57,7 +57,7 @@
     @include($activeTemplate.'includes.breadcumb')
 @endif
 @yield('content')
-
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 @php
     $cookie = App\Models\Frontend::where('data_keys','cookie.data')->first();
 @endphp
