@@ -1,25 +1,20 @@
 {
-    "banner": {
+    "fet": {
         "builder": true,
-        "no_selection":true,
         "name": "Banner Section",
         "content": {
             "heading": "text",
-            "subheading": "text"
+            "subheading": "text",
+            "paragraph": "text"
         }
     },
-    "feature": {
+    "banner": {
         "builder": true,
-        "name": "Feature Section",
+        "name": "Banner ",
         "content": {
             "heading": "text",
-            "subheading": "text"
-        },
-        "element": {
-            "title": "text",
-            "description": "textarea",
-            "feature_icon": "icon",
-            "modal": true
+            "subheading": "text",
+            "paragraph": "text"
         }
     },
     "service": {
@@ -68,6 +63,45 @@
             "title": "text",
             "subtitle": "text",
             "modal": true
+        }
+    },
+    "testimonial": {
+        "builder": true,
+        "name": "Testimonial",
+        "content": {
+            "heading": "text",
+            "subheading": "text"
+        },
+        "element": {
+            "title": "text",
+            "subtitle": "text",
+            "description": "textarea",
+            "images":{
+                "testimonial_image":{
+                    "size":"80x80",
+                    "thumb":"80x80"
+                }
+            },
+            "modal": true
+        }
+
+    },
+
+    "course": {
+        "builder": true,
+        "name": "Courses",
+        "content": {
+            "heading": "text",
+            "subheading": "text"
+        }
+    },
+
+    "category": {
+        "builder": true,
+        "name": "Category",
+        "content": {
+            "heading": "text",
+            "subheading": "text"
         }
     },
 
