@@ -89,6 +89,7 @@ class FileManager
 				$this->isImage = false;
 			}
 		}
+
 	}
 
     /**
@@ -97,7 +98,6 @@ class FileManager
     * @return void
     */
 	public function upload(){
-
         //create the directory if doesn't exists
 		$path = $this->makeDirectory();
 		if (!$path) throw new \Exception('File could not been created.');
@@ -126,7 +126,6 @@ class FileManager
     */
 	protected function uploadImage(){
 		$image = Image::make($this->file);
-
         //resize the
 	    if ($this->size) {
 	        $size = explode('x', strtolower($this->size));
@@ -152,6 +151,7 @@ class FileManager
     * @return void
     */
 	protected function uploadFile(){
+
 	    $this->file->move($this->path,$this->filename);
 	}
 

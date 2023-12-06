@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/presets/default/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Helpers/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Traits/FileInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Traits/FileInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/admin/components/sidenav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/admin/components/sidenav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/admin/users/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/admin/users/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,10 +148,10 @@
       <path value="$PROJECT_DIR$/application/vendor/symfony/finder" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2Z6zEDDoGrVkjyb6ZE4t0eT18P5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -157,6 +163,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/xampp/htdocs/webkit/application/database/migrations",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -165,11 +172,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\webkit\application\database\migrations" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
-      <option name="pathToComposerJson" value="$PROJECT_DIR$/application/composer.json" />
-      <method v="2" />
-    </configuration>
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/application/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
@@ -184,6 +192,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701757208369</updated>
       <workItem from="1701757217122" duration="10941000" />
+      <workItem from="1701786296019" duration="16622000" />
     </task>
     <servers />
   </component>

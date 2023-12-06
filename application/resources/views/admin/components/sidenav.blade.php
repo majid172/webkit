@@ -10,10 +10,21 @@
             <ul class="sidebar__menu">
                 <li class="sidebar-menu-item {{menuActive('admin.dashboard')}}">
                     <a href="{{route('admin.dashboard')}}" class="nav-link ">
-                        <i class="menu-icon las la-chart-line"></i>
+                        <i class="menu-icon las la-tachometer-alt"></i>
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
+
+{{--    course category            --}}
+                <li class="sidebar__menu-header">@lang('Category Management')</li>
+                <li class="sidebar-menu-item {{menuActive('admin.category.*')}}">
+                    <a href="{{route('admin.category.list')}}" class="nav-link ">
+                        <i class="menu-icon las la-list"></i>
+                        <span class="menu-title">@lang('Category Lists')</span>
+                    </a>
+                </li>
+
+{{--                user management --}}
                 <li class="sidebar__menu-header">@lang('Users Management')</li>
                 <li class="sidebar-menu-item {{menuActive('admin.users.*')}}">
                     <a href="{{route('admin.users.active')}}" class="nav-link ">

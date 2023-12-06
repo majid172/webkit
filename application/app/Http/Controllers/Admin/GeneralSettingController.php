@@ -68,6 +68,7 @@ class GeneralSettingController extends Controller
         if ($request->hasFile('logo')) {
             try {
                 $path = getFilePath('logoIcon');
+
                 if (!file_exists($path)) {
                     mkdir($path, 0755, true);
                 }

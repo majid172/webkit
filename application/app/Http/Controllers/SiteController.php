@@ -20,6 +20,7 @@ class SiteController extends Controller
         }
         $pageTitle = 'Home';
         $sections = Page::where('tempname',$this->activeTemplate)->where('slug','/')->first();
+
         return view($this->activeTemplate . 'home', compact('pageTitle','sections'));
     }
 

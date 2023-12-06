@@ -13,6 +13,13 @@ use App\Notify\Notify;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
+function systemDetails()
+{
+    $system['name'] = 'minstack';
+    $system['version'] = '2.0.6';
+    $system['build_version'] = '2.0.6';
+    return $system;
+}
 
 function slug($string)
 {
@@ -39,20 +46,13 @@ function getNumber($length = 8)
     return $randomString;
 }
 
-function systemDetails()
-{
-    $system['name'] = 'minstack';
-    $system['version'] = '10.0.0';
-    $system['build_version'] = '10.0.3';
-    return $system;
-}
 
 function activeTemplate($asset = false)
 {
     $general = gs();
     $template = $general->active_template;
     if ($asset)
-    return 'assets/presets/' . $template . '/';
+        return 'assets/presets/' . $template . '/';
     return 'presets.' . $template . '.';
 }
 
@@ -179,6 +179,7 @@ function getPageSections($arr = false)
 {
     $jsonUrl = resource_path('views/') . str_replace('.', '/', activeTemplate()) . 'sections/builder/builder.json';
     $sections = json_decode(file_get_contents($jsonUrl));
+
     if ($arr) {
         $sections = json_decode(file_get_contents($jsonUrl), true);
         ksort($sections);
@@ -195,7 +196,7 @@ function getImage($image, $size = null)
     if ($size) {
         return route('placeholder.image', $size);
     }
-    return asset('assets/images/general/default.png');
+    return asset('assets/images/default.png');
 }
 
 function notify($user, $templateName, $shortCodes = null, $sendVia = null, $createLog = true)
@@ -225,6 +226,7 @@ function notify($user, $templateName, $shortCodes = null, $sendVia = null, $crea
 function getColumnName($user)
 {
     $array = explode("\\", get_class($user));
+
     return strtolower(end($array)) . '_id';
 }
 
@@ -336,6 +338,7 @@ function gatewayRedirectUrl($type = false)
     if ($type) {
         return 'user.deposit.history';
     } else {
+
         return 'user.deposit';
     }
 }

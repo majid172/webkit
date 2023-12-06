@@ -23,7 +23,6 @@ class AdminController extends Controller
     {
 
         $pageTitle = 'Dashboard';
-
         // User Info
         $widget['total_users']             = User::count();
         $widget['verified_users']          = User::where('status', 1)->where('ev',1)->where('sv',1)->count();
@@ -89,6 +88,7 @@ class AdminController extends Controller
             try {
                 $old = $user->image;
                 $user->image = fileUploader($request->image, getFilePath('adminProfile'), getFileSize('adminProfile'), $old);
+                dd($user->image);
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Couldn\'t upload your image'];
                 return back()->withNotify($notify);
@@ -145,7 +145,7 @@ class AdminController extends Controller
         }
         return redirect($url);
     }
-    
+
     public function readAll(){
         AdminNotification::where('read_status',0)->update([
             'read_status'=>1

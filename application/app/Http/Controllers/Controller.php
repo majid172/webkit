@@ -16,7 +16,6 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->activeTemplate = activeTemplate();
-
         $className = get_called_class();
     }
 }

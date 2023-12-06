@@ -43,6 +43,11 @@ Route::middleware('admin')->group(function () {
         Route::get('download/attachments/{file_hash}', 'downloadAttachment')->name('download.attachment');
     });
 
+    Route::controller('CategoryController')->prefix('category')->group(function (){
+       Route::get('/','list')->name('category.list');
+       Route::post('/store','store')->name('category.store');
+       Route::post('/update','update')->name('category.update');
+    });
     // Users Manager
     Route::controller('ManageUsersController')->name('users.')->prefix('manage/users')->group(function(){
         Route::get('/', 'allUsers')->name('all');

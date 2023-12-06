@@ -68,12 +68,8 @@
             @endif
         </div>
     </div>
-
-
 </div>
 @endsection
-
-
 
 @push('breadcrumb-plugins')
 <div class="d-flex flex-wrap justify-content-end">

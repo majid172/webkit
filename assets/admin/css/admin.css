@@ -5088,7 +5088,7 @@ th.w-85 {
 }
 
 .sidebar__menu .sidebar-menu-item>a:hover {
-    background-color: #ecffff;
+    background-color: #f9f9f9;
     padding-left: 25px;
 }
 
@@ -5103,7 +5103,7 @@ th.w-85 {
 
 .sidebar__menu .sidebar-menu-item .side-menu--open,
 .sidebar__menu .sidebar-menu-item.active>a {
-    background-color: #ecffff;
+    background-color: #f9f9f9;
     color: var(--primary);
 }
 
@@ -6963,7 +6963,7 @@ th.w-85 {
     }
 
     .dark-version .table-responsive--lg tbody tr:nth-child(odd) {
-        background-color: #262c49;
+        background-color: #f9f9f9;
     }
 }
 
@@ -6973,7 +6973,7 @@ th.w-85 {
     }
 
     .dark-version .table-responsive--md tbody tr:nth-child(odd) {
-        background-color: #262c49;
+        background-color: #f9f9f9;
     }
 }
 
@@ -8326,7 +8326,7 @@ div[class*='col']:nth-child(6)>.dashboard-widget {
 }
 
 tr:nth-child(odd) {
-    background-color: #f6feff;
+    background-color: #f9f9f9;
 }
 
 .btn:hover {

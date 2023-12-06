@@ -27,7 +27,7 @@ trait FileInfo
             'path'      =>'assets/verify'
         ];
         $data['default'] = [
-            'path'      => 'assets/images/general/default.png',
+            'path'      => 'assets/images/default.png',
         ];
         $data['withdrawMethod'] = [
             'path'      => 'assets/images/withdraw/method',
@@ -37,13 +37,13 @@ trait FileInfo
             'path'      => 'assets/support',
         ];
         $data['logoIcon'] = [
-            'path'      => 'assets/images/general',
+            'path'      => 'assets/images/logoIcon',
         ];
         $data['favicon'] = [
             'size'      => '128x128',
         ];
         $data['extensions'] = [
-            'path'      => 'assets/images/plugins',
+            'path'      => 'assets/images/extensions',
             'size'      => '36x36',
         ];
         $data['seo'] = [
@@ -58,6 +58,15 @@ trait FileInfo
             'path'      =>'assets/admin/images/profile',
             'size'      =>'400x400',
         ];
+        $data['frontend']  = [
+            'path'      =>'assets/images/frontend',
+        ];
+
+        $data['categoryImage']= [
+            'path'      =>'assets/images/frontend',
+            'size'      =>'416x318',
+        ];
+        
         return $data;
 	}
 
