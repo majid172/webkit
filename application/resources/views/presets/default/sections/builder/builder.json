@@ -36,6 +36,11 @@
             "subheading": "text",
             "description": "textarea",
             "about_icon": "icon"
+        },
+        "element": {
+            "title": "text",
+            "icon": "icon",
+            "modal": true
         }
     },
     "about_dark": {

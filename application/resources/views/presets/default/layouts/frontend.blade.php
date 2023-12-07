@@ -7,7 +7,7 @@
     <title> {{ $general->siteName(__($pageTitle)) }}</title>
     @include('includes.seo')
 
-    <link href="img/favicon.ico" rel="icon">
+    <link rel="shortcut icon" href="{{asset($activeTemplateTrue.'/images/logo/favicon.png')}}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,11 +60,11 @@
 
 @stack('fbComment')
 <!-- Spinner Start -->
-{{--<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">--}}
-{{--    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">--}}
-{{--        <span class="sr-only">Loading...</span>--}}
-{{--    </div>--}}
-{{--</div>--}}
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 <!-- Spinner End -->
 @include($activeTemplate.'includes.header')
 @if(request()->route()->uri !='/')

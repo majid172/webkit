@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/Traits/FileInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Traits/FileInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/contact.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/includes/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/about.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/banner.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/banner.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/testimonial.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/testimonial.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/frontend/about/about.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/presets/default/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +191,7 @@
       <workItem from="1701757217122" duration="10941000" />
       <workItem from="1701786296019" duration="16622000" />
       <workItem from="1701883241882" duration="9445000" />
-      <workItem from="1701922645976" duration="5636000" />
+      <workItem from="1701922645976" duration="9582000" />
     </task>
     <servers />
   </component>
