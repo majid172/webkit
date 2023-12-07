@@ -3,6 +3,7 @@
     --primary: #7752fe;
     --light: #F0FBFC;
     --dark: #181d38;
+    --service: #153573;
 }
 
 .fw-medium {
@@ -263,7 +264,7 @@ a{
 
 .service-item:hover {
     margin-top: -10px;
-    background: var(--primary);
+    background: var(--service);
 }
 
 .service-item * {

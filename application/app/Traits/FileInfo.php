@@ -61,12 +61,15 @@ trait FileInfo
         $data['frontend']  = [
             'path'      =>'assets/images/frontend',
         ];
-
+        $data['category'] = [
+            'path' => 'assets/images/category',
+            'size' => '600x400',
+        ];
         $data['categoryImage']= [
             'path'      =>'assets/images/frontend',
             'size'      =>'416x318',
         ];
-        
+
         return $data;
 	}
 

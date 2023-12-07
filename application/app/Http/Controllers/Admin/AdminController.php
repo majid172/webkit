@@ -83,12 +83,11 @@ class AdminController extends Controller
             'image' => ['nullable','image',new FileTypeValidate(['jpg','jpeg','png'])]
         ]);
         $user = auth('admin')->user();
-
         if ($request->hasFile('image')) {
             try {
                 $old = $user->image;
                 $user->image = fileUploader($request->image, getFilePath('adminProfile'), getFileSize('adminProfile'), $old);
-                dd($user->image);
+
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Couldn\'t upload your image'];
                 return back()->withNotify($notify);

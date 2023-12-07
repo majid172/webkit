@@ -173,8 +173,8 @@
 <script src="{{asset($activeTemplateTrue.'js/lib/easing/easing.min.js')}}"></script>
 <script src="{{asset($activeTemplateTrue.'js/lib/waypoints/waypoints.min.js')}}"></script>
 <script src="{{asset($activeTemplateTrue.'js/lib/owlcarousel/owl.carousel.min.js')}}"></script>
-
+<script src="{{asset($activeTemplateTrue.'js/main.js')}}"></script>
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
+{{--<script src="js/main.js"></script>--}}
 </body>
 </html>

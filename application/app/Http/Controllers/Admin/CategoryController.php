@@ -28,8 +28,9 @@ class CategoryController extends Controller
         if($request->hasFile('image')){
             try {
                 $directory = date("Y")."/".date("m");
-                $path       = getFilePath('frontend').'/'.$directory;
-                $image = fileUploader($request->image, $path);
+                $path       = getFilePath('category').'/'.$directory;
+                $size = getFileSize('category');
+                $image = fileUploader($request->image, $path,$size);
                 $category->image = $image;
                 $category->path = $directory;
             } catch (\Exception $exp) {
@@ -37,7 +38,6 @@ class CategoryController extends Controller
                 return back()->withNotify($notify);
             }
         }
-
         $category->save();
         $notify[] = ['success', $category->name . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
@@ -56,8 +56,9 @@ class CategoryController extends Controller
         if($request->hasFile('image')){
             try {
                 $directory = date("Y")."/".date("m");
-                $path       = getFilePath('frontend').'/'.$directory;
-                $image = fileUploader($request->image, $path);
+                $path       = getFilePath('category').'/'.$directory;
+                $size = getFileSize('category');
+                $image = fileUploader($request->image, $path,$size);
                 $category->image = $image;
                 $category->path = $directory;
             } catch (\Exception $exp) {

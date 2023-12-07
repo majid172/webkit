@@ -1,20 +1,14 @@
 {
-    "fet": {
-        "builder": true,
-        "name": "Banner Section",
-        "content": {
-            "heading": "text",
-            "subheading": "text",
-            "paragraph": "text"
-        }
-    },
     "banner": {
         "builder": true,
         "name": "Banner ",
         "content": {
-            "heading": "text",
-            "subheading": "text",
-            "paragraph": "text"
+            "heading1": "text",
+            "heading2": "text",
+            "subheading1": "text",
+            "subheading2": "text",
+            "paragraph1": "text",
+            "paragraph2": "text"
         }
     },
     "service": {
