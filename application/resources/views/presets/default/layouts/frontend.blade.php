@@ -26,8 +26,8 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/common/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/common/css/all.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/common/css/line-awesome.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/style.css')}}"></link>
+    <link rel="stylesheet" href="{{asset('assets/common/css/line-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/style.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/custom.css')}}">
     @stack('style-lib')
 

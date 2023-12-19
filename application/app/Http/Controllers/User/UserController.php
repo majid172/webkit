@@ -14,7 +14,8 @@ class UserController extends Controller
     public function home()
     {
         $pageTitle = 'Dashboard';
-        return view($this->activeTemplate . 'user.dashboard', compact('pageTitle'));
+        $data['balance'] = auth()->user()->balance;
+        return view($this->activeTemplate . 'user.dashboard',$data, compact('pageTitle'));
     }
 
     public function depositHistory(Request $request)

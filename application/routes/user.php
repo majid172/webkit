@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\User\CourseController;
 
 Route::namespace('User\Auth')->name('user.')->group(function () {
 
@@ -59,6 +59,10 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');
             });
 
+//          user Course list
+            Route::controller(CourseController::class)->name('course.')->prefix('courses')->group(function (){
+               Route::get('/list','list')->name('list');
+            });
             //Profile setting
             Route::controller('ProfileController')->group(function(){
                 Route::get('profile/setting', 'profile')->name('profile.setting');

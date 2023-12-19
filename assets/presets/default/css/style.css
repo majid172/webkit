@@ -83,6 +83,10 @@
     border-radius: 0px;
 }
 
+./* In your CSS file */
+.card_icon i {
+    font-size: 5em;
+}
 
 /*** Navbar ***/
 .navbar .dropdown-toggle::after {
