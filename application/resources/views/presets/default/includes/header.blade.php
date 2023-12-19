@@ -13,21 +13,13 @@ $pages = \App\Models\Page::get();
             @foreach($pages as $page)
                 <a href="{{route('pages',$page->slug)}}" class="nav-item nav-link {{url()->current() == route('pages',$page->slug)? 'active' : ''}} ">{{$page->name}}</a>
             @endforeach
-
-{{--            <div class="nav-item dropdown">--}}
-{{--                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>--}}
-{{--                <div class="dropdown-menu fade-down m-0">--}}
-{{--                    <a href="team.html" class="dropdown-item">Our Team</a>--}}
-{{--                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>--}}
-{{--                    <a href="404.html" class="dropdown-item">404 Page</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <a href="contact.html" class="nav-item nav-link">Contact</a>--}}
         </div>
         @guest
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route('user.login')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Join Now')<i class="fa fa-arrow-right ms-3"></i></a>
         @endguest
         @auth
+{{--            <a href="{{route('user.home')}}" class="nav-item nav-link {{url()->current() == route('user.home')? 'active' : ''}} ">{{__('Dashboard')}}</a>--}}
+            <a class="nav-link {{ Route::is('user.home') ? 'active' : '' }}" aria-current="page" href="{{route('user.home')}}">@lang('Dashboard')</a>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Logout')<i class="fa fa-arrow-right ms-3"></i></a>
         @endauth
 

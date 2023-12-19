@@ -24,20 +24,25 @@ class AuthorizationController extends Controller
     public function authorizeForm()
     {
         $user = auth()->user();
+
         if (!$user->status) {
             $pageTitle = 'Banned';
             $type = 'ban';
+
         }elseif(!$user->ev) {
             $type = 'email';
             $pageTitle = 'Verify Email';
             $notifyTemplate = 'EVER_CODE';
+
         }elseif (!$user->sv) {
             $type = 'sms';
             $pageTitle = 'Verify Mobile Number';
             $notifyTemplate = 'SVER_CODE';
+
         }elseif (!$user->tv) {
             $pageTitle = '2FA Verification';
             $type = '2fa';
+
         }else{
             return to_route('user.home');
         }

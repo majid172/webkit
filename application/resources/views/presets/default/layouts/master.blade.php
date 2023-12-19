@@ -9,15 +9,21 @@
 
     @include('includes.seo')
 
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/font.css')}}">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset($activeTemplateTrue.'css/fontawesome.min.css')}}" rel="stylesheet">
+    {{--    <link href="{{asset($activeTemplateTrue.'css/bootstrap-icons.css')}}" rel="stylesheet">--}}
 
+    <link href="{{asset($activeTemplateTrue.'css/lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset($activeTemplateTrue.'css/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/common/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <link href="{{asset('assets/common/css/all.min.css')}}" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{asset('assets/common/css/line-awesome.min.css')}}" />
-
-    <link rel="stylesheet" href="{{ asset($activeTemplateTrue.'css/custom.css') }}">
+    <link href="{{ asset('assets/common/css/all.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/common/css/line-awesome.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/style.css')}}"></link>
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/custom.css')}}">
     @stack('style-lib')
 
     @stack('style')
@@ -25,7 +31,6 @@
 
     <style>
 
-<style>
             .cookies-card {
                 position: fixed;
                 bottom: 16px;
@@ -54,146 +59,30 @@
 
 <body>
 
-
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ getImage('assets/images/general/logo.png') }}" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-
-                    <select class="langSel form-control">
-                        @foreach($language as $item)
-                            <option value="{{ $item->code }}" @if(session('lang')==$item->code) selected @endif>{{ __($item->name) }}</option>
-                        @endforeach
-                    </select>
-
-
-
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">@lang('contact')</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.login') }}">@lang('login')</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="{{ route('user.register') }}">@lang('register')</a>
-                        </li>
-                        @endguest
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link"
-                            href="{{ route('user.home') }}">@lang('Dashboard')</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @lang('Support Ticket')
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item"
-                            href="{{ route('ticket.open') }}">@lang('Create New')</a>
-                            <a class="dropdown-item" href="{{ route('ticket') }}">@lang('My
-                                    Ticket')</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @lang('Deposit')
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item"
-                            href="{{ route('user.deposit') }}">@lang('Deposit Money')</a>
-                            <a class="dropdown-item"
-                            href="{{ route('user.deposit.history') }}">@lang('Deposit
-                                    Log')</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @lang('Withdraw')
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"
-                                    href="{{ route('user.withdraw') }}">@lang('Withdraw Money')</a>
-                                <a class="dropdown-item"
-                                    href="{{ route('user.withdraw.history') }}">@lang('Withdraw
-                                    Log')</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.transactions') }}">@lang('Transactions')</a>
-                        </li>
-
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ auth()->user()->fullname }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('user.change.password') }}">
-                                    @lang('Change Password')
-                                </a>
-                                <a class="dropdown-item" href="{{ route('user.profile.setting') }}">
-                                    @lang('Profile Setting')
-                                </a>
-                                <a class="dropdown-item" href="{{ route('user.twofactor') }}">
-                                    @lang('2FA Security')
-                                </a>
-
-
-                                <a class="dropdown-item" href="{{ route('user.logout') }}">
-                                    @lang('Logout')
-                                </a>
-
-                            </div>
-                        </li>
-                    @endauth
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+    @include($activeTemplate.'includes.header')
 
     <div class="page-wrapper">
         @yield('content')
     </div>
 
-
+    @include($activeTemplate.'includes.footer')
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{asset('assets/common/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/common/js/bootstrap.bundle.min.js')}}"></script>
-
-
     <script src="{{ asset($activeTemplateTrue.'js/jquery.validate.js') }}"></script>
 
     @stack('script-lib')
-
     @include('includes.notify')
-
     @include('includes.plugins')
 
-
     @stack('script')
-
-
     <script>
         (function ($) {
             "use strict";
@@ -202,14 +91,11 @@
             });
 
         })(jQuery);
-
     </script>
-
 
     <script>
         (function ($) {
             "use strict";
-
             $('form').on('submit', function () {
                 if ($(this).valid()) {
                     $(':submit', this).attr('disabled', 'disabled');
@@ -228,14 +114,11 @@
                 if (element.hasAttribute('required')) {
                     $(element).closest('.form-group').find('label').addClass('required');
                 }
-
             });
-
 
             $('.showFilterBtn').on('click',function(){
                 $('.responsive-filter-card').slideToggle();
             });
-
 
             let headings = $('.table th');
             let rows = $('.table tbody tr');
@@ -255,6 +138,13 @@
         })(jQuery);
 
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset($activeTemplateTrue.'js/lib/wow/wow.min.js')}}"></script>
+<script src="{{asset($activeTemplateTrue.'js/lib/easing/easing.min.js')}}"></script>
+<script src="{{asset($activeTemplateTrue.'js/lib/waypoints/waypoints.min.js')}}"></script>
+<script src="{{asset($activeTemplateTrue.'js/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset($activeTemplateTrue.'js/main.js')}}"></script>
 
 </body>
 

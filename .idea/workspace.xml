@@ -6,6 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/User/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/User/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/User/AuthorizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/User/AuthorizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Helpers/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Lib/FileManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Lib/FileManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/includes/breadcumb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/includes/breadcumb.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,6 +173,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -189,6 +201,9 @@
       <workItem from="1701883241882" duration="9445000" />
       <workItem from="1701922645976" duration="10655000" />
       <workItem from="1701960585458" duration="1030000" />
+      <workItem from="1702011298534" duration="4289000" />
+      <workItem from="1702047541679" duration="12061000" />
+      <workItem from="1702233194276" duration="499000" />
     </task>
     <servers />
   </component>

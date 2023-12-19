@@ -21,64 +21,15 @@ class FileManager
 
 	use FileInfo;
 
-    /**
-    * The file which will be uploaded
-    *
-    *
-    * @var object
-    */
 	protected $file;
-
-    /**
-    * The path where will be uploaded
-    *
-    * @var string
-    */
 	public $path;
-
-    /**
-    * The size, if the file is image
-    *
-    * @var string
-    */
 	public $size;
-
-    /**
-    * Check the file is image or not
-    *
-    * @var boolean
-    */
 	protected $isImage;
-
-    /**
-    * Thumbnail version size, if required
-    * and if the file is image
-    *
-    * @var string
-    */
 	public $thumb;
 
-    /**
-    * Old filename, which will be removed
-    *
-    * @var string
-    */
 	public $old;
-
-    /**
-    * Current filename, which is uploading
-    *
-    * @var string
-    */
 	public $filename;
 
-
-    /**
-    * Set the file and file type to properties if exist
-    *
-    * @param $file
-    * @return void
-    */
 	public function __construct($file = null){
 		$this->file = $file;
 		if ($file) {

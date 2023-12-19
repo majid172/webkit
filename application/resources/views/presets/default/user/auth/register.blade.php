@@ -94,6 +94,10 @@
                                 <x-captcha></x-captcha>
 
                             </div>
+{{--                            <div class="form-group">--}}
+{{--                                <input type="checkbox" id="type"  value="1" name="user_type">--}}
+{{--                                <label for="agree">@lang('User type') </label>--}}
+{{--                            </div>--}}
 
                             @if($general->agree)
                             <div class="form-group">
@@ -101,6 +105,7 @@
                                 <label for="agree">@lang('I agree with') @foreach($policyPages as $policy) <a href="{{ route('policy.pages',[slug($policy->data_values->title),$policy->id]) }}">{{ __($policy->data_values->title) }}</a> @if(!$loop->last), @endif @endforeach</label>
                             </div>
                             @endif
+
                             <div class="form-group">
                                 <button type="submit" id="recaptcha" class="btn btn--base w-100"> @lang('Register')</button>
                             </div>

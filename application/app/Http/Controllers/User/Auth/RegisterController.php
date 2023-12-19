@@ -27,12 +27,6 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -50,12 +44,6 @@ class RegisterController extends Controller
     }
 
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         $general = gs();
@@ -118,17 +106,9 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
         $general = gs();
-
         $referBy = session()->get('reference');
         if ($referBy) {
             $referUser = User::where('username', $referBy)->first();
@@ -156,6 +136,7 @@ class RegisterController extends Controller
         $user->sv = $general->sv ? 0 : 1;
         $user->ts = 0;
         $user->tv = 1;
+        $user->reg_step = 1;
         $user->save();
 
 
@@ -186,7 +167,6 @@ class RegisterController extends Controller
             $userLogin->country_code = @implode(',',$info['code']);
             $userLogin->country =  @implode(',', $info['country']);
         }
-
         $userAgent = osBrowser();
         $userLogin->user_id = $user->id;
         $userLogin->user_ip =  $ip;
@@ -194,8 +174,6 @@ class RegisterController extends Controller
         $userLogin->browser = @$userAgent['browser'];
         $userLogin->os = @$userAgent['os_platform'];
         $userLogin->save();
-
-
         return $user;
     }
 
