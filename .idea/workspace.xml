@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/routes/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/routes/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/presets/default/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/admin/category/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/admin/category/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/admin/components/sidenav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/admin/components/sidenav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +198,9 @@
       <workItem from="1702047541679" duration="12061000" />
       <workItem from="1702233194276" duration="499000" />
       <workItem from="1703003354074" duration="8021000" />
+      <workItem from="1703313797734" duration="671000" />
+      <workItem from="1703495094361" duration="4252000" />
+      <workItem from="1703514023537" duration="3670000" />
     </task>
     <servers />
   </component>

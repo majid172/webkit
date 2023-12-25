@@ -43,10 +43,12 @@ Route::middleware('admin')->group(function () {
         Route::get('download/attachments/{file_hash}', 'downloadAttachment')->name('download.attachment');
     });
 
-    Route::controller('CategoryController')->prefix('category')->group(function (){
+    Route::controller('CategoryController')->prefix('course')->group(function (){
        Route::get('/','list')->name('category.list');
        Route::post('/store','store')->name('category.store');
        Route::post('/update','update')->name('category.update');
+       Route::get('/remove','remove')->name('course.remove');
+       Route::get('class/list/{course_id}','classList')->name('course.class.list');
     });
     // Users Manager
     Route::controller('ManageUsersController')->name('users.')->prefix('manage/users')->group(function(){

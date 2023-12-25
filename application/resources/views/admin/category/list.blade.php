@@ -28,7 +28,18 @@
                                     </td>
 
                                     <td>
-                                        <button type="button" class="btn btn-outline-primary mb-3 edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{$list->id}}" data-name="{{__($list->name)}}" data-description="{{__($list->description)}}"><i class="las la-edit"></i></button>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="las la-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{$list->id}}" data-name="{{__($list->name)}}" data-description="{{__($list->description)}}" href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Edit')</a></li>
+
+                                                <li><a class="dropdown-item" href="{{route('admin.course.class.list',$list->id)}}"><i class="las la-book-open text-warning"></i> @lang('Class Lists')</a></li>
+
+                                                <li><a class="dropdown-item remove" href="javascript:void(0)" data-bs-toggle="modal" data-name="{{__($list->name)}}" data-id="{{$list->id}}" data-bs-target="#removeModal"><i class="las la-trash text-danger" ></i> @lang('Remove')</a></li>
+                                            </ul>
+                                        </div>
 
                                     </td>
 
@@ -118,6 +129,29 @@
             </div>
         </div>
     </div>
+
+{{--  remove course  --}}
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title title text-danger"  id="removeModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{route('admin.course.remove')}}" method="get" class="removeAction">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="id"></input>
+                        @lang('Are you want to remove this course?')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data data-bs-dismiss="modal">@lang('No')</button>
+                        <button type="submit" class="btn btn-outline-primary" >@lang('Yes')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('breadcrumb-plugins')
@@ -137,6 +171,12 @@
             $('#editModal').find('input[name="id"]').val($(this).data('id'));
             $('#editModal').find('input[name="name"]').val($(this).data('name'));
             $('#editModal').find('textarea[name="description"]').val($(this).data('description'));
+        })
+        $('.remove').on('click',function (){
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            $('.title').text(name);
+            $('#removeModal').find('input[name="id"]').val(id);
         })
     </script>
 @endpush

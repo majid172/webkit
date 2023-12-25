@@ -16,11 +16,11 @@
                 </li>
 
 {{--    course category            --}}
-                <li class="sidebar__menu-header">@lang('Category Management')</li>
+                <li class="sidebar__menu-header">@lang('Course Management')</li>
                 <li class="sidebar-menu-item {{menuActive('admin.category.*')}}">
                     <a href="{{route('admin.category.list')}}" class="nav-link ">
                         <i class="menu-icon las la-list"></i>
-                        <span class="menu-title">@lang('Category Lists')</span>
+                        <span class="menu-title">@lang('Course Lists')</span>
                     </a>
                 </li>
 

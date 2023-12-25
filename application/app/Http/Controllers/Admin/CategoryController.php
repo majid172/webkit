@@ -70,4 +70,15 @@ class CategoryController extends Controller
         $notify[] = ['success', $category->name . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
     }
+    public function remove(Request $request)
+    {
+        $course = Category::find($request->id);
+        $course->delete();
+        return redirect()->back();
+    }
+
+    public function classList($course_id)
+    {
+        dd($course_id);
+    }
 }
