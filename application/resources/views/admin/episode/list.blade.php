@@ -43,7 +43,7 @@
                                                 <i class="las la-ellipsis-v"></i>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item edit" href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Details')</a></li>
+                                                <li><a class="dropdown-item edit" href="{{route('admin.episode.details',$item->id)}}"><i class="las la-edit text-info"></i> @lang('Details')</a></li>
 
                                                 <li><a class="dropdown-item" href="#"><i class="las la-book-open text-warning"></i> {{($item->status == 1)? "Active":"Inactive" }} </a></li>
 

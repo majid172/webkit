@@ -62,9 +62,12 @@ class EpisodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function details($id)
     {
-        //
+        
+        $details = Episode::where('id',$id)->firstOrFail();
+        $pageTitle = $details->title." "."details";
+        return view('admin.episode.details',compact('pageTitle','details'));
     }
 
     /**

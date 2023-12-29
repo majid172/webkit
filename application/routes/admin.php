@@ -54,6 +54,7 @@ Route::middleware('admin')->group(function () {
     Route::controller('EpisodeController')->prefix('episode')->group(function(){
         Route::get('/create/{category_id}','create')->name('episode.create');
         Route::post('/episode/store','store')->name('episode.store');
+        Route::get('/episode/details/{id}','details')->name('episode.details');
     });
     // Users Manager
     Route::controller('ManageUsersController')->name('users.')->prefix('manage/users')->group(function(){
