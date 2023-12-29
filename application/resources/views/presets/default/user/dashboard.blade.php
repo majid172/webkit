@@ -22,16 +22,29 @@
                                     <i class="las la-wallet"></i> @lang('Subscription')
                                 </a>
                             </li>
-                            <li class="list-group-item">
-                                <a href="#" class="nav-link" data-toggle="tooltip" data-placement="right" title="PayIn">
+                            <li class="list-group-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-placement="right" title="PayIn">
                                     <i class="las la-money-bill-wave-alt"></i> @lang('PayIn')
                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('user.deposit')}}">@lang('PayIn Money')</a>
+                                    <a class="dropdown-item" href="{{route('user.deposit.history')}}">@lang('PayIn History')</a>
+                                
+                                </div>
                             </li>
-                            <li class="list-group-item">
-                                <a href="#" class="nav-link" data-toggle="tooltip" data-placement="right" title="Payout">
+                            
+                            <li class="list-group-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-placement="right" title="Payout">
                                     <i class="las la-money-check-alt"></i> @lang('Payout')
                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <!-- Dropdown items go here -->
+                                    <a class="dropdown-item" href="{{route('user.withdraw')}}">@lang('Payout Money')</a>
+                                    <a class="dropdown-item" href="{{route('user.withdraw.history')}}">@lang('Payout History')</a>
+                                    <!-- Add more items as needed -->
+                                </div>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>
