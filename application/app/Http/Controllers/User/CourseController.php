@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -20,9 +21,11 @@ class CourseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function episodeList($category_id)
     {
-        //
+        $pageTitle = "Episode Lists";
+        $episodes = Episode::where('category_id',$category_id)->with('category')->get();
+        return view($this->activeTemplate.'user.course.episode',compact('pageTitle','episodes'));
     }
 
     /**

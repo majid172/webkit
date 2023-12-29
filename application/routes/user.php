@@ -60,8 +60,9 @@ Route::middleware('auth')->name('user.')->group(function () {
             });
 
 //          user Course list
-            Route::controller(CourseController::class)->name('course.')->prefix('courses')->group(function (){
+            Route::controller('CourseController')->name('course.')->prefix('courses')->group(function (){
                Route::get('/list','list')->name('list');
+               Route::get('/episode/list/{category_id}','episodeList')->name('episode.list');
             });
             //Profile setting
             Route::controller('ProfileController')->group(function(){
