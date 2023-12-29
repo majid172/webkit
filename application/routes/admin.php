@@ -50,6 +50,11 @@ Route::middleware('admin')->group(function () {
        Route::get('/remove','remove')->name('course.remove');
        Route::get('episode/list/{course_id}','episodeList')->name('course.episode.list');
     });
+
+    Route::controller('EpisodeController')->prefix('episode')->group(function(){
+        Route::get('/create/{category_id}','create')->name('episode.create');
+        Route::post('/episode/store','store')->name('episode.store');
+    });
     // Users Manager
     Route::controller('ManageUsersController')->name('users.')->prefix('manage/users')->group(function(){
         Route::get('/', 'allUsers')->name('all');

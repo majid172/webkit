@@ -69,6 +69,9 @@ trait FileInfo
             'path'      =>'assets/images/frontend',
             'size'      =>'416x318',
         ];
+        $data['episode'] = [
+            'path' => 'assets/images/episode',
+        ];
 
         return $data;
 	}

@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('panel')
-    <button type="button" class="btn btn--primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal"><i class="las la-plus"></i>@lang('Add')</button>
+    <a href="{{route('admin.episode.create',$category_id)}}" class="btn btn--primary mb-3">
+        <i class="las la-plus"></i> @lang('Create New Episode')
+    </a>
 
     <div class="row">
         <div class="col-lg-12">
@@ -24,9 +26,15 @@
                                     <td>{{++$loop->index}}</td>
                                     <td>{{ucwords($item->title)}}</td>
                                     <td>{{ucwords($item->category->name)}}</td>
-                                    <td>{{$item->status}}</td>
                                     <td>
-                                        {{ showDateTime($list->created_at) }}
+                                        @if ($item->status==1)
+                                            <span class="badge bg-success">@lang('Active')</span>
+                                            @else
+                                            <span class="badge bg-danger">@lang('Inactive')</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ showDateTime($item->created_at) }}
                                     </td>
 
                                     <td>
@@ -35,9 +43,9 @@
                                                 <i class="las la-ellipsis-v"></i>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item edit" data-bs-toggle="modal" data-bs-target="#editModal"  href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Edit')</a></li>
+                                                <li><a class="dropdown-item edit" href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Details')</a></li>
 
-                                                <li><a class="dropdown-item" href="#"><i class="las la-book-open text-warning"></i> @lang('Class Lists')</a></li>
+                                                <li><a class="dropdown-item" href="#"><i class="las la-book-open text-warning"></i> {{($item->status == 1)? "Active":"Inactive" }} </a></li>
 
                                                 <li><a class="dropdown-item remove" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#removeModal"><i class="las la-trash text-danger" ></i> @lang('Remove')</a></li>
                                             </ul>

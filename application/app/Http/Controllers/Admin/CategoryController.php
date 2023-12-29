@@ -82,6 +82,6 @@ class CategoryController extends Controller
     {
         $data['pageTitle'] = 'Episode List';
         $data['episodes'] = Episode::where('category_id',$category_id)->paginate(getPaginate());
-        return view('admin.episode.list',$data); 
+        return view('admin.episode.list',$data,compact('category_id')); 
     }
 }

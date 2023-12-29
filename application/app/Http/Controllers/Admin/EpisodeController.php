@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 
 class EpisodeController extends Controller
@@ -18,9 +20,11 @@ class EpisodeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($category_id)
     {
-        //
+        $pageTitle = "Create Episode";
+        $category = Category::where('id',$category_id)->first();
+        return view('admin.episode.create',compact('pageTitle','category_id','category'));
     }
 
     /**
@@ -28,7 +32,31 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required'
+        ]);
+        $episode = new Episode();
+        $episode->title = $request->title; 
+        $episode->category_id = $request->category_id; 
+        $episode->file_link = $request->file_link; 
+        if($request->hasFile('file')){
+            try {
+                $directory = date("Y")."/".date("m");
+                $path      = getFilePath('episode').'/'.$directory;
+                // $size = getFileSize('episode');
+                $file = fileUploader($request->file, $path);
+                $episode->file = $file;
+                $episode->file_path = $directory;
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your episode file'];
+                return back()->withNotify($notify);
+            }
+        }
+        $episode->description = $request->description; 
+        $episode->save();
+        $notify[] = ['success', $episode->title . ' has been created successfully'];
+        return redirect()->back()->withNotify($notify);
     }
 
     /**
