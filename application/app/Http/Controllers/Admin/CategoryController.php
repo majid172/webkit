@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Episode;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 
@@ -77,8 +78,10 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function classList($course_id)
+    public function episodeList($category_id)
     {
-        dd($course_id);
+        $data['pageTitle'] = 'Episode List';
+        $data['episodes'] = Episode::where('category_id',$category_id)->paginate(getPaginate());
+        return view('admin.episode.list',$data); 
     }
 }

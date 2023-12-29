@@ -48,7 +48,7 @@ Route::middleware('admin')->group(function () {
        Route::post('/store','store')->name('category.store');
        Route::post('/update','update')->name('category.update');
        Route::get('/remove','remove')->name('course.remove');
-       Route::get('class/list/{course_id}','classList')->name('course.class.list');
+       Route::get('episode/list/{course_id}','episodeList')->name('course.episode.list');
     });
     // Users Manager
     Route::controller('ManageUsersController')->name('users.')->prefix('manage/users')->group(function(){

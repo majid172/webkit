@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class SubscriptionController extends Controller
 {
-
-    public function list()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $pageTitle = 'Course lists';
-        $creator = auth()->user();
-        $courses = Category::where('creator_id',$creator->id)->paginate(getPaginate());
-        return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Subscription $subscription)
     {
         //
     }
@@ -44,7 +42,7 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Subscription $subscription)
     {
         //
     }
@@ -52,7 +50,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Subscription $subscription)
     {
         //
     }
@@ -60,7 +58,7 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Subscription $subscription)
     {
         //
     }

@@ -1,59 +1,60 @@
 @extends($activeTemplate.'layouts.master')
-
 @section('content')
+@include($activeTemplate.'includes.breadcumb')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card custom--card">
-                <div class="card-header">
-                    <h5 class="card-title">@lang('Withdraw')</h5>
-                </div>
-                <div class="card-body">
-                    <form action="{{route('user.withdraw.money')}}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label class="form-label">@lang('Method')</label>
-                            <select class="form-control form--control" name="method_code" required>
-                                <option value="">@lang('Select Gateway')</option>
-                                @foreach($withdrawMethod as $data)
-                                <option value="{{ $data->id }}" data-resource="{{$data}}"> {{__($data->name)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">@lang('Amount')</label>
-                            <div class="input-group">
-                                <input type="number" step="any" name="amount" value="{{ old('amount') }}"
-                                    class="form-control form--control" required>
-                                <span class="input-group-text">{{ $general->cur_text }}</span>
+        @include($activeTemplate.'includes.sidebar')
+        <div class="col-lg-8">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class=" custom--card">
+                    <h5 class=" text-primary card-title">@lang('Payout Money')</h5>
+                    <div class="card-body">
+                        <form action="{{route('user.withdraw.money')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-label">@lang('Method')</label>
+                                <select class="form-control form--control" name="method_code" required>
+                                    <option value="">@lang('Select Gateway')</option>
+                                    @foreach($withdrawMethod as $data)
+                                    <option value="{{ $data->id }}" data-resource="{{$data}}"> {{__($data->name)}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
-                        <div class="mt-3 preview-details d-none">
-                            <ul class="list-group text-center">
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span>@lang('Limit')</span>
-                                    <span><span class="min fw-bold">0</span> {{__($general->cur_text)}} - <span
-                                            class="max fw-bold">0</span> {{__($general->cur_text)}}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span>@lang('Charge')</span>
-                                    <span><span class="charge fw-bold">0</span> {{__($general->cur_text)}}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span>@lang('Receivable')</span> <span><span class="receivable fw-bold"> 0</span>
-                                        {{__($general->cur_text)}} </span>
-                                </li>
-                                <li class="list-group-item d-none justify-content-between rate-element">
+                            <div class="form-group">
+                                <label class="form-label">@lang('Amount')</label>
+                                <div class="input-group">
+                                    <input type="number" step="any" name="amount" value="{{ old('amount') }}"
+                                        class="form-control form--control" required>
+                                    <span class="input-group-text">{{ $general->cur_text }}</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 preview-details d-none">
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>@lang('Limit')</span>
+                                        <span><span class="min fw-bold">0</span> {{__($general->cur_text)}} - <span
+                                                class="max fw-bold">0</span> {{__($general->cur_text)}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>@lang('Charge')</span>
+                                        <span><span class="charge fw-bold">0</span> {{__($general->cur_text)}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>@lang('Receivable')</span> <span><span class="receivable fw-bold"> 0</span>
+                                            {{__($general->cur_text)}} </span>
+                                    </li>
+                                    <li class="list-group-item d-none justify-content-between rate-element">
 
-                                </li>
-                                <li class="list-group-item d-none justify-content-between in-site-cur">
-                                    <span>@lang('In') <span class="base-currency"></span></span>
-                                    <strong class="final_amo">0</strong>
-                                </li>
-                            </ul>
-                        </div>
-                        <button type="submit" class="btn btn--base w-100 mt-3">@lang('Save')</button>
-                    </form>
+                                    </li>
+                                    <li class="list-group-item d-none justify-content-between in-site-cur">
+                                        <span>@lang('In') <span class="base-currency"></span></span>
+                                        <strong class="final_amo">0</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button type="submit" class="btn btn--base w-100 mt-3">@lang('Save')</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

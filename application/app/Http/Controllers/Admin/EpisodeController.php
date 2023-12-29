@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class EpisodeController extends Controller
 {
-
-    public function list()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $pageTitle = 'Course lists';
-        $creator = auth()->user();
-        $courses = Category::where('creator_id',$creator->id)->paginate(getPaginate());
-        return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
+        //
     }
 
     /**

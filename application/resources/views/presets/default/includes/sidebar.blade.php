@@ -1,21 +1,46 @@
-{{-- <header class="header" id="header">
-    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-    <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-</header> --}}
-<div class="l-navbar" id="nav-bar">
-    <nav class="nav">
-        <div>
-            <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
-            <div class="nav_list">
-                <a href="#" class="nav_link active"> <i class='las la-user  nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
-                <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> 
-                <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> 
-                <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> 
-                <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a> 
-                <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> 
-            </div>
-        </div> 
-            <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
-    </nav>
+<div class="col-md-3 mb-5">
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{{route('user.home')}}" class="nav-link" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                        <i class="las la-tachometer-alt"></i> @lang('Dashboard')
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('user.course.list')}}" class="nav-link" data-toggle="tooltip" data-placement="right" title="Courses">
+                        <i class="las la-book-reader"></i> @lang('Course Lists')
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="nav-link" data-toggle="tooltip" data-placement="right" title="Subscription">
+                        <i class="las la-wallet"></i> @lang('Subscription')
+                    </a>
+                </li>
+                <li class="list-group-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-placement="right" title="PayIn">
+                        <i class="las la-money-bill-wave-alt"></i> @lang('PayIn')
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{route('user.deposit')}}">@lang('PayIn Money')</a>
+                        <a class="dropdown-item" href="{{route('user.deposit.history')}}">@lang('PayIn History')</a>
+                    
+                    </div>
+                </li>
+                
+                <li class="list-group-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-placement="right" title="Payout">
+                        <i class="las la-money-check-alt"></i> @lang('Payout')
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- Dropdown items go here -->
+                        <a class="dropdown-item" href="{{route('user.withdraw')}}">@lang('Payout Money')</a>
+                        <a class="dropdown-item" href="{{route('user.withdraw.history')}}">@lang('Payout History')</a>
+                        <!-- Add more items as needed -->
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
 </div>
-<!--Container Main start-->

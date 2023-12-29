@@ -35,7 +35,7 @@
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{$list->id}}" data-name="{{__($list->name)}}" data-description="{{__($list->description)}}" href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Edit')</a></li>
 
-                                                <li><a class="dropdown-item" href="{{route('admin.course.class.list',$list->id)}}"><i class="las la-book-open text-warning"></i> @lang('Class Lists')</a></li>
+                                                <li><a class="dropdown-item" href="{{route('admin.course.episode.list',$list->id)}}"><i class="las la-book-open text-warning"></i> @lang('Class Lists')</a></li>
 
                                                 <li><a class="dropdown-item remove" href="javascript:void(0)" data-bs-toggle="modal" data-name="{{__($list->name)}}" data-id="{{$list->id}}" data-bs-target="#removeModal"><i class="las la-trash text-danger" ></i> @lang('Remove')</a></li>
                                             </ul>
