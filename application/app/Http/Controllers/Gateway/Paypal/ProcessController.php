@@ -28,8 +28,8 @@ class ProcessController extends Controller
         $send['val'] = $val;
         $send['view'] = 'user.payment.redirect';
         $send['method'] = 'post';
-        // $send['url'] = 'https://www.sandbox.paypal.com/'; // use for sandbod text
-        $send['url'] = 'https://www.paypal.com/cgi-bin/webscr';
+        $send['url'] = 'https://www.sandbox.paypal.com/'; // use for sandbod text
+        // $send['url'] = 'https://www.paypal.com/cgi-bin/webscr';
         return json_encode($send);
     }
 

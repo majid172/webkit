@@ -9,14 +9,13 @@
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <ul class="list-group list-group-flush">
                         @forelse ($episodes as $item)
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <li class="list-group-item d-flex justify-content-between align-items-start py-3">
                             <div class=" ms-2 me-auto"> 
-                                
-                                <div class="fw-bold"><a href="{{route('user.course.episode.details',$item->id)}}" class="text-primary">{{ucfirst($item->title)}}</a></div>
-                                <a href="{{route('user.course.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 80, '...')}}</a>
+                                <div class="fw-bold"><a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}" class="text-primary">{{ucfirst($item->title)}}</a></div>
+                                <a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}" class="text-secondary">{{Str::limit($item->description, 80, '...')}}</a>
                             </div>
                             <span class="badge bg-primary rounded-pill">14</span>
-                          </li>
+                        </li>
                       
                         @empty
                         <li class="list-group-item d-flex justify-content-between align-items-center">

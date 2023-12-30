@@ -25,13 +25,12 @@ class PaymentController extends Controller
 
     public function depositInsert(Request $request)
     {
-
+        
         $request->validate([
             'amount' => 'required|numeric|gt:0',
             'method_code' => 'required',
             'currency' => 'required',
         ]);
-
 
         $user = auth()->user();
         $gate = GatewayCurrency::whereHas('method', function ($gate) {
@@ -65,10 +64,9 @@ class PaymentController extends Controller
         $data->try = 0;
         $data->status = 0;
         $data->save();
-        session()->put('Track', $data->trx);
+        session()->put('trx', $data->trx);
         return to_route('user.deposit.confirm');
     }
-
 
     public function appDepositConfirm($hash)
     {
@@ -87,20 +85,16 @@ class PaymentController extends Controller
 
     public function depositConfirm()
     {
-        $track = session()->get('Track');
-        $deposit = Deposit::where('trx', $track)->where('status',0)->orderBy('id', 'DESC')->with('gateway')->firstOrFail();
+        $trx = session()->get('trx');
+        $deposit = Deposit::where(['trx'=> $trx,'status'=>0])->latest()->with('gateway')->firstOrFail();
 
         if ($deposit->method_code >= 1000) {
             return to_route('user.deposit.manual.confirm');
         }
-
-
         $dirName = $deposit->gateway->alias;
         $new = __NAMESPACE__ . '\\' . $dirName . '\\ProcessController';
-
         $data = $new::process($deposit);
         $data = json_decode($data);
-
 
         if (isset($data->error)) {
             $notify[] = ['error', $data->message];
@@ -116,7 +110,7 @@ class PaymentController extends Controller
             $deposit->save();
         }
 
-        $pageTitle = 'Payment Confirm';
+        $pageTitle = 'Confirmation of Payment';
         return view($this->activeTemplate . $data->view, compact('data', 'pageTitle', 'deposit'));
     }
 
