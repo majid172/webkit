@@ -25,6 +25,7 @@ class CourseController extends Controller
     {
         $pageTitle = "Episode Lists";
         $episodes = Episode::where('category_id',$category_id)->with('category')->get();
+        
         return view($this->activeTemplate.'user.course.episode',compact('pageTitle','episodes'));
     }
 
