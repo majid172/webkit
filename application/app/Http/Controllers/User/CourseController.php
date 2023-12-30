@@ -32,9 +32,12 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function details($ep_id)
     {
-        //
+        $pageTitle = "Episode Details";
+        $details = Episode::where('id',$ep_id)->with('category')->first();
+        
+        return view($this->activeTemplate.'user.course.details',compact('pageTitle','details'));
     }
 
     /**

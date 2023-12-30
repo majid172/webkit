@@ -12,8 +12,8 @@
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class=" ms-2 me-auto"> 
                                 
-                                <div class="fw-bold"><a href="" class="text-primary">{{ucfirst($item->title)}}</a></div>
-                                <a href="" class="text-secondary">{{Str::limit($item->description, 80, '...')}}</a>
+                                <div class="fw-bold"><a href="{{route('user.course.episode.details',$item->id)}}" class="text-primary">{{ucfirst($item->title)}}</a></div>
+                                <a href="{{route('user.course.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 80, '...')}}</a>
                             </div>
                             <span class="badge bg-primary rounded-pill">14</span>
                           </li>
