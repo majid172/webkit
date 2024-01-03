@@ -8,23 +8,22 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
-                            <h6 class="text-secondary"><i class="las la-book-open"></i> @lang('Total Subscribe Courses')</h6>
-                            <h4 class="text-primary">{{$total_subscribe}}</h4>
+                            <h6 class="text-secondary"><i class="las la-book-open"></i> @lang('Total Courses')</h6>
+                            <h4 class="text-primary">{{$total_course}}</h4>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                            <h4>9</h4>
+                            <h4 class="text-primary">{{$total_episodes}}</h4>
                         </div>
                     </div>
+                    
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
-                            <div class="d-flex">
-                                <div class="card_icon "><i class="las la-eye"></i></div>
-                                <h6 class="text-secondary">@lang('Total Views')</h6>
-                            </div>
-                            <h4>07</h4>
+                            
+                            <h6 class="text-secondary">@lang('Course Cost')</h6>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4>
                         </div>
                     </div>
                 </div>
@@ -32,21 +31,22 @@
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <h6 class="text-secondary"><i class="las la-book-open"></i> @lang('Net Balances')</h6>
-                            <h4>{{getAmount($balance)}}</h4>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($balance)}} </h4>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
-                            <h6 class="text-secondary">@lang('Pending Balances')</h6>
-                            <h4>$150.00</h4>
+                            <h6 class="text-secondary">@lang('Pending Deposits')</h6>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($deposit_pending)}}</h4>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
-                            <h6 class="text-secondary">@lang('Subscription Cost')</h6>
-                            <h4>$80.00</h4>
+                            <h6 class="text-secondary">@lang('Pending Withdrawals')</h6>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($withdraw_pending)}}</h4>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

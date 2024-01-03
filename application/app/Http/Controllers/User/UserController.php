@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Lib\FormProcessor;
 use App\Lib\GoogleAuthenticator;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\Deposit;
+use App\Models\Episode;
 use App\Models\Form;
 use App\Models\Subscription;
 use App\Models\Transaction;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,7 +21,21 @@ class UserController extends Controller
     {
         $pageTitle = 'Dashboard';
         $data['balance'] = auth()->user()->balance;
-        $data['total_subscribe'] = Subscription::where('user_id',auth()->user()->id)->count();
+        $data['total_course'] = Category::where('is_subscribed',1)->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->count();
+        
+        $data['total_episodes'] = Episode::with('category')
+                ->whereHas('category',function($query){
+                    $query->where('is_subscribed',1)->with('subscription')->whereRelation('subscription','user_id',auth()->user()->id);
+                })->count();
+
+        $data['total_cost'] = Category::where('is_subscribed',1)->with('subscription')->whereHas('subscription',function($query){
+            $query->where('user_id',auth()->user()->id);
+        })->sum('price');
+
+        $data['deposit_pending']    = Deposit::where('user_id',auth()->user()->id)->where('status',2)->count();
+
+        $data['withdraw_pending']   = Withdrawal::where('user_id',auth()->user()->id)->where('status',2)->count();
+
         return view($this->activeTemplate . 'user.dashboard',$data, compact('pageTitle'));
     }
 
