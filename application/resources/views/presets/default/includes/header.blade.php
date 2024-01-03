@@ -20,7 +20,7 @@ $pages = \App\Models\Page::get();
         @auth
 {{--            <a href="{{route('user.home')}}" class="nav-item nav-link {{url()->current() == route('user.home')? 'active' : ''}} ">{{__('Dashboard')}}</a>--}}
             <a class="nav-link {{ Route::is('user.home') ? 'active' : '' }}" aria-current="page" href="{{route('user.home')}}">@lang('Dashboard')</a>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Logout')<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route('user.logout')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Logout')<i class="fa fa-arrow-right ms-3"></i></a>
         @endauth
 
     </div>
