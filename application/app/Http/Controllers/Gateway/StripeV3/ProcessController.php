@@ -28,7 +28,7 @@ class ProcessController extends Controller
                             'unit_amount' => round($deposit->final_amo, 2) * 100,
                             'product_data' => [
                                 'name' => $general->site_name,
-                                'description' => 'Deposit  with Stripe',
+                                'description' => 'Payment  with Stripe',
                                 'images' => [asset('assets/images/general/logo.png')],
                             ],
                         ],

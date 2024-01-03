@@ -9,13 +9,13 @@
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <h6 class="text-secondary"><i class="las la-book-open"></i> @lang('Total Subscribe Courses')</h6>
-                            <h4>05</h4>
+                            <h4 class="text-primary">{{$total_subscribe}}</h4>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                            <h4>07</h4>
+                            <h4>9</h4>
                         </div>
                     </div>
                     <div class="col-lg-4">

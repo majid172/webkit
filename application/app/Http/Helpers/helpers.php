@@ -332,6 +332,7 @@ function getContent($dataKeys, $singleQuery = false, $limit = null, $orderById =
 function gatewayRedirectUrl($type = false)
 {
     if ($type) {
+
         return 'user.deposit.history';
     } else {
         return 'user.deposit';

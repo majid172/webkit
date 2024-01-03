@@ -11,6 +11,8 @@
                         @csrf
                         <input type="hidden" name="method_code">
                         <input type="hidden" name="currency">
+                        <input type="hidden" name="category_id" value="{{$category->id}}">
+                        <input type="hidden" name="user_id" value="{{$user->id}}">
                         <div class="text-primary custom--card">
                             <h5 class="card-title">@lang('Course Subscription')</h5>
                             <div class="mt-5 px-3">

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Gateway;
 use App\Http\Controllers\Controller;
 use App\Lib\FormProcessor;
 use App\Models\AdminNotification;
+use App\Models\Category;
 use App\Models\Deposit;
 use App\Models\GatewayCurrency;
+use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,6 +67,11 @@ class PaymentController extends Controller
         $data->status = 0;
         $data->save();
         session()->put('trx', $data->trx);
+        if($request->category_id && $request->user_id)
+        {
+            session()->put('category_id',$request->category_id);
+            session()->put('user_id',$request->user_id);
+        }
         return to_route('user.deposit.confirm');
     }
 
@@ -86,6 +93,21 @@ class PaymentController extends Controller
     public function depositConfirm()
     {
         $trx = session()->get('trx');
+        if((session()->get('category_id')) || (session()->get('user_id')))
+        {
+            $category_id = session()->get('category_id');
+            $user_id = session()->get('user_id');
+           
+            $subscribe = new Subscription();
+            $subscribe->user_id = $user_id;
+            $subscribe->category_id = $category_id;
+            $subscribe->save();
+
+            $category = Category::find($category_id);
+            $category->is_subscribed = 1;
+            $category->save();
+
+        }
         $deposit = Deposit::where(['trx'=> $trx,'status'=>0])->latest()->with('gateway')->firstOrFail();
 
         if ($deposit->method_code >= 1000) {
@@ -110,7 +132,9 @@ class PaymentController extends Controller
             $deposit->save();
         }
 
+        
         $pageTitle = 'Confirmation of Payment';
+        
         return view($this->activeTemplate . $data->view, compact('data', 'pageTitle', 'deposit'));
     }
 

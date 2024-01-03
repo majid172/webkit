@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Lib\FormProcessor;
 use App\Lib\GoogleAuthenticator;
+use App\Models\Category;
 use App\Models\Form;
+use App\Models\Subscription;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,7 @@ class UserController extends Controller
     {
         $pageTitle = 'Dashboard';
         $data['balance'] = auth()->user()->balance;
+        $data['total_subscribe'] = Subscription::where('user_id',auth()->user()->id)->count();
         return view($this->activeTemplate . 'user.dashboard',$data, compact('pageTitle'));
     }
 
