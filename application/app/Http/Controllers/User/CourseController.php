@@ -32,9 +32,6 @@ class CourseController extends Controller
         return view($this->activeTemplate.'user.course.episode',compact('pageTitle','episodes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function details($category_id,$ep_id)
     {
         $pageTitle = "Episode Details";
@@ -44,8 +41,10 @@ class CourseController extends Controller
         {
             return $this->subscribe($category_id,$user);
         }
-        $details = Episode::where('id',$ep_id)->with('category')->first();
-        return view($this->activeTemplate.'user.course.details',compact('pageTitle','details'));
+        
+        $details = Episode::where(['id' => $ep_id])->with('category')->first();
+        $relateds = Episode::where('id','!=',$ep_id)->where('category_id',$category_id)->with('category')->limit(3)->get();
+        return view($this->activeTemplate.'user.course.details',compact('pageTitle','details','relateds'));
     }
 
     /**
