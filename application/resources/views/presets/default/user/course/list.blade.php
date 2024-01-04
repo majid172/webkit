@@ -24,41 +24,35 @@
                                 <table class="table custom--table">
                                     <thead>
                                         <tr class="text-primary">
-                                            <th>@lang('Gateway')</th>
-                                            <th class="text-center">@lang('Initiated')</th>
+                                            <th>@lang('Couse Title')</th>
+                                            <th class="text-center">@lang('Number of Episodes')</th>
                                             <th class="text-center">@lang('Amount')</th>
-                                            <th class="text-center">@lang('Conversion')</th>
-                                            <th class="text-center">@lang('Status')</th>
-                                            <th>@lang('Details')</th>
+                                            <th class="text-center">@lang('Created_at')</th>
+                                            <th>@lang('Action')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($courses as $list)
                                         <tr>
                                             <td>
-                                                <span class="fw-bold"> <span class="text-primary">{{
-                                                        __($list->name) }}</span> </span>
-    
+                                                <span class="fw-bold"> <span class="text-secondary">{{
+                                                        ucwords($list->name) }}</span> </span>
                                             </td>
     
                                             <td class="text-center">
-                                                {{ showDateTime($list->created_at) }}<br>{{
-                                                diffForHumans($list->created_at) }}
-                                            </td>
-                                            <td class="text-center">
+                                                <span class="badge bg-primary">{{optional($list->episodes)->count()}}</span>
                                                 
                                             </td>
-                                            <td class="text-center">
-                                              
+                                            <td class="text-center text-success">
+                                               {{$general->cur_sym}}{{getAmount($list->price)}}
                                             </td>
                                             <td class="text-center">
-                                               
+                                                {{ showDateTime($list->created_at) }}
                                             </td>
-                                           
+                                            <td class="text-center">
+                                               <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            </td>
     
-                                            <td>
-                                               
-                                            </td>
                                         </tr>
                                         @empty
                                         <tr>

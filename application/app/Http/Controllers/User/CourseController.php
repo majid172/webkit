@@ -15,8 +15,9 @@ class CourseController extends Controller
     public function list()
     {
         $pageTitle = 'Course lists';
-        $creator = auth()->user();
-        $courses = Category::where('creator_id',$creator->id)->paginate(getPaginate());
+        $user = auth()->user();
+        $courses = Category::where('is_subscribed',1)->with('episodes')->paginate(getPaginate());
+        // dd($courses->toArray());
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }
 

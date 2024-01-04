@@ -18,8 +18,12 @@
                         </li>
                       
                         @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                           @lang('No episodes available')
+                        <li class="list-group-item d-flex justify-content-center align-items-center">
+                            <div>
+                                <img src="{{asset('assets/images/no_episode.png')}}" alt="no_episode"> 
+                            </div>
+                            <span class="text-danger text-center">
+                                @lang('No episodes are available')</span>
                         </li>
                         @endforelse
                     
