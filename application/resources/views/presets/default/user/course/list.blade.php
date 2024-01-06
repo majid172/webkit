@@ -7,71 +7,40 @@
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
                 <div class="shadow p-3 mb-5 bg-body rounded">
-                    <form action="">
-                        <div class="mb-3 d-flex justify-content-end w-50">
-                            <div class="input-group">
-                                <input type="text" name="search" class="form-control" value="{{ request()->search }}"
-                                    placeholder="@lang('Search by transactions')">
-                                <button class="input-group-text bg-primary text-white">
-                                    <i class="las la-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class=" custom--card">
-                        <div class="p-0">
-                            <div class="table-responsive">
-                                <table class="table custom--table">
-                                    <thead>
-                                        <tr class="text-primary">
-                                            <th>@lang('Couse Title')</th>
-                                            <th class="text-center">@lang('Number of Episodes')</th>
-                                            <th class="text-center">@lang('Amount')</th>
-                                            <th class="text-center">@lang('Created_at')</th>
-                                            <th>@lang('Action')</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($courses as $list)
-                                        <tr>
-                                            <td>
-                                                <span class="fw-bold"> <span class="text-secondary">{{
-                                                        ucwords($list->name) }}</span> </span>
-                                            </td>
-    
-                                            <td class="text-center">
-                                                <span class="badge rounded-circle bg-primary">{{optional($list->episodes)->count()}}</span>
-                                                
-                                            </td>
-                                            <td class="text-center text-success">
-                                               {{$general->cur_sym}}{{getAmount($list->price)}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ showDateTime($list->created_at) }}
-                                            </td>
-                                            <td class="text-center">
-                                               <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
-                                            </td>
-    
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td class="text-muted text-center" colspan="100%">
-                                                <img src="{{asset('assets/images/empty.png')}}" alt="emptyImag"> <br>
-                                                {{ __($emptyMessage) }}
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        @if($courses->hasPages())
-                        <div class="card-footer text-end">
-                            {{ $courses->links() }}
-                        </div>
-                        @endif
-                    </div>
+                    <main class="cd__main">
+                        <!-- Start DEMO HTML (Use the following code into your project)-->
+                        <table id="example" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>@lang('Name')</th>
+                                    <th>@lang('Episodes')</th>
+                                    <th>@lang('Price')</th>
+                                    <th>@lang('Date')</th>
+                                    <th>@lang('Action')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($courses as $list)
+                                    <tr>
+                                        <td>
+                                            <span class="fw-bold"> <span class="text-secondary">{{
+                                                ucwords($list->name) }}</span>
+                                        </td>
+                                        <td><span class="badge rounded-circle bg-primary">{{optional($list->episodes)->count()}}</span>
+                                        </td>
+                                        <td>{{$general->cur_sym}}{{getAmount($list->price)}}</td>
+                                        <td>{{ showDateTime($list->created_at) }}</td>
+                                        
+                                        <td>
+                                            <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- END EDMO HTML (Happy Coding!)-->
+                    </main>
                 </div>
             </div>
         </div>
@@ -145,4 +114,5 @@
     })(jQuery);
 
 </script>
+<script src="{{asset($activeTemplateTrue.'js/table.js')}}"></script>
 @endpush
