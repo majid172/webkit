@@ -19,53 +19,50 @@
     <link href="{{asset($activeTemplateTrue.'css/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-<!-- Data Table CSS -->
-<link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
-<!-- Font Awesome CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="{{ asset('assets/common/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/common/css/all.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/common/css/line-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/style.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/table.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/custom.css')}}">
-{{--    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/sidebar.css')}}">--}}
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/sidebar.css')}}">
+
+    <!-- Data Table CSS -->
+    <link rel='stylesheet' href='{{asset($activeTemplateTrue.'css/dataTables.bootstrap5.min.css')}}'>
+
     @stack('style-lib')
 
     @stack('style')
 
-
     <style>
 
+        .cookies-card {
+            position: fixed;
+            bottom: 16px;
+            width: 40%;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #108ce6;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            right: 16px;
+            z-index: 99;
+            border: 2px solid #108ce6;
+        }
+        .dark-mode .cookies-card {
+            background: #2d3748;
+            border: 1px solid #404040;
+        }
+        @media (max-width:576px) {
             .cookies-card {
-                position: fixed;
-                bottom: 16px;
-                width: 40%;
-                padding: 20px;
-                background: #fff;
-                border: 2px solid #108ce6;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-                right: 16px;
-                z-index: 99;
-                border: 2px solid #108ce6;
-                }
-            .dark-mode .cookies-card {
-                background: #2d3748;
-                border: 1px solid #404040;
+                width: 90%;
             }
-            @media (max-width:576px) {
-                .cookies-card {
-                    width: 90%;
-                }
-            }
+        }
         </style>
 
     <link rel="stylesheet" href="{{ asset($activeTemplateTrue.'css/color.php') }}?color={{ $general->base_color }}&secondColor={{ $general->secondary_color }}">
 </head>
 
 <body>
-
 <!-- Spinner Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -146,7 +143,7 @@
 
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> --}}
 <script src="{{asset($activeTemplateTrue.'js/lib/wow/wow.min.js')}}"></script>
 <script src="{{asset($activeTemplateTrue.'js/lib/easing/easing.min.js')}}"></script>
 <script src="{{asset($activeTemplateTrue.'js/lib/waypoints/waypoints.min.js')}}"></script>
@@ -155,9 +152,9 @@
 
 <script src="{{asset($activeTemplateTrue.'js/sidebar.js')}}"></script>
 
-<script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
-<script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
-<script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+<script src='{{asset($activeTemplateTrue.'js/jquery.dataTables.min.js')}}'></script>
+<script src='{{asset($activeTemplateTrue.'js/dataTables.responsive.min.js')}}'></script>
+<script src='{{asset($activeTemplateTrue.'js/dataTables.bootstrap5.min.js')}}'></script>
 </body>
 
 </html>

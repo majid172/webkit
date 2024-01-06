@@ -13,7 +13,7 @@
                             <thead>
                                 <tr>
                                     <th>@lang('Name')</th>
-                                    <th>@lang('Episodes')</th>
+                                    <th>@lang('No. of Episodes')</th>
                                     <th>@lang('Price')</th>
                                     <th>@lang('Date')</th>
                                     <th>@lang('Action')</th>

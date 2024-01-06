@@ -62,9 +62,17 @@ class AdminController extends Controller
         $userLogins['labels'] = $userLoginsReport->keys();
         $userLogins['values'] = $userLoginsReport->values();
 
+        // browser history
+        // dd(UserLogin::get('browser')->toArray());
+        $userBrowserReport = UserLogin::selectRaw("COUNT(*) as created_at_count,browser as browser_name")->orderBy('created_at', 'desc')
+                    ->groupByRaw("browser")
+                    ->pluck('created_at_count', 'browser_name');
+        $userBrowser['labels'] = $userBrowserReport->keys();
+        $userBrowser['values'] = $userBrowserReport->values();
+
         // UserLogin Report Graph
         $newTickets = SupportTicket::with('user')->orderBy('created_at', 'desc')->whereStatus(0)->limit(5)->get();
-        return view('admin.dashboard', compact('pageTitle', 'widget', 'withdrawalsChart', 'depositsChart', 'deposit', 'withdrawals', 'userLogins', 'newTickets'));
+        return view('admin.dashboard', compact('pageTitle', 'widget', 'withdrawalsChart', 'depositsChart', 'deposit', 'withdrawals', 'userLogins','userBrowser','newTickets'));
     }
 
 

@@ -17,97 +17,88 @@
 </div>
 @endif
 <div class="row gy-4">
-    <div class="col-xl-6">
-
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">@lang('Monthly Deposit & Withdraw Report') (@lang('This year'))</h5>
-                <div id="account-chart"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">@lang('Daily Logins') (@lang('Last 10 days'))</h5>
-                <div id="login-chart"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-6">
+    <div class="col-xl-12">
         <div class="row gy-4">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <a href="{{route('admin.deposit.list')}}">
                     <div class="card prod-p-card background-pattern">
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
-                                <div class="col">
-                                    <h6 class="m-b-5">@lang('Total Deposited')</h6>
-                                    <h3 class="m-b-0">{{ $general->cur_sym
-                                        }}{{showAmount($deposit['total_deposit_amount'])}}</h3>
-                                </div>
                                 <div class="col-auto">
                                     <i class="dashboard-widget__icon fas fa-hand-holding-usd"></i>
                                 </div>
+                                <div class="col">
+                                    <h6 class="m-b-5">@lang('Deposited Amount')</h6>
+                                    <h3 class="m-b-0">{{ $general->cur_sym
+                                        }}{{showAmount($deposit['total_deposit_amount'])}}</h3>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <a href="{{route('admin.deposit.list')}}">
                     <div class="card prod-p-card background-pattern-white bg--primary">
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
+                                <div class="col-auto">
+                                    <i class="dashboard-widget__icon fas fa-percentage text-white"></i>
+                                </div>
                                 <div class="col">
                                     <h6 class="m-b-5 text-white">@lang('Deposited Charge')</h6>
                                     <h3 class="m-b-0 text-white">{{ $general->cur_sym
                                         }}{{showAmount($deposit['total_deposit_charge'])}}</h3>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="dashboard-widget__icon fas fa-percentage text-white"></i>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <a href="{{route('admin.withdraw.log')}}">
                     <div class="card prod-p-card background-pattern-white bg--primary">
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
+                                <div class="col-auto">
+                                    <i class="dashboard-widget__icon lar la-credit-card text-white"></i>
+                                </div>
                                 <div class="col">
                                     <h6 class="m-b-5 text-white">@lang('Total Withdrawal')</h6>
                                     <h3 class="m-b-0 text-white">{{ $general->cur_sym
                                         }}{{showAmount($withdrawals['total_withdraw_amount'])}}</h3>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="dashboard-widget__icon lar la-credit-card text-white"></i>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <a href="{{route('admin.withdraw.approved')}}">
                     <div class="card prod-p-card background-pattern">
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
+                                <div class="col-auto">
+                                    <i class="dashboard-widget__icon fas fa-percentage"></i>
+                                </div>
                                 <div class="col">
                                     <h6 class="m-b-5">@lang('Withdrawal Charge')</h6>
                                     <h3 class="m-b-0">{{ $general->cur_sym
                                         }}{{showAmount($withdrawals['total_withdraw_charge'])}}</h3>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="dashboard-widget__icon fas fa-percentage"></i>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="row gy-4">
             <div class="col-sm-12">
                 <div class="card p-3 rounded-3">
                     <div class="row g-0">
@@ -200,7 +191,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h5 class="card-title">@lang('Recent Tickets')</h5>
+                    <h5 class="card-title">@lang('Current Tickets')</h5>
                     <a href="{{route('admin.ticket.pending')}}" class="float-end" target="_blank">@lang('View all')</a>
                 </div>
                 <div class="table-responsive--sm table-responsive">
@@ -229,6 +220,32 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-6">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@lang('Report on Monthly Deposits and Withdrawals')</h5>
+                <div id="account-chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@lang('Daily Logins for the Past 10 Days')</h5>
+                <div id="login-chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@lang('Login Browser History')</h5>
+                <div id="os-chart"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @endsection
@@ -256,7 +273,7 @@
                     columnWidth: '50%'
                 }
             },
-            colors: ['#00adad', '#67BAA7'],
+            colors: ['#7752fe', '#F0AAB4'],
             series: [{
                 name: '@lang("Withdrawals")',
                 type: 'column',
@@ -335,11 +352,11 @@
     stroke: {
         curve: 'smooth'
     },
-    colors: ['#00adad'],
+    colors: ['#FFC107'],
         labels: @json($userLogins['labels']),
     xaxis: {
         type: 'date',
-            },
+    },
     yaxis: {
         opposite: true
     },
@@ -351,5 +368,33 @@
     var chart = new ApexCharts(document.querySelector("#login-chart"), options);
     chart.render();
     }) ();
+
+    // os histroy
+    (function () {
+        var options = {
+          series:  @json($userBrowser['values']),
+          chart: {
+          type: 'donut',
+          height:'310px',
+        },
+        labels: @json($userBrowser['labels']),
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#os-chart"), options);
+        chart.render();
+    }) ();
+
+    
 </script>
 @endpush
