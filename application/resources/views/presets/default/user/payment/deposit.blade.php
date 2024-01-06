@@ -28,7 +28,7 @@
                                 <div class="input-group">
                                     <input type="number" step="any" name="amount" class="form-control form--control"
                                         value="{{ old('amount') }}" autocomplete="off" required>
-                                    <span class="input-group-text">{{ $general->cur_text }}</span>
+                                    <span class="input-group-text bg-primary text-light">{{ $general->cur_text }}</span>
                                 </div>
                             </div>
                             <div class="mt-3 preview-details d-none">
@@ -59,7 +59,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button type="submit" class="btn btn--base w-100 mt-3">@lang('Save')</button>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">@lang('Save')</button>
                         </div>
                     </div>
                 </form>

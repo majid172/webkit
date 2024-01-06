@@ -40,7 +40,7 @@
                                             </td>
     
                                             <td class="text-center">
-                                                <span class="badge bg-primary">{{optional($list->episodes)->count()}}</span>
+                                                <span class="badge rounded-circle bg-primary">{{optional($list->episodes)->count()}}</span>
                                                 
                                             </td>
                                             <td class="text-center text-success">

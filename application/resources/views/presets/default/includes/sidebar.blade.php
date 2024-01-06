@@ -34,7 +34,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- Dropdown items go here -->
-                        <a class="dropdown-item text-primary" href="{{route('user.withdraw')}}">@lang('Withdraw Money')</a>
+                        <a class="dropdown-item text-primary" href="{{route('user.withdraw')}}"><i class="las la-wallet me-2 fs-5"></i>@lang('Withdraw Money')</a>
                         <a class="dropdown-item text-primary" href="{{route('user.withdraw.history')}}"><i class="las la-history me-2 fs-5 "></i>@lang('History')</a>
                         <!-- Add more items as needed -->
                     </div>

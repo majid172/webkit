@@ -13,13 +13,14 @@ $pages = \App\Models\Page::get();
             @foreach($pages as $page)
                 <a href="{{route('pages',$page->slug)}}" class="nav-item nav-link {{url()->current() == route('pages',$page->slug)? 'active' : ''}} ">{{$page->name}}</a>
             @endforeach
+            @auth
+                <a class="nav-item nav-link {{ Route::is('user.home') ? 'active' : '' }}"  href="{{route('user.home')}}">@lang('Dashboard')</a>
+            @endauth
         </div>
         @guest
             <a href="{{route('user.login')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Join Now')<i class="fa fa-arrow-right ms-3"></i></a>
         @endguest
         @auth
-{{--            <a href="{{route('user.home')}}" class="nav-item nav-link {{url()->current() == route('user.home')? 'active' : ''}} ">{{__('Dashboard')}}</a>--}}
-            <a class="nav-link {{ Route::is('user.home') ? 'active' : '' }}" aria-current="page" href="{{route('user.home')}}">@lang('Dashboard')</a>
             <a href="{{route('user.logout')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Logout')<i class="fa fa-arrow-right ms-3"></i></a>
         @endauth
 

@@ -12,9 +12,13 @@
                         <li class="list-group-item d-flex justify-content-between align-items-start py-3">
                             <div class=" ms-2 me-auto"> 
                                 <div class="fw-bold"><a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}" class="text-primary">{{ucfirst($item->title)}}</a></div>
-                                <a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}" class="text-secondary">{{Str::limit($item->description, 80, '...')}}</a>
+                                <a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}" class="text-secondary">{{Str::limit($item->description, 100, '...')}}</a>
                             </div>
-                            <span class="badge bg-primary rounded-pill">14</span>
+                            <div>
+                                <a href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}"><i class="las la-play-circle text-primary fs-1"></i></a>
+                            </div>
+                           
+                            
                         </li>
                       
                         @empty
