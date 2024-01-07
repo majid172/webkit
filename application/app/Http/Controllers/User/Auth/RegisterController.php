@@ -137,6 +137,7 @@ class RegisterController extends Controller
         $user->ts = 0;
         $user->tv = 1;
         $user->reg_step = 1;
+        $user->user_type = $data['user_type']??'';
         $user->save();
 
 

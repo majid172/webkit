@@ -8,13 +8,13 @@
                     <form method="POST" action="{{ route('user.login') }}" class="verify-gcaptcha">
                         @csrf
 
-                        <div class="form-group">
+                        <div class="form-group text-secondary">
                             <label for="email" class="form-label">@lang('Email or Username')</label>
                             <input type="text" name="username" value="{{ old('username') }}"
                                    class="form-control form--control" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group text-secondary">
                             <label for="password" class="form-label mb-0">@lang('Password')</label>
                             <input id="password" type="password" class="form-control form--control" name="password"
                                    required>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="d-flex flex-wrap justify-content-between mb-2">
                                
-                            <a class="fw-bold forgot-pass"
+                            <a class=" forgot-pass text-primary"
                                href="{{ route('user.password.request') }}">
                                 @lang('Forgot your password?')
                             </a>
@@ -45,8 +45,8 @@
                             </a>
                             
                         </div>
-                        <p class="mb-0">@lang('Don\'t have any account?') <a
-                                href="{{ route('user.register') }}">@lang('Register')</a></p>
+                        <p class="mb-0 text-secondary">@lang('Don\'t have any account?') <a
+                                href="{{ route('user.register') }}">@lang('SignUp')</a></p>
                     </form>
                 </div>
                 {{-- <div class="text-end">
@@ -65,4 +65,147 @@
             </div>
         </div>
     </div>
+
 @endsection
+
+@push('style')
+<style>
+    .country-code .input-group-text{
+        background: #fff !important;
+    }
+    .country-code select{
+        border: none;
+    }
+    .country-code select:focus{
+        border: none;
+        outline: none;
+    }
+
+    body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-box {
+    /* margin-top: 75px; */
+    height: auto;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.login-key {
+    height: 100px;
+    font-size: 80px;
+    line-height: 100px;
+    background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #969ca3;
+}
+
+.login-form {
+    margin-top: 25px;
+    text-align: left;
+}
+
+input[type=text] {
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid var(--primary);
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    color: #52565b;
+}
+
+input[type=password] {
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid var(--primary);
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    padding-left: 0px;
+    margin-bottom: 20px;
+    color: #52565b;
+}
+
+.form-group {
+    margin-bottom: 40px;
+    outline: 0px;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 2px solid #8F77D9;
+    outline: 0;
+    background-color: #ffffff;
+    color: #52565b;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0;
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.form-control-label {
+    font-size: 10px;
+    color: #6C6C6C;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-outline-primary {
+    border-color: var(--primary);
+    color: var(--primary);
+    border-radius: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    right: 0px;
+}
+
+.login-btm {
+    float: left;
+}
+
+.login-button {
+    padding-right: 0px;
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.login-text {
+    text-align: left;
+    padding-left: 0px;
+    color: #A2A4A4;
+}
+
+.loginbttm {
+    padding: 0px;
+}
+</style>
+@endpush

@@ -49,6 +49,7 @@
                         <!-- Dropdown items go here -->
                         <a class="dropdown-item text-primary" href="{{route('user.profile.setting')}}"><i class="las la-user-shield me-2 fs-5"></i>@lang('Profile Setting')</a>
                         <a class="dropdown-item text-primary" href="{{route('user.change.password')}}"><i class="las la-key me-2 fs-5"></i>@lang('Change Password')</a>
+                        <a class="dropdown-item text-primary" href="{{route('user.twofactor')}}"><i class="las la-chess-board me-2 fs-5"></i>@lang('Two Factor')</a>
                        
                         <!-- Add more items as needed -->
                     </div>
