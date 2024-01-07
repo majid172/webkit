@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminNotification;
+use App\Models\User;
 use App\Models\UserLogin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -51,6 +54,18 @@ class LoginController extends Controller
         return view($this->activeTemplate . 'user.auth.login', compact('pageTitle'));
     }
 
+    public function googleLogin()
+    {
+        
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        $this->registerOrLogin($user);
+        // after login
+        return redirect()->route('user.home');
+    }
     public function login(Request $request)
     {
 
@@ -83,6 +98,39 @@ class LoginController extends Controller
 
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    public function registerOrLogin($data)
+    {
+       
+        $user = User::where('email',$data->email)->first();
+        if(!$user){
+            $user = new User();
+            $user->firstname = $data->user['given_name'];
+            $user->lastname = $data->user['family_name'];
+            $lastThreeNumber = ($data->id)%100;
+            $user->username = strtolower($data->user['given_name']).$lastThreeNumber;
+            $user->email = $data->email;
+            $user->password= '';
+            $user->gauth_id = ($data->id)%100;
+            $user->status = 1;
+            $user->image = $data->avatar;
+            $user->kv = gs()->kv ? 0 : 1;
+            $user->ev = gs()->ev ? 0 : 1;
+            $user->sv = gs()->sv ? 0 : 1;
+            $user->ts = 0;
+            $user->tv = 1;
+            $user->reg_step = 1;
+            $user->save();
+
+            $adminNotification = new AdminNotification();
+            $adminNotification->user_id = $user->id;
+            $adminNotification->title = 'New member registered';
+            $adminNotification->click_url = urlPath('admin.users.detail',$user->id);
+            $adminNotification->save();
+        }
+
+        Auth::login($user);
     }
 
     public function findUsername()

@@ -211,13 +211,14 @@ function notify($user, $templateName, $shortCodes = null, $sendVia = null, $crea
         $user = (object)$user;
     }
     $shortCodes = array_merge($shortCodes ?? [], $globalShortCodes);
-    $notify = new Notify($sendVia);
-    $notify->templateName = $templateName;
-    $notify->shortCodes = $shortCodes;
-    $notify->user = $user;
-    $notify->createLog = $createLog;
-    $notify->userColumn = getColumnName($user);
-    $notify->send();
+    // dd('ik');
+    // $notify = new Notify();
+    // $notify->templateName = $templateName;
+    // $notify->shortCodes = $shortCodes;
+    // $notify->user = $user;
+    // $notify->createLog = $createLog;
+    // $notify->userColumn = getColumnName($user);
+    // $notify->send();
 }
 
 function getColumnName($user)

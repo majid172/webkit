@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Auth\LoginController;
 use App\Lib\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,8 @@ Route::get('/clear', function(){
 });
 
 // User Support Ticket
+Route::get('/auth/google/callback',[LoginController::class,'googleCallback'])->name('login.google.callback');
+
 Route::controller('TicketController')->prefix('ticket')->group(function () {
     Route::get('/', 'supportTicket')->name('ticket');
     Route::get('/new', 'openSupportTicket')->name('ticket.open');

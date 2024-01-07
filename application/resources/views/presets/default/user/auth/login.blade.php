@@ -37,9 +37,13 @@
                             </a>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="recaptcha" class="btn btn-primary w-100">
+                            <button type="submit" id="recaptcha" class="btn btn-primary w-100 mb-2">
                                 @lang('Login')
                             </button>
+                            <a href="{{route('user.login.google')}}" class="btn btn-outline-success w-100">
+                                <i class="lab la-google"></i> @lang('Sign in with Google')
+                            </a>
+                            
                         </div>
                         <p class="mb-0">@lang('Don\'t have any account?') <a
                                 href="{{ route('user.register') }}">@lang('Register')</a></p>

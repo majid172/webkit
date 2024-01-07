@@ -1,13 +1,17 @@
 <?php
 use App\Http\Controllers\User\CourseController;
 
+
 Route::namespace('User\Auth')->name('user.')->group(function () {
 
     Route::controller('LoginController')->group(function(){
         Route::get('/login', 'showLoginForm')->name('login');
         Route::post('/login', 'login');
+        Route::get('/login/google/redirect','googleLogin')->name('login.google');
+        
         Route::get('logout', 'logout')->name('logout');
     });
+
 
     Route::controller('RegisterController')->group(function(){
         Route::get('register', 'showRegistrationForm')->name('register');
