@@ -1,12 +1,11 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card custom--card">
-                <div class="card-header">
-                    <h5 class="card-title">@lang('Profile')</h5>
-                </div>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        @include($activeTemplate.'includes.sidebar')
+        <div class="col-md-9 mb-5">
+            <div class="shadow p-3 mb-5 bg-body rounded ">
+                <h5 class="card-title text-primary">@lang('Profile')</h5>
                 <div class="card-body">
                     <form class="register" action="" method="post" enctype="multipart/form-data">
                         @csrf
@@ -46,7 +45,7 @@
                         </div>
 
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="form-group col-sm-4">
                                 <label class="form-label">@lang('Zip Code')</label>
                                 <input type="text" class="form-control form--control" name="zip"
@@ -67,7 +66,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn--base w-100">@lang('Save')</button>
+                            <button type="submit" class="btn btn-primary w-100">@lang('Profile Update')</button>
                         </div>
                     </form>
                 </div>

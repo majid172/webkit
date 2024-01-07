@@ -3,22 +3,22 @@
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <a href="{{route('user.home')}}" class="nav-link text-primary fw-bold" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a href="{{route('user.home')}}" class="nav-link text-primary " data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <i class="las la-tachometer-alt me-1 fs-4"></i>@lang('Dashboard')
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{route('user.course.list')}}" class="nav-link text-primary fw-bold" data-toggle="tooltip" data-placement="right" title="Courses">
+                    <a href="{{route('user.course.list')}}" class="nav-link text-primary" data-toggle="tooltip" data-placement="right" title="Courses">
                         <i class="las la-book-reader me-1 fs-4"></i>@lang('Course Lists')
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#" class="nav-link text-primary fw-bold" data-toggle="tooltip" data-placement="right" title="Subscription">
+                    <a href="#" class="nav-link text-primary" data-toggle="tooltip" data-placement="right" title="Subscription">
                         <i class="las la-wallet me-1 fs-4"></i>@lang('Subscription')
                     </a>
                 </li>
                 <li class="list-group-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary fw-bold" data-toggle="dropdown" data-placement="right" title="PayIn">
+                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary " data-toggle="dropdown" data-placement="right" title="PayIn">
                         <i class="las la-money-bill-wave-alt me-1 fs-4"></i>@lang('PayIn')
                     </a>
                     <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -29,7 +29,7 @@
                 </li>
                 
                 <li class="list-group-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary fw-bold" data-toggle="dropdown" data-placement="right" title="Payout">
+                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary" data-toggle="dropdown" data-placement="right" title="Payout">
                         <i class="las la-money-check-alt me-1 fs-4"></i>@lang('Payout')
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,6 +40,19 @@
                     </div>
                 </li>
                 
+                <li class="list-group-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary " data-toggle="dropdown" data-placement="right" title="Settings">
+                        
+                        <i class="las la-cog me-2 fs-4"></i>@lang('Settings')
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- Dropdown items go here -->
+                        <a class="dropdown-item text-primary" href="{{route('user.profile.setting')}}"><i class="las la-user-shield me-2 fs-5"></i>@lang('Profile Setting')</a>
+                        <a class="dropdown-item text-primary" href="{{route('user.change.password')}}"><i class="las la-key me-2 fs-5"></i>@lang('Change Password')</a>
+                       
+                        <!-- Add more items as needed -->
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

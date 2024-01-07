@@ -1,6 +1,5 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-{{-- @include($activeTemplate.'includes.sidebar') --}}
     <div class="container">
         <div class="row justify-content-center mt-5">
             @include($activeTemplate.'includes.sidebar')
