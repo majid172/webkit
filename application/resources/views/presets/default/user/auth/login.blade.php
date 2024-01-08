@@ -45,8 +45,7 @@
                             </a>
                             
                         </div>
-                        <p class="mb-0 text-secondary">@lang('Don\'t have any account?') <a
-                                href="{{ route('user.register') }}">@lang('SignUp')</a></p>
+                        <p class="mb-0 text-secondary">@lang('Don\'t have any account?') <a href="{{ route('user.register') }}" class="text-primary">@lang('SignUp')</a></p>
                     </form>
                 </div>
                 {{-- <div class="text-end">

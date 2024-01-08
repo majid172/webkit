@@ -6,6 +6,12 @@
         <div class="row justify-content-center">
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
+                @if (auth()->user()->user_type == 1)
+                <div class="text-end mb-3">
+                   <a href="{{route('user.episode.create')}}" class="btn btn-sm btn-primary"><i class="las la-plus"></i>@lang('Create Episode')</a>
+                </div>
+                @endif
+                
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <main class="cd__main">
                         <!-- Start DEMO HTML (Use the following code into your project)-->
@@ -42,13 +48,16 @@
                         <!-- END EDMO HTML (Happy Coding!)-->
                     </main>
                 </div>
+
+
+               
             </div>
         </div>
     </div>
 </div>
 
 {{-- APPROVE MODAL --}}
-<div id="detailModal" class="modal fade" tabindex="-1" role="dialog">
+{{-- <div id="detailModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -67,7 +76,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+{{-- create episode --}}
 
 @endsection
 

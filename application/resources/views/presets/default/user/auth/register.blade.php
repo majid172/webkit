@@ -83,15 +83,15 @@
                                     <input type="password" class="form-control form--control" name="password_confirmation" required>
                                 </div>
                             </div>
-
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="user_type" type="checkbox" value="1"  role="switch" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">@lang('Instructor')</label>
+                            </div>
                             <x-captcha></x-captcha>
 
                         </div>
                        <div class="form-group">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" name="user_type" type="checkbox" value="1"  role="switch" id="flexSwitchCheckChecked" checked>
-                            <label class="form-check-label" for="flexSwitchCheckChecked">@lang('Instructor')</label>
-                          </div>
+                        
                        </div>
                         @if($general->agree)
                         <div class="form-group">

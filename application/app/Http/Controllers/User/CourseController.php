@@ -16,6 +16,10 @@ class CourseController extends Controller
     {
         $pageTitle = 'Course lists';
         $user = auth()->user();
+        if($user->user_type == 1)
+        {
+            
+        }
         $courses = Category::where('is_subscribed',1)->with('episodes')->paginate(getPaginate());
         // dd($courses->toArray());
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));

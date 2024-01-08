@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\EpisodeController;
 
 
 Route::namespace('User\Auth')->name('user.')->group(function () {
@@ -70,6 +71,11 @@ Route::middleware('auth')->name('user.')->group(function () {
                Route::get('/episode/details/{category_id}/{ep_id}', 'details')->name('episode.details');
 
             });
+
+            Route::controller('EpisodeController')->name('episode.')->prefix('episode')->group(function(){
+                Route::get('/create','create')->name('create');
+            });
+
             //Profile setting
             Route::controller('ProfileController')->group(function(){
                 Route::get('profile/setting', 'profile')->name('profile.setting');
@@ -97,5 +103,6 @@ Route::middleware('auth')->name('user.')->group(function () {
             Route::get('deposit/manual', 'manualDepositConfirm')->name('deposit.manual.confirm');
             Route::post('deposit/manual', 'manualDepositUpdate')->name('deposit.manual.update');
         });
+
     });
 });
