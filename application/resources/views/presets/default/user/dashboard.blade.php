@@ -17,7 +17,7 @@
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <a href="{{route('user.course.list')}}">
                                 <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                                <h4 class="text-primary">{{$total_episodes}}</h4>
+                                {{-- <h4 class="text-primary">{{$total_episodes}}</h4> --}}
                             </a>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             
                             <h6 class="text-secondary">@lang('Course Cost')</h6>
-                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4>
+                            {{-- <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4> --}}
                         </div>
                     </div>
                 </div>

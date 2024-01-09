@@ -9,6 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    public function categoryDetails()
+    {
+        return $this->hasMany(CategoryDetails::class);
+    }
     public function episodes()
     {
         return $this->hasMany(Episode::class);
@@ -18,4 +22,6 @@ class Category extends Model
     {
         return $this->hasMany(Subscription::class,'category_id');
     }
+
+
 }

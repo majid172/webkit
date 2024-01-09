@@ -18,9 +18,17 @@ class CourseController extends Controller
         $user = auth()->user();
         if($user->user_type == 1)
         {
+            $courses = Category::where('status',1)->with('categoryDetails')
+                        ->whereHas('categoryDetails',function($query) use($user){
+                            $query->where('creator_id',$user->id);
+                        })
+                        ->paginate(getPaginate());
             
         }
-        $courses = Category::where('is_subscribed',1)->with('episodes')->paginate(getPaginate());
+        else{
+            $courses = Category::where('is_subscribed',1)->with('episodes')->paginate(getPaginate());
+        }
+       
         // dd($courses->toArray());
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }

@@ -32,8 +32,13 @@
                                             <span class="fw-bold"> <span class="text-secondary">{{
                                                 ucwords($list->name) }}</span>
                                         </td>
-                                        <td><span class="badge rounded-circle bg-primary">{{optional($list->episodes)->count()}}</span>
+                                        <td>
+                                            <span class="badge rounded-circle bg-primary">
+                                                {{$list->categoryDetails->id}}
+                                                {{-- @dd($list->categoryDetails->toArray()) --}}
+                                            </span>
                                         </td>
+
                                         <td>{{$general->cur_sym}}{{getAmount($list->price)}}</td>
                                         <td>{{ showDateTime($list->created_at) }}</td>
                                         

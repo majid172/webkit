@@ -13,4 +13,8 @@ class Episode extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function categoryDetails()
+    {
+        return $this->belongsTo(CategoryDetails::class);
+    }
 }
