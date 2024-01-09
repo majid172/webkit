@@ -15,6 +15,6 @@ class CategoryDetails extends Model
     }
     public function episodes()
     {
-        return $this->hasMany(Episode::class);
+        return $this->hasMany(Episode::class,'cat_details_id');
     }
 }

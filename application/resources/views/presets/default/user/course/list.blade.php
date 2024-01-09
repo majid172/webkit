@@ -34,8 +34,15 @@
                                         </td>
                                         <td>
                                             <span class="badge rounded-circle bg-primary">
-                                                {{$list->categoryDetails->id}}
-                                                {{-- @dd($list->categoryDetails->toArray()) --}}
+                                                @if (auth()->user()->user_type == 1)
+                                                    @foreach ($list->categoryDetails as $details)
+                                                        @foreach ($details->episodes as $episode)
+                                                            {{$episode->count()}}
+                                                        @endforeach 
+                                                    @endforeach
+                                                @else 
+                                                incomplete
+                                                @endif
                                             </span>
                                         </td>
 
@@ -43,7 +50,12 @@
                                         <td>{{ showDateTime($list->created_at) }}</td>
                                         
                                         <td>
+                                            @if (auth()->user()->user_type)
+                                            <a href="" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            @else
                                             <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            @endif
+                                            
                                         </td>
                                         
                                     </tr>

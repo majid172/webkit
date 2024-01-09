@@ -73,6 +73,7 @@ Route::middleware('auth')->name('user.')->group(function () {
             });
 
             Route::controller('EpisodeController')->name('episode.')->prefix('episode')->group(function(){
+                // Route::get('/episode/list/{}')
                 Route::get('/create','create')->name('create');
                 Route::post('/store','store')->name('store');
             });

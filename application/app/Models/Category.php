@@ -13,10 +13,10 @@ class Category extends Model
     {
         return $this->hasMany(CategoryDetails::class);
     }
-    public function episodes()
-    {
-        return $this->hasMany(Episode::class);
-    } 
+    // public function episodes()
+    // {
+    //     return $this->hasMany(Episode::class);
+    // } 
 
     public function subscription()
     {
