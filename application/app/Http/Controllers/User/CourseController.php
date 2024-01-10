@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\Episode;
 use App\Models\GatewayCurrency;
 use App\Models\Subscription;
@@ -40,9 +41,28 @@ class CourseController extends Controller
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function create()
+    {
+        $pageTitle = 'Create Course';
+        $categories = Category::where('status',1)->get();
+        return view($this->activeTemplate.'user.course.create',compact('pageTitle','categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|min:3'
+        ]);
+        $course = new Course();
+        $course->title = $request->title;
+        $course->category_id = $request->category_id;
+        $course->creator_id = auth()->user()->id;
+        $course->price = $request->price;
+        $course->save();
+        $notify[] = ['success', $course->title . ' has been created successfully'];
+        return redirect()->back()->withNotify($notify);
+
+    }
     public function episodeList($category_id)
     {
         $pageTitle = "Episode Lists";

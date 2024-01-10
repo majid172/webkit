@@ -34,8 +34,12 @@ class UserController extends Controller
                         });
 
         $data['total_sell'] = CategoryDetails::where('is_purchase',1)->where('creator_id',$user->id)->sum('price');
-        // $data['total_course'] = Category::where('is_subscribed',1)->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->count();
-        
+
+        $data['total_course'] = CategoryDetails::where('is_purchase',1)
+                                ->with('subscription','episodes')->get();
+        // $data['total_course'] = CategoryDetails::where('is_purchase',1)
+        //                         ->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->get();
+        // dd($data['total_course']->toArray());
         // $data['total_episodes'] = Episode::with('category')
         //         ->whereHas('category',function($query){
         //             $query->where('is_subscribed',1)->with('subscription')->whereRelation('subscription','user_id',auth()->user()->id);

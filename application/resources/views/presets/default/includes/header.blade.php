@@ -14,14 +14,23 @@ $pages = \App\Models\Page::get();
                 <a href="{{route('pages',$page->slug)}}" class="nav-item nav-link {{url()->current() == route('pages',$page->slug)? 'active' : ''}} ">{{$page->name}}</a>
             @endforeach
             @auth
-                <a class="nav-item nav-link {{ Route::is('user.home') ? 'active' : '' }}"  href="{{route('user.home')}}">@lang('Dashboard')</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@lang(auth()->user()->username)</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="{{route('user.profile.setting')}}" class="dropdown-item">@lang('Profile Settings')</a>
+                    <a href="{{route('user.change.password')}}" class="dropdown-item">@lang('Change Password')</a>
+                    <a href="" class="dropdown-item">@lang('2FA')</a>
+                </div>
+            </div>
+               
             @endauth
         </div>
         @guest
             <a href="{{route('user.login')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Join Now')<i class="fa fa-arrow-right ms-3"></i></a>
         @endguest
         @auth
-            <a href="{{route('user.logout')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Logout')<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route('user.home')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">@lang('Dashboard')</a>
+            
         @endauth
 
     </div>

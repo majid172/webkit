@@ -48,6 +48,7 @@ class EpisodeController extends Controller
         $episode = new Episode();
         $episode->cat_details_id = $categoryDetails->id;
         $episode->title = $request->title;
+        $episode->price = $request->price;
         $episode->file_link = $request->file_link;
         if($request->hasFile('file')){
             try {
@@ -74,9 +75,11 @@ class EpisodeController extends Controller
      */
     public function details($id)
     {
-        $pageTitle = 'Episode Details';
-        $episode = Episode::where('id',$id)->first();
-        return view($this->activeTemplate.'user.episode.details',compact('pageTitle','episode'));
+        $pageTitle  = 'Episode Details';
+        $details    = Episode::where('id',$id)->first();
+        $relateds   = Episode::where('id','!=',$id)
+                        ->with('category')->limit(3)->get();
+        return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details'));
     }
 
     /**

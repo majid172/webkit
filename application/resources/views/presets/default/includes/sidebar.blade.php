@@ -40,19 +40,10 @@
                     </div>
                 </li>
                 
-                <li class="list-group-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary " data-toggle="dropdown" data-placement="right" title="Settings">
-                        
-                        <i class="las la-cog me-2 fs-4"></i>@lang('Settings')
+                <li class="list-group-item">
+                    <a href="{{route('user.logout')}}" class="nav-link text-primary" data-toggle="tooltip" data-placement="right" title="logout">
+                        <i class="las la-sign-out-alt me-1 fs-4"></i>@lang('Logout')
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- Dropdown items go here -->
-                        <a class="dropdown-item text-primary" href="{{route('user.profile.setting')}}"><i class="las la-user-shield me-2 fs-5"></i>@lang('Profile Setting')</a>
-                        <a class="dropdown-item text-primary" href="{{route('user.change.password')}}"><i class="las la-key me-2 fs-5"></i>@lang('Change Password')</a>
-                        <a class="dropdown-item text-primary" href="{{route('user.twofactor')}}"><i class="las la-chess-board me-2 fs-5"></i>@lang('Two Factor')</a>
-                       
-                        <!-- Add more items as needed -->
-                    </div>
                 </li>
             </ul>
         </div>

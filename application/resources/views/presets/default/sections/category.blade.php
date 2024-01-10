@@ -1,8 +1,15 @@
 @php
     $content = getContent('category.content',true);
-    $categories = App\Models\Category::with('episodes')->limit(4)->latest()->get();
+    $categories = App\Models\Category::with('categoryDetails')
+    ->withCount(['categoryDetails as creator_count' => function ($q) {
+        $q->select(\DB::raw('count(distinct creator_id)'));
+    }])
+    ->latest()
+    ->get();
+
     
 @endphp
+
 <div class="container-xxl py-5 category">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -18,7 +25,7 @@
                                 <img class="img-fluid" src="{{getImage(getFilePath('category').'/' . @$category->path .'/'. @$category->image )}}" alt="{{$category->image}}">
                                 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
                                     <h5 class="m-0">{{ucwords($category->name)}}</h5>
-                                    <small class="text-primary">{{$category->episodes->count()}} @lang('Episodes')</small>
+                                    <small class="text-primary">{{$category->categoryDetails->count()}} @lang('Courses')</small>
                                 </div>
                             </a>
                         </div>

@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 @if (auth()->user()->user_type == 1)
                 <div class="text-end mb-3">
-                   <a href="{{route('user.episode.create')}}" class="btn btn-sm btn-primary"><i class="las la-plus"></i>@lang('Create Episode')</a>
+                   <a href="{{route('user.course.create')}}" class="btn btn-sm btn-primary"><i class="las la-plus"></i>@lang('Create Course')</a>
                 </div>
                 @endif
                 

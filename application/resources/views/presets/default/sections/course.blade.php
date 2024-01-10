@@ -1,7 +1,36 @@
-@php
+{{-- @php
 $content = getContent('course.content',true);
-$categories = \App\Models\Category::with('subscription')->limit(4)->get();
+$categories = \App\Models\Category::with('categoryDetails','categoryDetails.episodes')->limit(4)->get();
 
+
+// foreach ($categories as $category) {
+//     foreach ($category->category_details as $detail) {
+//         $creatorId = $detail['creator_id'];
+//         $categoryId = $detail['category_id'];
+
+//         // Check if the combination of creator_id and category_id are set
+//         if (isset($creatorId, $categoryId)) {
+//             // Check if the combination of creator_id and category_id already exists
+//             $key = $creatorId . '_' . $categoryId;
+
+//             if (!isset($group[$key])) {
+//                 $group[$key] = [
+//                     'creator_id' => $creatorId,
+//                     'category_id' => $categoryId,
+//                     'details' => []
+//                 ];
+//             }
+
+//             // Add the current detail to the array under the specific combination
+//             $group[$key]['details'][] = $detail;
+//         } else {
+//             // Handle the case where creator_id or category_id is not set
+//             // You may want to log or handle this situation differently
+//         }
+//     }
+// }
+
+// dd($categories->toArray());
 @endphp
 <div class="container-xxl py-5">
     <div class="container">
@@ -21,7 +50,7 @@ $categories = \App\Models\Category::with('subscription')->limit(4)->get();
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
-                        <h3 class="mb-0">{{gs()->cur_sym}}{{getAmount($item->price)}}</h3>
+                        <h3 class="mb-0"></h3>
                         <div class="mb-3">
                             <small class="fa fa-star text-primary"></small>
                             <small class="fa fa-star text-primary"></small>
@@ -35,7 +64,7 @@ $categories = \App\Models\Category::with('subscription')->limit(4)->get();
                     <div class="d-flex border-top">
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>@lang('Admin')</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                        <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{$item->subscription->count()}} Students</small>
+                        <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>Students</small>
                     </div>
                 </div>
             </div>
@@ -46,4 +75,4 @@ $categories = \App\Models\Category::with('subscription')->limit(4)->get();
            
         </div>
     </div>
-</div>
+</div> --}}

@@ -13,7 +13,7 @@
                             <h1 class="display-3 text-white animated slideInDown">{{__($content_1->data_values->heading1)}}</h1>
                             <p class="fs-5 text-white mb-4 pb-2">{{__($content_1->data_values->paragraph1)}}</p>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">@lang('Read More')</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">@lang('Join Now')</a>
+                            <a href="{{route('user.login')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">@lang('Join Now')</a>
                         </div>
                     </div>
                 </div>
