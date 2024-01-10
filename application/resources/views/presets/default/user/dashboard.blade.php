@@ -8,15 +8,31 @@
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <a href="{{route('user.course.list')}}">
-                                <h6 class="text-secondary"><i class="las la-book-open"></i> @lang('Total Courses')</h6>
-                                <h4 class="text-primary">{{$total_course}}</h4>
+                               
+                                @if (auth()->user()->user_type == 1)
+                                    <h6 class="text-secondary"> @lang('Total Created Courses')</h6>
+                                    <h4 class="text-primary">{{$total_createcourse}}</h4>
+                                @else 
+                                    <h6 class="text-secondary">@lang('Purchase Courses')</h6>
+                                    <h4 class="text-primary">{{$total_course}}</h4>
+                                @endif
+                            
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
                             <a href="{{route('user.course.list')}}">
+                                
+                                @if (auth()->user()->user_type == 1)
+                                <h6 class="text-secondary"> @lang('Total Buyer')</h6>
+                                <h4 class="text-primary">{{$buyer}}</h4> 
+                                @else
                                 <h6 class="text-secondary">@lang('Total Episodes')</h6>
+                                <h4 class="text-primary">{{$total_episodes}}</h4> 
+                                @endif
+                                    
+                                
                                 {{-- <h4 class="text-primary">{{$total_episodes}}</h4> --}}
                             </a>
                         </div>
@@ -24,8 +40,14 @@
                     
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-5 bg-body rounded">
+                            @if (auth()->user()->user_type==1)
+                            <h6 class="text-secondary">@lang('Total Sell')</h6>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_sell)}}</h4>
+                            @else
+                            <h6 class="text-secondary">@lang('Total Cost')</h6>
+                            <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4>
+                            @endif
                             
-                            <h6 class="text-secondary">@lang('Course Cost')</h6>
                             {{-- <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4> --}}
                         </div>
                     </div>

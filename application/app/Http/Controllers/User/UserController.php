@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Lib\FormProcessor;
 use App\Lib\GoogleAuthenticator;
 use App\Models\Category;
+use App\Models\CategoryDetails;
 use App\Models\Course;
 use App\Models\Deposit;
 use App\Models\Episode;
@@ -21,7 +22,19 @@ class UserController extends Controller
     {
         $pageTitle = 'Dashboard';
         $data['balance'] = auth()->user()->balance;
-        $data['total_course'] = Category::where('is_subscribed',1)->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->count();
+        $user = auth()->user();
+        
+        $data['total_createcourse'] = CategoryDetails::where('creator_id',$user->id)  ->distinct('category_id')->count();
+        $data['buyer'] = CategoryDetails::where('creator_id', $user->id)
+                        ->where('is_purchase', 1)
+                        ->with('subscription')
+                        ->get()
+                        ->sum(function ($q) {
+                            return $q->subscription->count();
+                        });
+
+        $data['total_sell'] = CategoryDetails::where('is_purchase',1)->where('creator_id',$user->id)->sum('price');
+        // $data['total_course'] = Category::where('is_subscribed',1)->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->count();
         
         // $data['total_episodes'] = Episode::with('category')
         //         ->whereHas('category',function($query){

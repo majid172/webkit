@@ -7,7 +7,7 @@
     <title> {{ $general->siteName(__($pageTitle)) }}</title>
     @include('includes.seo')
 
-    <link rel="shortcut icon" href="{{asset($activeTemplateTrue.'/images/logo/favicon.png')}}">
+    <link rel="shortcut icon" href="{{ getImage('assets/images/logoIcon/favicon.png') }}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

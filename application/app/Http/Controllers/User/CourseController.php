@@ -25,12 +25,15 @@ class CourseController extends Controller
                         ->get();
         }
         else{
-            $courses = Category::where('is_subscribed',1)
-                        ->with('categoryDetails.episodes','subscription')
-                        ->whereHas('subscription',function($q) use ($user){
-                            $q->where('user_id',$user->id);
-                        })->get();
-            
+            $courses = Category::with('categoryDetails.episodes','categoryDetails.creator')
+                        ->whereHas('categoryDetails',function($q) use ($user){
+                            $q->where('is_purchase',1);
+                        })
+                        ->whereHas('categoryDetails.subscription',function($query) use($user){
+                            $query->where('user_id',$user->id);
+                        })
+                        ->get();
+            // dd($courses->toArray());
         }
        
         // dd($courses->toArray());

@@ -101,5 +101,9 @@ class User extends Authenticatable
     {
         return $this->where('balance','>', 0);
     }
+    public function categoryDetails()
+    {
+        return $this->hasMany(CategoryDetails::class);
+    }
 
 }

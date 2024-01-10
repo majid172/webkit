@@ -18,10 +18,7 @@ class Category extends Model
     //     return $this->hasMany(Episode::class);
     // } 
 
-    public function subscription()
-    {
-        return $this->hasMany(Subscription::class,'category_id');
-    }
+    
 
 
 }

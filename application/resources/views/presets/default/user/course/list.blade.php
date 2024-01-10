@@ -14,7 +14,6 @@
                 
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <main class="cd__main">
-                        <!-- Start DEMO HTML (Use the following code into your project)-->
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
@@ -29,20 +28,22 @@
                                 @foreach ($courses as $list)
                                     <tr>
                                         <td>
-                                            <span class="fw-bold"> <span class="text-secondary">{{
-                                                ucwords($list->name) }}</span>
+                                            {{ucwords($list->name) }} <br>
+                                                @if (auth()->user()->user_type != 1)
+                                                    @foreach ($list->categoryDetails as $detail)
+                                                    <span class="text-secondary">
+                                                       @lang('author by ') - {{ucfirst(optional($detail->creator)->username)}}
+                                                    </span>
+                                                    @endforeach
+                                                @endif
                                         </td>
                                         <td>
                                             <span class="badge rounded-circle bg-primary">
-                                                @if (auth()->user()->user_type == 1)
-                                                    @foreach ($list->categoryDetails as $details)
-                                                        @foreach ($details->episodes as $episode)
-                                                            {{$episode->count()}}
-                                                        @endforeach 
-                                                    @endforeach
-                                                @else 
-                                                incomplete
-                                                @endif
+                                            @foreach ($list->categoryDetails as $details)
+                                                @foreach ($details->episodes as $episode)
+                                                    {{$episode->count()}}
+                                                @endforeach 
+                                            @endforeach
                                             </span>
                                         </td>
 
@@ -51,23 +52,19 @@
                                         
                                         <td>
                                             @if (auth()->user()->user_type)
-                                            <a href="" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            <a href="{{route('user.episode.list')}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
                                             @else
                                             <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
                                             @endif
                                             
                                         </td>
-                                        
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <!-- END EDMO HTML (Happy Coding!)-->
+                       
                     </main>
                 </div>
-
-
-               
             </div>
         </div>
     </div>

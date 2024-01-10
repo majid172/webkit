@@ -13,14 +13,22 @@ class EpisodeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function list()
     {
-        //
+        $pageTitle = "Episode List";
+        $user = auth()->user();
+        if($user->user_type)
+        {
+            $episodes = Episode::with('categoryDetails')
+                        ->whereHas('categoryDetails', function ($q) use ($user) {
+                            $q->where('creator_id', $user->id);
+                        })->get();
+         
+        }
+        
+        return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $pageTitle = 'Create Episode';
@@ -28,9 +36,7 @@ class EpisodeController extends Controller
         return view($this->activeTemplate.'user.episode.create',compact('pageTitle','categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
@@ -66,9 +72,11 @@ class EpisodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function details($id)
     {
-        //
+        $pageTitle = 'Episode Details';
+        $episode = Episode::where('id',$id)->first();
+        return view($this->activeTemplate.'user.episode.details',compact('pageTitle','episode'));
     }
 
     /**
