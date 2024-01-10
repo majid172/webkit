@@ -13,19 +13,11 @@ class EpisodeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function list()
+    public function list($course_id)
     {
         $pageTitle = "Episode List";
         $user = auth()->user();
-        if($user->user_type)
-        {
-            $episodes = Episode::with('categoryDetails')
-                        ->whereHas('categoryDetails', function ($q) use ($user) {
-                            $q->where('creator_id', $user->id);
-                        })->get();
-         
-        }
-        
+        $episodes = Episode::where('course_id',$course_id)->get();
         return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes'));
     }
 

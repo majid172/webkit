@@ -6,6 +6,14 @@
         <div class="row justify-content-center">
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
+                @if (auth()->user()->user_type)
+                <div class="text-end mb-3">
+                    <a class="btn btn-sm btn-primary" href="{{route('user.episode.create')}}">
+                        <i class="las la-plus me-2"></i>@lang('Create Episode')
+                    </a>
+                </div>
+                @endif
+                
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <ul class="list-group list-group-flush">
                         @forelse ($episodes as $item)

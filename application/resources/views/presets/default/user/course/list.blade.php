@@ -17,7 +17,7 @@
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>@lang('Name')</th>
+                                    <th>@lang('Title')</th>
                                     <th>@lang('No. of Episodes')</th>
                                     <th>@lang('Price')</th>
                                     <th>@lang('Date')</th>
@@ -28,22 +28,11 @@
                                 @foreach ($courses as $list)
                                     <tr>
                                         <td>
-                                            {{ucwords($list->name) }} <br>
-                                                @if (auth()->user()->user_type != 1)
-                                                    @foreach ($list->categoryDetails as $detail)
-                                                    <span class="text-secondary">
-                                                       @lang('author by ') - {{ucfirst(optional($detail->creator)->username)}}
-                                                    </span>
-                                                    @endforeach
-                                                @endif
+                                            {{ucwords($list->title) }}
                                         </td>
                                         <td>
                                             <span class="badge rounded-circle bg-primary">
-                                            @foreach ($list->categoryDetails as $details)
-                                                @foreach ($details->episodes as $episode)
-                                                    {{$episode->count()}}
-                                                @endforeach 
-                                            @endforeach
+                                            
                                             </span>
                                         </td>
 
@@ -52,7 +41,17 @@
                                         
                                         <td>
                                             @if (auth()->user()->user_type)
-                                            <a href="{{route('user.episode.list')}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="las la-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                  <li><a class="dropdown-item" href="#"><i class="las la-edit me-2"></i>@lang('Edit')</a></li>
+                                                  <li><a class="dropdown-item" href="{{route('user.episode.list',$list->id)}}">@lang('Episode lists')</a></li>
+                                                  
+                                                </ul>
+                                              </div>
+                                            {{-- <a href="{{route('user.episode.list')}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a> --}}
                                             @else
                                             <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
                                             @endif

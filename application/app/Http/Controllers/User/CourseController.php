@@ -19,11 +19,12 @@ class CourseController extends Controller
         $user = auth()->user();
         if($user->user_type == 1)
         {
-            $courses = Category::with('categoryDetails.episodes' )
-                        ->whereHas('categoryDetails',function($query) use($user){
-                            $query->where('creator_id',$user->id);
-                        })
-                        ->get();
+            // $courses = Course::with('categoryDetails.episodes' )
+            //             ->whereHas('categoryDetails',function($query) use($user){
+            //                 $query->where('creator_id',$user->id);
+            //             })
+            //             ->get();
+            $courses = Course::where('creator_id',auth()->user()->id)->get();
         }
         else{
             $courses = Category::with('categoryDetails.episodes','categoryDetails.creator')
