@@ -11,6 +11,7 @@
                     <div class="card mt-3">
                         <form action="{{route('user.episode.store')}}" class="text-secondary" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="course_id" value="{{$course_id}}">
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -19,26 +20,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-2 px-3 py-2">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="category" class="mb-1">@lang('Category')</label>
-                                        <select type="text" name="category_id" class="form-control" placeholder="Choose category" id="category">
-                                            
-                                            @foreach ($categories as $item)
-                                                <option value="{{$item->id}}" class="text-primary">{{ucwords($item->name)}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="price" class="mb-1">@lang('Price')</label>
-                                        <input type="number" name="price" class="form-control" placeholder="ex.10.00 USD" id="price">
-                                        
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-6">

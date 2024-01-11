@@ -17,10 +17,7 @@ class CategoryDetails extends Model
     {
         return $this->hasMany(Episode::class,'cat_details_id');
     }
-    public function subscription()
-    {
-        return $this->hasMany(Subscription::class,'cat_details_id');
-    }
+   
     public function creator()
     {
         return $this->belongsTo(User::class);

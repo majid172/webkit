@@ -17,9 +17,10 @@ $pages = \App\Models\Page::get();
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@lang(auth()->user()->username)</a>
                 <div class="dropdown-menu fade-down m-0">
-                    <a href="{{route('user.profile.setting')}}" class="dropdown-item">@lang('Profile Settings')</a>
-                    <a href="{{route('user.change.password')}}" class="dropdown-item">@lang('Change Password')</a>
-                    <a href="" class="dropdown-item">@lang('2FA')</a>
+                    <a href="{{route('user.profile.setting')}}" class="dropdown-item"><i class="las la-user-circle me-2"></i>@lang('Profile Settings')</a>
+                    <a href="{{route('user.change.password')}}" class="dropdown-item"><i class="las la-fingerprint me-2"></i>@lang('Change Password')</a>
+                    <a href="{{route('user.twofactor')}}" class="dropdown-item"><i class="las la-dice-two me-2"></i>@lang('Two Factor')</a>
+                    <a href="{{route('user.logout')}}" class="dropdown-item"><i class="las la-sign-out-alt me-2"></i>@lang('Logout')</a>
                 </div>
             </div>
                

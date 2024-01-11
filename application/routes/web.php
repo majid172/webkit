@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\EpisodeController;
 use App\Lib\Router;
+use App\Models\Episode;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/clear', function(){
@@ -22,6 +24,11 @@ Route::controller('TicketController')->prefix('ticket')->group(function () {
 });
 
 Route::get('app/deposit/confirm/{hash}', 'Gateway\PaymentController@appDepositConfirm')->name('deposit.app.confirm');
+
+Route::controller('User\CourseController')->group(function(){
+    Route::get('/all/{category_id}','allCourses')->name('allcourses');
+});
+Route::get('/episode/{course_id}',[EpisodeController::class,'allEpisodes'])->name('allEpisodes');
 
 Route::controller('SiteController')->group(function () {
     Route::get('/contact', 'contact')->name('contact');

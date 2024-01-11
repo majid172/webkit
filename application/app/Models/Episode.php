@@ -9,12 +9,14 @@ class Episode extends Model
 {
     use HasFactory;
 
-    // public function category()
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
         public function categoryDetails()
         {
             return $this->belongsTo(CategoryDetails::class,'cat_details_id');
         }
+
+
 }

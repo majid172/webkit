@@ -32,7 +32,7 @@
                                         </td>
                                         <td>
                                             <span class="badge rounded-circle bg-primary">
-                                            
+                                            {{$list->episodes->count()}}
                                             </span>
                                         </td>
 
@@ -46,14 +46,14 @@
                                                     <i class="las la-ellipsis-v"></i>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                  <li><a class="dropdown-item" href="#"><i class="las la-edit me-2"></i>@lang('Edit')</a></li>
-                                                  <li><a class="dropdown-item" href="{{route('user.episode.list',$list->id)}}">@lang('Episode lists')</a></li>
+                                                  <li><a class="dropdown-item" href="#"><i class="las la-edit me-2 text-warning"></i>@lang('Edit')</a></li>
+                                                  <li><a class="dropdown-item" href="{{route('user.episode.list',$list->id)}}"><i class="las la-play-circle me-2 text-primary"></i>@lang('Episode lists')</a></li>
                                                   
                                                 </ul>
                                               </div>
-                                            {{-- <a href="{{route('user.episode.list')}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a> --}}
+                                          
                                             @else
-                                            <a href="{{route('user.course.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
+                                            <a href="{{route('user.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
                                             @endif
                                             
                                         </td>

@@ -1,11 +1,7 @@
 @php
     $content = getContent('category.content',true);
-    $categories = App\Models\Category::with('categoryDetails')
-    ->withCount(['categoryDetails as creator_count' => function ($q) {
-        $q->select(\DB::raw('count(distinct creator_id)'));
-    }])
-    ->latest()
-    ->get();
+    $categories = App\Models\Category::with('course')
+                    ->latest()->inRandomOrder()->get();
 
     
 @endphp
@@ -21,11 +17,11 @@
                     <div class="row g-3">
                         @foreach($categories as $category)
                         <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="{{route('user.course.episode.list',$category->id)}}">
+                            <a class="position-relative d-block overflow-hidden" href="{{route('allcourses',$category->id)}}">
                                 <img class="img-fluid" src="{{getImage(getFilePath('category').'/' . @$category->path .'/'. @$category->image )}}" alt="{{$category->image}}">
                                 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
                                     <h5 class="m-0">{{ucwords($category->name)}}</h5>
-                                    <small class="text-primary">{{$category->categoryDetails->count()}} @lang('Courses')</small>
+                                    <small class="text-primary">{{$category->course->count()}} @lang('Courses')</small>
                                 </div>
                             </a>
                         </div>

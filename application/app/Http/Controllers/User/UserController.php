@@ -23,29 +23,36 @@ class UserController extends Controller
         $pageTitle = 'Dashboard';
         $data['balance'] = auth()->user()->balance;
         $user = auth()->user();
-        
-        $data['total_createcourse'] = CategoryDetails::where('creator_id',$user->id)  ->distinct('category_id')->count();
-        $data['buyer'] = CategoryDetails::where('creator_id', $user->id)
-                        ->where('is_purchase', 1)
-                        ->with('subscription')
-                        ->get()
-                        ->sum(function ($q) {
-                            return $q->subscription->count();
-                        });
 
-        $data['total_sell'] = CategoryDetails::where('is_purchase',1)->where('creator_id',$user->id)->sum('price');
+        $data['create_course'] = Course::where('creator_id',$user->id)->count();
+        $data['buyer'] = Subscription::whereHas('course',function($q) use($user){
+                                        $q->where('creator_id',$user->id);
+                        })->count();
 
-        $data['total_course'] = CategoryDetails::where('is_purchase',1)
-                                ->with('subscription','episodes')->get();
-        // $data['total_course'] = CategoryDetails::where('is_purchase',1)
-        //                         ->with('subscription','episodes')->whereRelation('subscription','user_id',auth()->user()->id)->get();
+        $data['total_sell'] = Subscription::with('course')
+                                ->whereHas('course', function($q) use ($user) {
+                                    $q->where('creator_id', $user->id);
+                                })->get()->map(function ($subscription) {
+                                    return $subscription['course']['price'];
+                                })->sum();
+
+        $data['total_course'] = Course::with('subscription')
+                                ->whereHas('subscription',function($q) use($user)
+                                {
+                                    $q->where('user_id',$user->id);
+                                })->count();
+                                    
+                             
         // dd($data['total_course']->toArray());
         // $data['total_episodes'] = Episode::with('category')
         //         ->whereHas('category',function($query){
         //             $query->where('is_subscribed',1)->with('subscription')->whereRelation('subscription','user_id',auth()->user()->id);
         //         })->count();
 
-        // $data['total_cost'] = Category::where('is_subscribed',1)->with('subscription')->whereHas('subscription',function($query){
+        $data['total_cost'] = Course::with('subscription')
+                                ->whereHas('subscription',function($query) use($user){
+                                    $query->where('user_id',$user->id);
+                                })->sum('price');
         //     $query->where('user_id',auth()->user()->id);
         // })->sum('price');
 

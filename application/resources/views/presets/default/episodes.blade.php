@@ -1,19 +1,9 @@
-@extends($activeTemplate.'layouts.master')
+@extends($activeTemplate.'layouts.frontend')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
-<div class="py-5 ">
+<div class="container-xxl py-5">
     <div class="container">
         <div class="row justify-content-center">
-            @include($activeTemplate.'includes.sidebar')
-            <div class="col-md-9">
-                @if (auth()->user()->user_type)
-                <div class="text-end mb-3">
-                    <a class="btn btn-sm btn-primary" href="{{route('user.episode.create',$course_id)}}">
-                        <i class="las la-plus me-2"></i>@lang('Create Episode')
-                    </a>
-                </div>
-                @endif
-                
+            <div class="col-md-8">
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <ul class="list-group list-group-flush">
                         @forelse ($episodes as $item)

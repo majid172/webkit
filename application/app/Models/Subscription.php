@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Subscription extends Model
 {
     use HasFactory;
-    public function categoryDetails()
+    public function course()
     {
-        return $this->belongsTo(CategoryDetails::class);
+        return $this->belongsTo(Course::class);
     }
 }

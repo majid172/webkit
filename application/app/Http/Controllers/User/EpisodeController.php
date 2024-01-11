@@ -18,29 +18,23 @@ class EpisodeController extends Controller
         $pageTitle = "Episode List";
         $user = auth()->user();
         $episodes = Episode::where('course_id',$course_id)->get();
-        return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes'));
+        return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes','course_id'));
     }
 
-    public function create()
+    public function create($course_id)
     {
         $pageTitle = 'Create Episode';
-        $categories = Category::where('status',1)->get();
-        return view($this->activeTemplate.'user.episode.create',compact('pageTitle','categories'));
+        return view($this->activeTemplate.'user.episode.create',compact('pageTitle','course_id'));
     }
 
     
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
-        $categoryDetails = new CategoryDetails();
-        $categoryDetails->creator_id = $user_id;
-        $categoryDetails->category_id = $request->category_id;
-        $categoryDetails->save();
-
+       
         $episode = new Episode();
-        $episode->cat_details_id = $categoryDetails->id;
+        $episode->course_id = $request->course_id;
         $episode->title = $request->title;
-        $episode->price = $request->price;
         $episode->file_link = $request->file_link;
         if($request->hasFile('file')){
             try {
@@ -69,17 +63,19 @@ class EpisodeController extends Controller
     {
         $pageTitle  = 'Episode Details';
         $details    = Episode::where('id',$id)->first();
-        $relateds   = Episode::where('id','!=',$id)
-                        ->with('category')->limit(3)->get();
+        // $relateds   = Episode::where('id','!=',$id)
+        //                 ->with('category')->limit(3)->get();
         return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function allEpisodes($course_id)
     {
-        //
+        $pageTitle  = "All Episodes";
+        $episodes   = Episode::where('course_id',$course_id)->get();
+        return view($this->activeTemplate.'episodes',compact('pageTitle','episodes','course_id'));
     }
 
     /**

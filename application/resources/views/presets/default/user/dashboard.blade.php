@@ -11,7 +11,7 @@
                                
                                 @if (auth()->user()->user_type == 1)
                                     <h6 class="text-secondary"> @lang('Total Created Courses')</h6>
-                                    <h4 class="text-primary">{{$total_createcourse}}</h4>
+                                    <h4 class="text-primary">{{$create_course}}</h4>
                                 @else 
                                     <h6 class="text-secondary">@lang('Purchase Courses')</h6>
                                     <h4 class="text-primary">{{$total_course}}</h4>
@@ -29,11 +29,9 @@
                                 <h4 class="text-primary">{{$buyer}}</h4> 
                                 @else
                                 <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                                <h4 class="text-primary">{{$total_episodes}}</h4> 
+                                <h4 class="text-primary">1</h4> 
                                 @endif
-                                    
                                 
-                                {{-- <h4 class="text-primary">{{$total_episodes}}</h4> --}}
                             </a>
                         </div>
                     </div>

@@ -19,26 +19,14 @@ class CourseController extends Controller
         $user = auth()->user();
         if($user->user_type == 1)
         {
-            // $courses = Course::with('categoryDetails.episodes' )
-            //             ->whereHas('categoryDetails',function($query) use($user){
-            //                 $query->where('creator_id',$user->id);
-            //             })
-            //             ->get();
-            $courses = Course::where('creator_id',auth()->user()->id)->get();
+            $courses = Course::where('creator_id',auth()->user()->id)->with('episodes')->get();
         }
         else{
-            $courses = Category::with('categoryDetails.episodes','categoryDetails.creator')
-                        ->whereHas('categoryDetails',function($q) use ($user){
-                            $q->where('is_purchase',1);
-                        })
-                        ->whereHas('categoryDetails.subscription',function($query) use($user){
-                            $query->where('user_id',$user->id);
-                        })
-                        ->get();
-            // dd($courses->toArray());
+            $courses = Course::with('episodes','subscription')
+                        ->whereHas('subscription',function($q) use ($user){
+                            $q->where('user_id',$user->id);
+                        })->get();
         }
-       
-        // dd($courses->toArray());
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }
 
@@ -103,9 +91,11 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function allCourses($category_id)
     {
-        //
+        $pageTitle = 'All Courses';
+        $courses = Course::where('category_id',$category_id)->with('creator','episodes','subscription')->inRandomOrder()->get();
+        return view($this->activeTemplate.('allcourses'),compact('courses','pageTitle'));
     }
 
     /**

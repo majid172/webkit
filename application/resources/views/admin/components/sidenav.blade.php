@@ -20,7 +20,7 @@
                 <li class="sidebar-menu-item {{menuActive('admin.category.*')}}">
                     <a href="{{route('admin.category.list')}}" class="nav-link ">
                         <i class="menu-icon las la-list"></i>
-                        <span class="menu-title">@lang('Course Lists')</span>
+                        <span class="menu-title">@lang('Category Lists')</span>
                     </a>
                 </li>
 
