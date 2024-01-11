@@ -1,27 +1,21 @@
 @extends($activeTemplate.'layouts.frontend')
 @section('content')
-
-
-    <section class="container py-5">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="section-title">{{ __($pageTitle) }}</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="wyg">
-                            @php
-                                echo $policy->data_values->details
-                            @endphp
-                        </div>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">{{ __($pageTitle) }}</h6>
+                
+            </div>
+            <div class="row mt-4 g-4">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="shadow p-3 mb-5 bg-body rounded">
+                        <div class="px-5 py-5">{!!$policy->data_values->details!!}</div>
                     </div>
                 </div>
+                
             </div>
         </div>
-
     </div>
-
 @endsection
 
 @push('style')
