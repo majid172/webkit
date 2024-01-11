@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CategoryDetails;
 use App\Models\Episode;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class EpisodeController extends Controller
@@ -31,7 +32,6 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
-       
         $episode = new Episode();
         $episode->course_id = $request->course_id;
         $episode->title = $request->title;
@@ -62,7 +62,17 @@ class EpisodeController extends Controller
     public function details($id)
     {
         $pageTitle  = 'Episode Details';
-        $details    = Episode::where('id',$id)->first();
+        $is_subscribe = Episode::where('id',$id)
+                        ->whereHas('course.subscription',function($q){
+                            $q->where('user_id',auth()->user()->id);
+                        })->first();
+                        
+        if(!$is_subscribe)
+        {
+            $notify[] = ['error', 'You need to purchase this course.'];
+            return redirect()->back()->withNotify($notify);
+        }
+        $details      = Episode::where('id',$id)->first();
         // $relateds   = Episode::where('id','!=',$id)
         //                 ->with('category')->limit(3)->get();
         return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details'));

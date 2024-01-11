@@ -65,10 +65,12 @@ Route::middleware('auth')->name('user.')->group(function () {
             });
 
 //          user Course list
-            Route::controller('CourseController')->name('course.')->prefix('courses')->group(function (){
+            Route::controller('CourseController')->name('course.')->prefix('course')->group(function (){
                Route::get('/list','list')->name('list');
                Route::get('/create','create')->name('create');
                Route::post('/store','store')->name('store');
+               Route::get('/edit/{courseId}','edit')->name('edit');
+               Route::post('/update/{couserId}','update')->name('update');
                Route::get('/episode/list/{category_id}','episodeList')->name('episode.list');
                Route::get('/episode/details/{category_id}/{ep_id}', 'details')->name('episode.details');
 

@@ -46,7 +46,7 @@
                                                     <i class="las la-ellipsis-v"></i>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                  <li><a class="dropdown-item" href="#"><i class="las la-edit me-2 text-warning"></i>@lang('Edit')</a></li>
+                                                  <li><a class="dropdown-item" href="{{route('user.course.edit',$list->id)}}"><i class="las la-edit me-2 text-warning"></i>@lang('Edit Course')</a></li>
                                                   <li><a class="dropdown-item" href="{{route('user.episode.list',$list->id)}}"><i class="las la-play-circle me-2 text-primary"></i>@lang('Episode lists')</a></li>
                                                   
                                                 </ul>

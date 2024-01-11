@@ -40,13 +40,28 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:3'
+            'title' => 'required|min:3',
+            'course_img' => 'required'
         ]);
         $course = new Course();
         $course->title = $request->title;
         $course->category_id = $request->category_id;
         $course->creator_id = auth()->user()->id;
         $course->price = $request->price;
+        if($request->hasFile('course_img')){
+            try {
+                $directory = date("Y")."/".date("m");
+                $path      = getFilePath('course').'/'.$directory;
+                $size = getFileSize('course');
+                $file = fileUploader($request->course_img, $path,$size);
+                $course->image = $file;
+                $course->img_path = $directory;
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your episode file'];
+                return back()->withNotify($notify);
+            }
+        }
+
         $course->save();
         $notify[] = ['success', $course->title . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
@@ -95,15 +110,43 @@ class CourseController extends Controller
     {
         $pageTitle = 'All Courses';
         $courses = Course::where('category_id',$category_id)->with('creator','episodes','subscription')->inRandomOrder()->get();
-        return view($this->activeTemplate.('allcourses'),compact('courses','pageTitle'));
+        return view($this->activeTemplate.'allcourses',compact('courses','pageTitle'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function edit($id)
     {
-        //
+        $pageTitle = "Course Edit";
+        $course = Course::findOrFail($id);
+        $categories = Category::where('status',1)->get();
+        return view($this->activeTemplate.'user.course.edit',compact('pageTitle','course','categories'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|min:3',
+            'course_img' => 'required'
+        ]);
+        $course = Course::findOrFail($id);
+        $course->title = $request->title;
+        $course->category_id = $request->category_id;
+        $course->price = $request->price;
+        if($request->hasFile('course_img')){
+            try {
+                $directory = date("Y")."/".date("m");
+                $path      = getFilePath('course').'/'.$directory;
+                $size = getFileSize('course');
+                $file = fileUploader($request->course_img, $path,$size);
+                $course->image = $file;
+                $course->img_path = $directory;
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your episode file'];
+                return back()->withNotify($notify);
+            }
+        }
+
+        $course->save();
+        $notify[] = ['success', $course->title . ' has been created successfully'];
+        return redirect()->back()->withNotify($notify);
     }
 
     /**

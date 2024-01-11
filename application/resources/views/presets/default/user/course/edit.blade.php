@@ -7,15 +7,15 @@
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
                 <div class="shadow p-3 mb-5 bg-body rounded">
-                    <h5 class="text-secondary">@lang('Create New Course')</h5>
+                    <h5 class="text-secondary">@lang('Update Course')</h5>
                     <div class="card mt-3">
-                        <form action="{{route('user.course.store')}}" class="text-secondary" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('user.course.update',$course->id)}}" class="text-secondary" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title" class="mb-1">@lang('Title')</label>
-                                        <input type="text" name="title" class="form-control" id="title">
+                                        <input type="text" name="title" class="form-control" value="{{__($course->title)}}" id="title">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -31,11 +31,10 @@
                                 </div>
                             </div>
                             <div class="row mb-2 px-3 py-2">
-                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price" class="mb-1">@lang('Price')</label>
-                                        <input type="number" name="price" class="form-control" placeholder="ex.10.00 USD" id="price">
+                                        <input type="number" name="price" class="form-control" placeholder="ex.10.00 USD" value="{{getAmount($course->price)}}" id="price">
                                         
                                     </div>
                                 </div>
@@ -49,7 +48,7 @@
 
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-12 mt-2">
-                                    <button type="submit" class="btn  btn-primary w-100">@lang('Save Course')</button>
+                                    <button type="submit" class="btn  btn-primary w-100">@lang('Update Now')</button>
                                 </div>
                             </div>
                             
