@@ -51,7 +51,6 @@
                                                   
                                                 </ul>
                                               </div>
-                                          
                                             @else
                                             <a href="{{route('user.episode.list',$list->id)}}" class="btn btn-outline-primary btn-sm"><i class="las la-eye"></i> @lang('View')</a>
                                             @endif
