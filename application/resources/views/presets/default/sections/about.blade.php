@@ -1,7 +1,7 @@
 @php
     $content = getContent('about.content',true);
-    $elements = getContent('about.element',false,6);
-        #getContent('data_key','singleQuery true/false','limit');
+    $elements = getContent('about.element',false,6);  
+    $pages = App\Models\Page::get();
 @endphp
 
 <div class="container-xxl py-5">
@@ -21,7 +21,12 @@
 
 
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="javascript:void(0)">@lang('Read More')</a>
+                @foreach ($pages as $page)
+                    @if($page->slug == 'about' )
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="{{route('pages',$page->slug)}}">@lang('About Us')</a>
+                    
+                    @endif
+                @endforeach
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                 <div class="position-relative h-100">

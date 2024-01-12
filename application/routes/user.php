@@ -105,6 +105,7 @@ Route::middleware('auth')->name('user.')->group(function () {
         // Payment
         Route::middleware('registration.complete')->controller('Gateway\PaymentController')->group(function(){
             Route::any('/deposit', 'deposit')->name('deposit');
+            Route::any('/payment/{amount}/{courseId}','payment')->name('payment');
             Route::post('deposit/insert', 'depositInsert')->name('deposit.insert');
             Route::get('deposit/confirm', 'depositConfirm')->name('deposit.confirm');
             Route::get('deposit/manual', 'manualDepositConfirm')->name('deposit.manual.confirm');

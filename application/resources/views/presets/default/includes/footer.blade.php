@@ -57,7 +57,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6  text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">{{$general->siteName(__($pageTitle))}}</a>, {!! $contact->data_values->website_footer !!}
+                    &copy; <a class="border-bottom" href="{{route('home')}}" >{{$general->siteName(__($pageTitle))}}</a>, {!! $contact->data_values->website_footer !!}
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">

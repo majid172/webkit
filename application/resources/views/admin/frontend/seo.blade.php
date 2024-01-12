@@ -11,31 +11,11 @@
                     <input type="hidden" name="type" value="data">
                     <input type="hidden" name="seo_image" value="1">
                     <div class="row">
-                        <div class="col-xl-4">
-                            <div class="form-group">
-                                <div class="image-upload">
-                                    <div class="thumb">
-                                        <div class="avatar-preview">
-                                            <div class="profilePicPreview"
-                                                style="background-image: url({{getImage(getFilePath('seo').'/'. @$seo->data_values->image,getFileSize('seo')) }})">
-                                                <button type="button" class="remove-image"><i
-                                                        class="fa fa-times"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="avatar-edit">
-                                            <input type="file" class="profilePicUpload" name="image_input"
-                                                id="profilePicUpload1" accept=".png, .jpg, .jpeg">
-                                            <label for="profilePicUpload1" class="bg--primary">@lang('Upload
-                                                Image')</label>
-                                            <small class="mt-2">@lang('Recomended size:')
-                                                {{getFileSize('seo')}}@lang('px'). </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {{-- <div class="col-xl-4">
+                            
+                        </div> --}}
 
-                        <div class="col-xl-8 mt-xl-0 mt-4">
+                        <div class="col-xl-12 mt-xl-0 mt-4">
                             <div class="form-group ">
                                 <label>@lang('Meta Keywords')</label>
                                 <small class="ms-2 mt-2  ">@lang('Separate multiple keywords by')
@@ -56,19 +36,53 @@
                                 <textarea name="description" rows="3" class="form-control"
                                     required>{{ @$seo->data_values->description }}</textarea>
                             </div>
-                            <div class="form-group">
-                                <label>@lang('Social Title')</label>
-                                <input type="text" class="form-control" name="social_title"
-                                    value="{{ @$seo->data_values->social_title }}" required />
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label>@lang('Social Title')</label>
+                                        <input type="text" class="form-control" name="social_title"
+                                            value="{{ @$seo->data_values->social_title }}" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@lang('Social Description')</label>
+                                        <textarea name="social_description" rows="3" class="form-control"
+                                            required>{{ @$seo->data_values->social_description }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <div class="image-upload">
+                                            <div class="thumb">
+                                                <div class="avatar-preview">
+                                                    <div class="profilePicPreview"
+                                                        style="background-image: url({{getImage(getFilePath('seo').'/'. @$seo->data_values->image,getFileSize('seo')) }})">
+                                                        <button type="button" class="remove-image"><i
+                                                                class="fa fa-times"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar-edit">
+                                                    <input type="file" class="profilePicUpload" name="image_input"
+                                                        id="profilePicUpload1" accept=".png, .jpg, .jpeg">
+                                                    <label for="profilePicUpload1" class="bg--primary">@lang('Upload
+                                                        Image')</label>
+                                                    <small class="mt-2">@lang('Recomended size:')
+                                                        {{getFileSize('seo')}}@lang('px'). </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>@lang('Social Description')</label>
-                                <textarea name="social_description" rows="3" class="form-control"
-                                    required>{{ @$seo->data_values->social_description }}</textarea>
+                           
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <button type="submit" class="btn btn--primary w-100 btn-global">@lang('Save')</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group text-end">
-                                <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
-                            </div>
+                            
                         </div>
                     </div>
                 </form>

@@ -24,17 +24,31 @@ class PaymentController extends Controller
         $pageTitle = 'Deposit Methods';
         return view($this->activeTemplate . 'user.payment.deposit', compact('gatewayCurrency', 'pageTitle'));
     }
+    public function payment($amount,$courseId)
+    {
+        $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
+            $gate->where('status', 1);
+        })->with('method')->orderby('method_code')->get();
+        $pageTitle= "Course Purchase";
+        
+        return view($this->activeTemplate . 'user.payment.coursePay', compact('gatewayCurrency','pageTitle','amount','courseId'));
+    }
 
     public function depositInsert(Request $request)
     {
-        
+        $user = auth()->user();
+        if($request->gateway == 1)
+        {
+           return  fromBalance($request,$user);
+        }
+
         $request->validate([
             'amount' => 'required|numeric|gt:0',
             'method_code' => 'required',
             'currency' => 'required',
         ]);
 
-        $user = auth()->user();
+        
         $gate = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->where('method_code', $request->method_code)->where('currency', $request->currency)->first();
@@ -50,6 +64,7 @@ class PaymentController extends Controller
 
         $charge = $gate->fixed_charge + ($request->amount * $gate->percent_charge / 100);
         $payable = $request->amount + $charge;
+        dd($payable);
         $final_amo = $payable * $gate->rate;
 
         $data = new Deposit();
@@ -67,9 +82,9 @@ class PaymentController extends Controller
         $data->status = 0;
         $data->save();
         session()->put('trx', $data->trx);
-        if($request->category_id && $request->user_id)
+        if($request->course_id && $request->user_id)
         {
-            session()->put('category_id',$request->category_id);
+            session()->put('course_id',$request->course_id);
             session()->put('user_id',$request->user_id);
         }
         return to_route('user.deposit.confirm');
@@ -93,20 +108,19 @@ class PaymentController extends Controller
     public function depositConfirm()
     {
         $trx = session()->get('trx');
-        if((session()->get('category_id')) || (session()->get('user_id')))
+        if((session()->get('course_id')) || (session()->get('user_id')))
         {
-            $category_id = session()->get('category_id');
+            
+            $course_id = session()->get('course_id');
             $user_id = session()->get('user_id');
-           
+            if(isSubscribe($course_id,$user_id))
+            {
+                return isSubscribe($course_id,$user_id);
+            }
             $subscribe = new Subscription();
             $subscribe->user_id = $user_id;
-            $subscribe->category_id = $category_id;
+            $subscribe->course_id = $course_id;
             $subscribe->save();
-
-            $category = Category::find($category_id);
-            $category->is_subscribed = 1;
-            $category->save();
-
         }
         $deposit = Deposit::where(['trx'=> $trx,'status'=>0])->latest()->with('gateway')->firstOrFail();
 

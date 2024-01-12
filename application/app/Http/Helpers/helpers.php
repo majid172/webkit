@@ -1,6 +1,7 @@
 <?php
 
 use App\Lib\GoogleAuthenticator;
+use App\Models\Course;
 use App\Models\Extension;
 use App\Models\Frontend;
 use App\Models\GeneralSetting;
@@ -9,6 +10,9 @@ use App\Lib\Captcha;
 use App\Lib\ClientInfo;
 use App\Lib\CurlRequest;
 use App\Lib\FileManager;
+use App\Models\AdminNotification;
+use App\Models\Subscription;
+use App\Models\Transaction;
 use App\Notify\Notify;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -39,9 +43,11 @@ function getNumber($length = 8)
     return $randomString;
 }
 
+
+
 function systemDetails()
 {
-    $system['name'] = 'minstack';
+    $system['name'] = 'webkit';
     $system['version'] = '10.0.0';
     $system['build_version'] = '10.0.3';
     return $system;
@@ -430,6 +436,62 @@ function dateSorting($arr)
     return $arr;
 }
 
+function fromBalance($request,$user)
+{
+    $request->validate([
+        'amount'=>'required|min:1'
+    ]);
+    $courseId = $request->course_id;
+    if(isSubscribe($courseId,$user->id)){
+        return  isSubscribe($courseId,$user->id);
+    }
+    $subscriptions = new Subscription();
+    $subscriptions->user_id = $user->id;
+    $subscriptions->course_id = $request->course_id;
+    $subscriptions->save();
+
+    if($user->balance < $request->amount)
+    {
+        $notify[] = ['error', 'You don\'t have sufficient balance.'];
+        return back()->withNotify($notify);
+    }
+
+    $transaction = new Transaction();
+    $transaction->user_id = $user->id;
+    $transaction->amount = $request->amount;
+    $transaction->post_balance = $user->balance;
+    $transaction->charge = 0;
+    $transaction->trx_type = '-';
+    $transaction->details = 'Course buy via'.$user->fullname.'\'s'.' '.'net balance';
+    $transaction->trx = getTrx();
+    $transaction->remark = 'Purchase_from_wallet';
+    $transaction->save();
+
+    $user->balance = $user->balance-$request->amount;
+    $user->save();
+
+    $adminNotification = new AdminNotification();
+    $adminNotification->user_id = $user->id;
+    $adminNotification->title = 'Course buy via net balance';
+    $adminNotification->click_url = urlPath('admin.deposit.successful');
+    $adminNotification->save();
+
+    return to_route('user.course.list');
+}
+
+    function isSubscribe($courseId,$userId)
+    {
+        $is_subscribe = Course::whereHas('subscription',function($q) use($courseId,$userId){
+                $q->where('course_id',$courseId)
+                    ->where('user_id',$userId);
+                })->exists();
+                    
+        if($is_subscribe)
+        {
+            $notify[] = ['error', 'Already buy this course.'];
+            return to_route('user.course.list')->withNotify($notify);
+        }
+    }
 function gs()
 {
     $general = Cache::get('GeneralSetting');
