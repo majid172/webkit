@@ -37,10 +37,11 @@
                                     </td>
                                     <td title="@lang('Active/Deactive')">
                                         <div class="form-check form-switch text-primary">
-                                            <input class="form-check-input checkStatus" type="checkbox" id="flexSwitchCheckChecked" value="" data-id="{{$item->id}}"{{($item->status == 1)?'checked':''}}
-                                                
-                                           >
-                                            
+                                           
+                                           <label class="switch m-0">
+                                                <input type="checkbox" class="toggle-switch checkStatus"  data-id="{{$item->id}}"{{($item->status == 1)?'checked':''}}>
+                                                <span class="slider round"></span>
+                                            </label>
                                           </div>
                                     </td>
                                 </tr>

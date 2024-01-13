@@ -18,7 +18,8 @@ class EpisodeController extends Controller
     {
         $pageTitle = "Episode List";
         $user = auth()->user();
-        $episodes = Episode::where('course_id',$course_id)->get();
+        $episodes = Episode::where('course_id',$course_id)->where('status',1)->get();
+        
         return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes','course_id'));
     }
 
@@ -78,19 +79,14 @@ class EpisodeController extends Controller
         return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function allEpisodes($course_id)
     {
         $pageTitle  = "All Episodes";
-        $episodes   = Episode::where('course_id',$course_id)->get();
+        $episodes   = Episode::where('course_id',$course_id)->where('status',1)->get();
         return view($this->activeTemplate.'episodes',compact('pageTitle','episodes','course_id'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         //

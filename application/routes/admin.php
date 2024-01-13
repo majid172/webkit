@@ -43,6 +43,10 @@ Route::middleware('admin')->group(function () {
         Route::get('download/attachments/{file_hash}', 'downloadAttachment')->name('download.attachment');
     });
 
+    Route::controller('ChargeController')->prefix('charge')->group(function(){
+        Route::get('/','charge')->name('charge');
+    });
+
     Route::controller('CategoryController')->prefix('category')->group(function (){
        Route::get('/','list')->name('category.list');
        Route::post('/store','store')->name('category.store');

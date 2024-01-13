@@ -23,7 +23,12 @@
                         <span class="menu-title">@lang('Category Lists')</span>
                     </a>
                 </li>
-               
+                <li class="sidebar-menu-item {{menuActive('admin.charge.*')}}">
+                    <a href="{{route('admin.charge')}}" class="nav-link ">
+                        <i class="menu-icon las la-coins"></i>
+                        <span class="menu-title">@lang('Course Charge')</span>
+                    </a>
+                </li>
 
 {{--                user management --}}
                 <li class="sidebar__menu-header">@lang('Users Management')</li>
