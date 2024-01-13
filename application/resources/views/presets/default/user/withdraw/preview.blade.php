@@ -5,7 +5,7 @@
         <div class="col-lg-8">
             <div class="card custom--card">
                 <div class="card-header">
-                    <h5 class="card-title">@lang('Withdraw Via') {{ $withdraw->method->name }}</h5>
+                    <h5 class="card-title">@lang('Payout Via') {{ $withdraw->method->name }}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{route('user.withdraw.submit')}}" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <button type="submit" class="btn btn--base w-100">@lang('Save')</button>
+                            <button type="submit" class="btn btn-primary w-100">@lang('Save')</button>
                         </div>
                     </form>
                 </div>

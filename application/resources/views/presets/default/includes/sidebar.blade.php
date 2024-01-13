@@ -12,11 +12,7 @@
                         <i class="las la-book-reader me-1 fs-4"></i>@lang('Course Lists')
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="#" class="nav-link text-primary" data-toggle="tooltip" data-placement="right" title="Subscription">
-                        <i class="las la-wallet me-1 fs-4"></i>@lang('Subscription')
-                    </a>
-                </li>
+               
                 <li class="list-group-item dropdown">
                     <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary " data-toggle="dropdown" data-placement="right" title="PayIn">
                         <i class="las la-money-bill-wave-alt me-1 fs-4"></i>@lang('PayIn')

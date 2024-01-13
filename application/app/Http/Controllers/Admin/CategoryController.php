@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\Episode;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
@@ -78,10 +79,23 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function episodeList($category_id)
+    public function courseList($cat_id)
+    {
+        $courses = Course::where('category_id',$cat_id)->with('category','creator')->paginate(getPaginate());
+        $pageTitle = "Course List";
+        return view('admin.category.courses',compact('pageTitle','courses'));
+    }
+    public function episodeList($course_id)
     {
         $data['pageTitle'] = 'Episode List';
-        $data['episodes'] = Episode::where('category_id',$category_id)->paginate(getPaginate());
-        return view('admin.episode.list',$data,compact('category_id')); 
+        $data['episodes'] = Episode::where('course_id',$course_id)->with('course')->paginate(getPaginate());
+        return view('admin.episode.list',$data); 
+    }
+    public function episodeStatus(Request $request)
+    {
+        $episode = Episode::find($request->episode_id);
+        $episode->status = ($request->status==1)?1:0;
+        $episode->save();
+        return response()->json($episode);
     }
 }

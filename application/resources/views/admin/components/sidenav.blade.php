@@ -23,6 +23,7 @@
                         <span class="menu-title">@lang('Category Lists')</span>
                     </a>
                 </li>
+               
 
 {{--                user management --}}
                 <li class="sidebar__menu-header">@lang('Users Management')</li>

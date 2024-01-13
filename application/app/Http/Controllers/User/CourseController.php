@@ -26,6 +26,7 @@ class CourseController extends Controller
                         ->whereHas('subscription',function($q) use ($user){
                             $q->where('user_id',$user->id);
                         })->get();
+                       
         }
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }

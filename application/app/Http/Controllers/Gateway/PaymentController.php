@@ -21,7 +21,7 @@ class PaymentController extends Controller
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
-        $pageTitle = 'Deposit Methods';
+        $pageTitle = 'Payin Methods';
         return view($this->activeTemplate . 'user.payment.deposit', compact('gatewayCurrency', 'pageTitle'));
     }
     public function payment($amount,$courseId)
