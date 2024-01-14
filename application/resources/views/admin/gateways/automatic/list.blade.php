@@ -36,7 +36,7 @@
                                         <a title="@lang('Edit')"
                                             href="{{ route('admin.gateway.automatic.edit', $gateway->alias) }}"
                                             class="btn btn-sm btn--primary editGatewayBtn">
-                                            <i class="la la-pencil"></i>
+                                            <i class="las la-edit"></i>
                                         </a>
 
 

@@ -35,7 +35,7 @@
                                 <td>@lang('Cookie Policy')</td>
                                 <td><a title="@lang('Edit')"
                                     href="{{route('admin.setting.cookie')}}"
-                                    class="btn btn-sm btn--primary"><i class="la la-pencil-alt"></i>
+                                    class="btn btn-sm btn--primary"><i class="las la-edit"></i>
                                 </a></td>
                             </tr>
                             @forelse($elements as $data)
@@ -85,12 +85,12 @@
                                             @if(@$section->element->images)
                                             data-images="{{ json_encode($images) }}"
                                             @endif>
-                                            <i class="la la-pencil-alt"></i>
+                                            <i class="las la-edit"></i>
                                         </button>
                                         @else
                                         <a title="@lang('Edit')"
                                             href="{{route('admin.frontend.sections.element',[$key,$data->id])}}"
-                                            class="btn btn-sm btn--primary"><i class="la la-pencil-alt"></i>
+                                            class="btn btn-sm btn--primary"><i class="las la-edit"></i>
                                         </a>
                                         @endif
                                         <button title="@lang('Remove')" class="btn btn-sm btn--danger confirmationBtn"
@@ -113,35 +113,7 @@
     </div>
 </div>
 
-{{-- Add METHOD MODAL --}}
-<div id="addModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"> @lang('Add New Page')</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="las la-times"></i>
-                </button>
-            </div>
-            <form action="{{ route('admin.frontend.manage.pages.save')}}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label> @lang('Page Name')</label>
-                        <input type="text" class="form-control" name="name" value="{{old('name')}}" required>
-                    </div>
-                    <div class="form-group">
-                        <label> @lang('Slug')</label>
-                        <input type="text" class="form-control" name="slug" value="{{old('slug')}}" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 <x-confirmation-modal></x-confirmation-modal>
 @endsection

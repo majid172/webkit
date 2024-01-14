@@ -31,16 +31,50 @@
                 </li>
 
 {{--                user management --}}
-                <li class="sidebar__menu-header">@lang('Users Management')</li>
-                <li class="sidebar-menu-item {{menuActive('admin.users.*')}}">
-                    <a href="{{route('admin.users.active')}}" class="nav-link ">
-                        <i class="menu-icon las la-user"></i>
-                        <span class="menu-title">@lang('All Users')</span>
-                        @if($bannedUsersCount > 0 || $emailUnverifiedUsersCount > 0 || $mobileUnverifiedUsersCount > 0)
-                        <div class="blob white"></div>
-                        @endif
+                <li class="sidebar__menu-header">@lang('Users Panel')</li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.users.*',3)}}">
+                        <i class="menu-icon las la-users text-danger"></i>
+                        <span class="menu-title">@lang('User Management')</span>
                     </a>
+                    <div class="sidebar-submenu {{menuActive('admin.users.*',2)}} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('admin.users.all')}} ">
+                                <a href="{{route('admin.users.all')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('All Users')</span>
+                                    @if($bannedUsersCount > 0 || $emailUnverifiedUsersCount > 0 || $mobileUnverifiedUsersCount > 0)
+                                    <div class="blob white"></div>
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.users.active')}} ">
+                                <a href="{{route('admin.users.active')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Active Users')</span>
+                                    @if($bannedUsersCount > 0 || $emailUnverifiedUsersCount > 0 || $mobileUnverifiedUsersCount > 0)
+                                    <div class="blob white"></div>
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.users.banned')}} ">
+                                <a href="{{route('admin.users.banned')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Banned Users')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.users.notification.all')}} ">
+                                <a href="{{route('admin.users.notification.all')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Send Mail All User')</span>
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
                 </li>
+                
                 <li class="sidebar-menu-item  {{menuActive('admin.subscriber.*')}}">
                     <a href="{{route('admin.subscriber.index')}}" class="nav-link"
                         data-default-url="{{ route('admin.subscriber.index') }}">
@@ -201,13 +235,13 @@
         </a>
     </li>
 <li class="sidebar__menu-header">@lang('Management of Content')</li>
-<li class="sidebar-menu-item {{menuActive('admin.frontend.manage.*')}}">
+<li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}}">
     <a href="{{route('admin.frontend.manage.pages')}}" class="nav-link ">
         <i class="menu-icon la la-pager"></i>
         <span class="menu-title">@lang('Main Pages')</span>
     </a>
 </li>
-<li class="sidebar-menu-item {{menuActive('admin.frontend.manage.*')}}">
+<li class="sidebar-menu-item {{menuActive('admin.frontend.manage.policyPages')}}">
     <a href="{{route('admin.frontend.manage.policyPages')}}" class="nav-link ">
         <i class="menu-icon la la-pager"></i>
         <span class="menu-title">@lang('Policy Pages')</span>
@@ -237,12 +271,12 @@
         </ul>
     </div>
 </li>
-<li class="sidebar__menu-header">@lang('General Settings')</li>
+<li class="sidebar__menu-header">@lang('Settings Panel' )</li>
 
 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
     <a href="{{route('admin.setting.index')}}" class="nav-link">
-        <i class="menu-icon las la-globe"></i>
-        <span class="menu-title">@lang('Global Settings')</span>
+        <i class="menu-icon las la-cog text-primary"></i>
+        <span class="menu-title">@lang('Control Panel')</span>
     </a>
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.setting.logo.icon')}}">
