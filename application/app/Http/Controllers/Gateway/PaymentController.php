@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Lib\FormProcessor;
 use App\Models\AdminNotification;
 use App\Models\Category;
+use App\Models\Charge;
 use App\Models\Deposit;
 use App\Models\GatewayCurrency;
 use App\Models\Subscription;
@@ -37,9 +38,11 @@ class PaymentController extends Controller
     public function depositInsert(Request $request)
     {
         $user = auth()->user();
+
         if($request->gateway == 1)
         {
-           return  fromBalance($request,$user);
+            $courseCharge = Charge::first();
+           return  fromBalance($request,$user,$courseCharge);
         }
 
         $request->validate([
@@ -64,7 +67,7 @@ class PaymentController extends Controller
 
         $charge = $gate->fixed_charge + ($request->amount * $gate->percent_charge / 100);
         $payable = $request->amount + $charge;
-        dd($payable);
+        
         $final_amo = $payable * $gate->rate;
 
         $data = new Deposit();

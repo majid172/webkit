@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('panel')
-@include('admin.components.tabs.gateway')
 <div class="row">
 
     <div class="col-lg-12">

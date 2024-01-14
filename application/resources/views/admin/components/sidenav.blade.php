@@ -23,7 +23,7 @@
                         <span class="menu-title">@lang('Category Lists')</span>
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{menuActive('admin.charge.*')}}">
+                <li class="sidebar-menu-item {{menuActive('admin.charge')}}">
                     <a href="{{route('admin.charge')}}" class="nav-link ">
                         <i class="menu-icon las la-coins"></i>
                         <span class="menu-title">@lang('Course Charge')</span>
@@ -48,38 +48,130 @@
                         <span class="menu-title">@lang('Subscribers') </span>
                     </a>
                 </li>
-                <li class="sidebar__menu-header">@lang('Transactions')</li>
-                <li class="sidebar-menu-item {{menuActive('admin.deposit.*')}}">
-                    <a href="{{route('admin.deposit.pending')}}" class="nav-link ">
-                        <i class="menu-icon las la-wallet"></i>
-                        <span class="menu-title">@lang('Deposits')</span>
-                        @if(0 < $pendingDepositsCount) <div class="blob white">
-        </div>
-        @endif
-        </a>
-        </li>
-        <li class="sidebar-menu-item {{menuActive('admin.gateway.*')}}">
-            <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link ">
-                <i class="menu-icon las la-dollar-sign"></i>
-                <span class="menu-title">@lang('Payment Gateways')</span>
-            </a>
-        </li>
-        <li class="sidebar-menu-item {{menuActive('admin.withdraw.*')}}">
-            <a href="{{route('admin.withdraw.pending')}}" class="nav-link ">
-                <i class="menu-icon las la la-credit-card"></i>
-                <span class="menu-title">@lang('Withdrawals')</span>
-                @if(0 < $pendingWithdrawCount) <div class="blob white">
-    </div>
-    @endif
-    </a>
-    </li>
-    <!-- <li class="sidebar-menu-item {{menuActive('admin.withdraw.method.index')}}">
-        <a href="{{route('admin.withdraw.method.index')}}" class="nav-link ">
-            <i class="menu-icon las la-dollar-sign"></i>
-            <span class="menu-title">@lang('Withdrawal Methods')</span>
-        </a>
-    </li> -->
 
+                {{-- PayIn --}}
+                <li class="sidebar__menu-header">@lang('PayIn Details')</li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.deposit.*',3)}}">
+                        <i class="menu-icon las la-wallet"></i>
+                        <span class="menu-title">@lang('PayIn')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.deposit.*',2)}} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.list')}} ">
+                                <a href="{{route('admin.deposit.list')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('All Payin')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.pending')}} ">
+                                <a href="{{route('admin.deposit.pending')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Pending')</span>
+                                    @if(0 < $pendingDepositsCount) 
+                                    <div class="blob white"></div>
+                                @endif
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.approved')}} ">
+                                <a href="{{route('admin.deposit.approved')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Approved')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.successful')}} ">
+                                <a href="{{route('admin.deposit.successful')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Successful')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.rejected')}} ">
+                                <a href="{{route('admin.deposit.rejected')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Rejected')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.initiated')}} ">
+                                <a href="{{route('admin.deposit.initiated')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Initiated')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Gateways --}}
+                <li class="sidebar__menu-header">@lang('Gateway')</li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
+                        <i class="menu-icon las la-dollar-sign"></i>
+                        <span class="menu-title">@lang('Payment Gateways')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('admin.gateway.automatic.index')}} ">
+                                <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Automatic')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.gateway.manual.index')}} ">
+                                <a href="{{route('admin.gateway.manual.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Manual')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                {{-- payout --}}
+                <li class="sidebar__menu-header">@lang('Payout Settings')</li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.withdraw.*',3)}}">
+                        <i class="menu-icon las la la-credit-card"></i>
+                        <span class="menu-title">@lang('Payout')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.withdraw.*',2)}}"">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.log')}} ">
+                                <a href="{{route('admin.withdraw.log')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('All Payouts')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.pending')}} ">
+                                <a href="{{route('admin.withdraw.pending')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Pending')</span>
+                                    @if(0 < $pendingWithdrawCount) <div class="blob white">
+                                    </div>
+                                    @endif
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.approved')}} ">
+                                <a href="{{route('admin.withdraw.approved')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Approved')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.rejected')}} ">
+                                <a href="{{route('admin.withdraw.rejected')}}" class="nav-link">
+                                    <i class="menu-icon las la-caret-right"></i>
+                                    <span class="menu-title">@lang('Rejected')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-menu-item {{menuActive('admin.withdraw.method.index')}}">
+                    <a href="{{route('admin.withdraw.method.index')}}" class="nav-link ">
+                        <i class="menu-icon las la la-credit-card"></i>
+                        <span class="menu-title">@lang('Withdrawal Methods')</span>
+                    </a>
+                </li> 
+             
     <li class="sidebar__menu-header">@lang('Report')</li>
     <li class="sidebar-menu-item {{menuActive(['admin.report.transaction','admin.report.transaction.search'])}}">
         <a href="{{route('admin.report.transaction')}}" class="nav-link">
@@ -105,15 +197,20 @@
             <i class="menu-icon las la la-life-ring"></i>
             <span class="menu-title">@lang('Support Ticket')</span>
             @if(0 < $pendingTicketCount) <div class="blob white">
-</div>@endif
-</a>
-</li>
-<li class="sidebar__menu-header">@lang('Content Management')</li>
-
+        </div>@endif
+        </a>
+    </li>
+<li class="sidebar__menu-header">@lang('Management of Content')</li>
 <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.*')}}">
     <a href="{{route('admin.frontend.manage.pages')}}" class="nav-link ">
         <i class="menu-icon la la-pager"></i>
-        <span class="menu-title">@lang('Pages')</span>
+        <span class="menu-title">@lang('Main Pages')</span>
+    </a>
+</li>
+<li class="sidebar-menu-item {{menuActive('admin.frontend.manage.*')}}">
+    <a href="{{route('admin.frontend.manage.policyPages')}}" class="nav-link ">
+        <i class="menu-icon la la-pager"></i>
+        <span class="menu-title">@lang('Policy Pages')</span>
     </a>
 </li>
 

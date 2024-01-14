@@ -9,7 +9,7 @@
                 </li>
                 <li class="list-group-item">
                     <a href="{{route('user.course.list')}}" class="nav-link text-primary" data-toggle="tooltip" data-placement="right" title="Courses">
-                        <i class="las la-book-reader me-1 fs-4"></i>@lang('Course Lists')
+                        <i class="las la-book-reader me-1 fs-4"></i>@lang('Purchase Course')
                     </a>
                 </li>
                

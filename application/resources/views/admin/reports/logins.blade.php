@@ -12,9 +12,10 @@
                         <thead>
                             <tr>
                                 <th>@lang('User')</th>
-                                <th>@lang('Login at')</th>
-                                <th>@lang('IP')</th>
                                 <th>@lang('Browser and OS')</th>
+                                <th>@lang('IP')</th>
+                                
+                                <th>@lang('Login at')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -22,23 +23,21 @@
                             <tr>
 
                                 <td>
-                                    <a href="{{ route('admin.users.detail', $log->user_id) }}">{{
-                                        @$log->user->fullname }}</a>
+                                    <a href="{{ route('admin.users.detail', $log->user_id) }}">{{@$log->user->fullname }}</a>
                                 </td>
-
 
                                 <td>
-                                    {{showDateTime($log->created_at) }}
+                                    {{ __($log->browser) }}, {{ __($log->os) }}
                                 </td>
+                               
                                 <td>
                                     <span class="fw-bold">
                                         <a href="{{route('admin.report.login.ipHistory',[$log->user_ip])}}">{{
                                             $log->user_ip }}</a>
                                     </span>
                                 </td>
-
                                 <td>
-                                    {{ __($log->browser) }}, {{ __($log->os) }}
+                                    {{showDateTime($log->created_at) }}
                                 </td>
                             </tr>
                             @empty

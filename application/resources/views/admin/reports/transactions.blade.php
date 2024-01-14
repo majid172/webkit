@@ -13,26 +13,17 @@
                 <form action="">
                     <div class="d-flex flex-wrap gap-4">
                         <div class="flex-grow-1">
-                            <label>@lang('Transactions number or Username')</label>
+                            <label>@lang('Username or Transactions number')</label>
                             <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-                                placeholder="@lang('Transactions number or Username')">
+                                placeholder="@lang('Username or Transactions number')">
                         </div>
-                        <div class="flex-grow-1">
-                            <label>@lang('Remark')</label>
-                            <select class="form-control" name="remark">
-                                <option value="">@lang('Any')</option>
-                                @foreach($remarks as $remark)
-                                <option value="{{ $remark->remark }}" @selected(request()->remark == $remark->remark)>{{
-                                    __(keyToTitle($remark->remark)) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
                         <div class="flex-grow-1">
                             <label>@lang('Type')</label>
                             <select name="type" class="form-control">
                                 <option value="">@lang('All')</option>
-                                <option value="+" @selected(request()->type == '+')>@lang('Plus')</option>
-                                <option value="-" @selected(request()->type == '-')>@lang('Minus')</option>
+                                <option value="+" @selected(request()->type == '+')>@lang('Add Balance')</option>
+                                <option value="-" @selected(request()->type == '-')>@lang('Subtract Balance')</option>
                             </select>
                         </div>
                         <div class="flex-grow-1">
@@ -42,8 +33,8 @@
                                 placeholder="@lang('Date from - to')" autocomplete="off" value="{{ request()->date }}">
                         </div>
                         <div class="flex-grow-1 align-self-end">
-                            <button class="btn btn--primary h-40 w-100"><i class="fas fa-check"></i>
-                                @lang('Apply')</button>
+                            <button class="btn btn--primary h-40 w-100"><i class="las la-search"></i>
+                                @lang('Search')</button>
                         </div>
                     </div>
                 </form>
@@ -67,8 +58,8 @@
                             @forelse($transactions as $trx)
                             <tr>
                                 <td>
-                                    <a href="{{ appendQuery('search',$trx->user->username) }}">{{
-                                        $trx->user->fullname }}</a>
+                                    <a href="{{ appendQuery('search',optional($trx->user)->username) }}">{{
+                                        optional($trx->user)->fullname }}</a>
                                 </td>
 
                                 <td>
@@ -80,13 +71,20 @@
                                 </td>
 
                                 <td class="budget">
-                                    <span class="fw-bold">
+                                    @if ($trx->trx_type == '+')
+                                    <span class="fw-bold text-success">
                                         {{ $trx->trx_type }} {{showAmount($trx->amount)}} {{ $general->cur_text }}
                                     </span>
+                                    @else 
+                                    <span class="fw-bold text-danger">
+                                        {{ $trx->trx_type }} {{showAmount($trx->amount)}} {{ $general->cur_text }}
+                                    </span>
+                                    @endif
+                                    
                                 </td>
 
                                 <td class="budget">
-                                    {{ showAmount($trx->post_balance) }} {{ __($general->cur_text) }}
+                                    {{ __($general->cur_sym) }} {{ showAmount($trx->post_balance) }} 
                                 </td>
 
                                 <td>{{ __($trx->details) }}</td>

@@ -2,8 +2,6 @@
 
 @section('panel')
 <div class="row mb-none-30">
-
-
     <div class="col-lg-4 col-md-4 mb-30">
         <div class="card b-radius--10 overflow-hidden box--shadow1">
             <div class="card-body">

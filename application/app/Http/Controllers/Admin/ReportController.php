@@ -15,8 +15,6 @@ class ReportController extends Controller
     {
         $pageTitle = 'Transaction Logs';
 
-        $remarks = Transaction::distinct('remark')->orderBy('remark')->get('remark');
-
         $transactions = Transaction::with('user')->orderBy('id','desc');
         if ($request->search) {
             $search = request()->search;
@@ -55,7 +53,7 @@ class ReportController extends Controller
         }
 
         $transactions = $transactions->paginate(getPaginate());
-        return view('admin.reports.transactions', compact('pageTitle', 'transactions','remarks'));
+        return view('admin.reports.transactions', compact('pageTitle', 'transactions'));
     }
 
     public function loginHistory(Request $request)

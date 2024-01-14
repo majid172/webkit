@@ -270,6 +270,7 @@ Route::middleware('admin')->group(function () {
             Route::post('pages', 'managePagesSave')->name('manage.pages.save');
             Route::post('pages/update', 'managePagesUpdate')->name('manage.pages.update');
             Route::post('pages/delete/{id}', 'managePagesDelete')->name('manage.pages.delete');
+            Route::get('policyPages','policyPages')->name('manage.policyPages');
             Route::get('section/{id}', 'manageSection')->name('manage.section');
             Route::post('section/{id}', 'manageSectionUpdate')->name('manage.section.update');
         });

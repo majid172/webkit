@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
 @section('panel')
-@include('admin.components.tabs.withdrawal')
 <div class="row">
     <div class="col-lg-12">
         <div class="card b-radius--10 ">

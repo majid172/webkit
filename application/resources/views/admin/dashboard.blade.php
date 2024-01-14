@@ -22,9 +22,11 @@
             <div class="col-sm-3">
                 <a href="{{route('admin.deposit.list')}}">
                     <div class="card prod-p-card background-pattern">
-                        <div class="card-body">
+                       
+                        <div class="card-body" id="chart-spark1">
                             <div class="row align-items-center m-b-0">
-                                <div class="col-auto">
+                                <div class="col-auto" >
+                                    
                                     <i class="dashboard-widget__icon fas fa-hand-holding-usd"></i>
                                 </div>
                                 <div class="col">
@@ -39,6 +41,7 @@
                 </a>
             </div>
             <div class="col-sm-3">
+                
                 <a href="{{route('admin.deposit.list')}}">
                     <div class="card prod-p-card background-pattern-white bg--primary">
                         <div class="card-body">
@@ -253,7 +256,7 @@
 @push('script')
 
 <script src="{{asset('assets/admin/js/apexcharts.min.js')}}"></script>
-
+{{-- <script src="{{asset('assets/admin/js/chart.js')}}"></script> --}}
 <script>
     "use strict";
     // [ account-chart ] start
@@ -395,6 +398,8 @@
         chart.render();
     }) ();
 
-    
+
+ 
+
 </script>
 @endpush

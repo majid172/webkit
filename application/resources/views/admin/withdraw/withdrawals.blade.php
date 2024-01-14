@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('panel')
-@include('admin.components.tabs.withdrawal')
 <div class="row justify-content-center">
     @if(request()->routeIs('admin.withdraw.log') || request()->routeIs('admin.withdraw.method') ||
     request()->routeIs('admin.users.withdrawals') || request()->routeIs('admin.users.withdrawals.method'))
@@ -90,7 +89,7 @@
                                 </td>
 
                                 <td>
-                                    <span class="fw-bold">{{ $withdraw->user->fullname }}</span>
+                                    <span class="fw-bold">{{ optional($withdraw->user)->fullname }}</span>
                                 </td>
 
 

@@ -24,7 +24,7 @@ class PageBuilderController extends Controller
         $content = Frontend::where('data_keys', $key . '.content')->orderBy('id','desc')->first();
         $elements = Frontend::where('data_keys', $key . '.element')->orderBy('id')->orderBy('id','desc')->get();
         $pdata = Page::where('tempname',$this->activeTemplate)->get();
-        $pageTitle = '';
+        $pageTitle = 'Major Pages';
         return view('admin.frontend.builder.pages', compact('section', 'content', 'elements', 'key','pageTitle','pdata'));
     }
 
@@ -82,7 +82,19 @@ class PageBuilderController extends Controller
         return back()->withNotify($notify);
     }
 
-
+    public function policyPages()
+    {
+        $pageTitle = 'Privacy-Policy, Terms-Condition, Cookie Page';
+        $key = 'policy_pages';
+        $section = @getPageSections()->$key;
+        if (!$section) {
+            return abort(404);
+        }
+        $pdata = Page::where('tempname',$this->activeTemplate)->get();
+        $content = Frontend::where('data_keys', $key . '.content')->orderBy('id','desc')->first();
+        $elements = Frontend::where('data_keys', $key . '.element')->orderBy('id')->orderBy('id','desc')->get();
+        return view('admin.frontend.builder.policyPages', compact('section', 'content', 'elements', 'key','pageTitle','pdata'));
+    }
 
     public function manageSection($id)
     {

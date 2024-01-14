@@ -9,7 +9,6 @@
                         <thead>
                             <tr>
                                 <th>@lang('User')</th>
-                                <th>@lang('Sent')</th>
                                 <th>@lang('Sender')</th>
                                 <th>@lang('Subject')</th>
                                 <th>@lang('Action')</th>
@@ -24,11 +23,10 @@
                                         }}</a>
                                     @else
                                     <span class="fw-bold">@lang('System')</span>
-                                    @endif
-                                </td>
-                                <td>
+                                    @endif <br>
                                     {{ showDateTime($log->created_at) }}
                                 </td>
+                                
                                 <td>
                                     <span class="fw-bold">{{ __($log->sender) }}</span>
                                 </td>
@@ -101,7 +99,8 @@
         var sent_to = $(this).data('sent_to');
         var modal = $('#notifyDetailModal');
         if ($(this).data('type') == 'email') {
-            var message = `<iframe src="${message}" height="500" width="100%" title="Iframe Example"></iframe>`
+            
+            var message = `<iframe src="${message}" height="500" width="100%" title="Example"></iframe>`
         }
         $('.detail').html(message)
         $('.sent_to').text(sent_to)

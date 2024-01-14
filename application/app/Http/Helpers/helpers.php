@@ -13,6 +13,7 @@ use App\Lib\FileManager;
 use App\Models\AdminNotification;
 use App\Models\Subscription;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Notify\Notify;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -436,12 +437,13 @@ function dateSorting($arr)
     return $arr;
 }
 
-function fromBalance($request,$user)
+function fromBalance($request,$user,$charge)
 {
     $request->validate([
-        'amount'=>'required|min:1'
+        'amount'=>'required|numeric|min:1'
     ]);
     $courseId = $request->course_id;
+
     if(isSubscribe($courseId,$user->id)){
         return  isSubscribe($courseId,$user->id);
     }
@@ -449,8 +451,14 @@ function fromBalance($request,$user)
     $subscriptions->user_id = $user->id;
     $subscriptions->course_id = $request->course_id;
     $subscriptions->save();
-
-    if($user->balance < $request->amount)
+    $payable_amount = $request->amount;
+   
+     // update creator account
+    $course = Course::find($courseId);
+    $instructor = User::find($course->creator_id);
+    $instructor->balance += $payable_amount - ($charge->fixed_charge + $charge->percentage_charge/100);
+    
+    if($user->balance < $payable_amount)
     {
         $notify[] = ['error', 'You don\'t have sufficient balance.'];
         return back()->withNotify($notify);
@@ -458,7 +466,8 @@ function fromBalance($request,$user)
 
     $transaction = new Transaction();
     $transaction->user_id = $user->id;
-    $transaction->amount = $request->amount;
+    $transaction->amount = $payable_amount;
+    $user->balance -=  $payable_amount;
     $transaction->post_balance = $user->balance;
     $transaction->charge = 0;
     $transaction->trx_type = '-';
@@ -466,9 +475,8 @@ function fromBalance($request,$user)
     $transaction->trx = getTrx();
     $transaction->remark = 'Purchase_from_wallet';
     $transaction->save();
-
-    $user->balance = $user->balance-$request->amount;
     $user->save();
+    $instructor->save();  
 
     $adminNotification = new AdminNotification();
     $adminNotification->user_id = $user->id;
@@ -492,6 +500,13 @@ function fromBalance($request,$user)
             return to_route('user.course.list')->withNotify($notify);
         }
     }
+
+function instructorBalance($courseId,$amount,$charge)
+{
+    
+    
+    
+}
 function gs()
 {
     $general = Cache::get('GeneralSetting');
