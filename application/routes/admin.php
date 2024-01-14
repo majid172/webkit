@@ -45,6 +45,7 @@ Route::middleware('admin')->group(function () {
 
     Route::controller('ChargeController')->prefix('charge')->group(function(){
         Route::get('/','charge')->name('charge');
+        Route::post('/update','update')->name('charge.update');
     });
 
     Route::controller('CategoryController')->prefix('category')->group(function (){

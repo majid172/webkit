@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Charge;
 use Illuminate\Http\Request;
 
 class ChargeController extends Controller
@@ -13,54 +14,23 @@ class ChargeController extends Controller
     public function charge()
     {
         $pageTitle = 'Charge';
-        return view('admin.charge.index',compact('pageTitle'));
+        $charge = Charge::first();
+        return view('admin.charge.index',compact('pageTitle','charge'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'fixed_charge' => 'required|numeric',
+            'percentage_charge' => 'required|integer'
+        ]);
+        $charge = Charge::first();
+        $charge->fixed_charge = $request->fixed_charge;
+        $charge->percentage_charge = $request->percentage_charge;
+        $charge->save();
+        $notify[] = ['success','Charge updated successfully.'];
+        return back()->withNotify($notify);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
