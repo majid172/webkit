@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
 @section('panel')
-@include('admin.components.tabs.user')
 <div class="row">
     <div class="col-xl-12">
         <div class="card">

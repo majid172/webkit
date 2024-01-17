@@ -52,62 +52,97 @@
     </div>
 </div>
 
-
-
 <div class="row">
     <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
-                <div class="table-responsive--md  table-responsive">
-                    <table class="table table--light style--two">
-                        <thead>
-                            <tr>
-                                <th>@lang('User')</th>
-                                <th>@lang('Email')</th>
-                                <th>@lang('Joined At')</th>
-                                <th>@lang('Balance')</th>
-                                <th>@lang('Action')</th>
-                            </tr>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('User List')</h6>
+                <a href="" class="btn btn-sm btn-outline--primary"><i
+                            class="fas fa-envelope"></i> @lang('Send Mail to All')</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>@lang('SL')</th>
+                            <th>@lang('Name')</th>
+                            <th>@lang('Email')</th>
+                            <th>@lang('Balance')</th>
+                            <th>@lang('User Type')</th>
+                            <th>@lang('Login At')</th>
+                        
+                            <th>@lang('Action')</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @forelse($users as $user)
-                            <tr>
-                                <td>
-                                    <a href="{{ route('admin.users.detail', $user->id) }}">{{$user->fullname}}
-                                        ({{$user->username}})</a>
-                                </td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ showDateTime($user->created_at) }}</td>
-                                <td>
-                                    <span class="fw-bold">
-                                        {{ $general->cur_sym }}{{ showAmount($user->balance) }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <a title="@lang('User Profile')" href="{{ route('admin.users.detail', $user->id) }}"
-                                        class="btn btn-sm btn--primary">
-                                        <i class="las la-eye text--shadow"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
-                            </tr>
-                            @endforelse
+                           
+                        @forelse($users as $key => $value)
+                       
+                        <tr>
+                            <td data-label="SL">
+                                {{++$key}}
+                            </td>
+                            <td data-label="@lang('Name')">
+                                <a href="{{ route('admin.users.detail', $value->id) }}" target="_blank">
+                                    <div class=" d-block align-items-center ">
+                                        <div class="rounded-circle mr-2 w-40px" data-original-title="{{$value->fullname}}">
+                                            {{$value->fullname}}
+                                            <br>
+                                            <span class="text-muted font-14">{{ '@'.$value->username}}</span>
+                                        </div> 
+                                    </div>
+                                </a>
+                            </td>
+                            <td data-label="@lang('Email')">{{ __($value->email) }}</td>
+                            
+                            <td data-label="@lang('Balance')">
+                                {{ $general->cur_sym }}{{ showAmount($value->balance) }}
+                            </td>
+                            <td>
+                                @if ($value->user_type == 1)
+                                <span class="badge bg-success">@lang('Instructor')
+                                </span>
+                                @else
+                                <span class="badge bg-warning">@lang('User')
+                                </span>
+                                @endif
+                            </td>
+                            <td data-label="@lang('logged in at')">
+                                {{ showDateTime($value->created_at) }}
+                            </td>
 
+                            <td data-label="@lang('Action')">
+                                
+                                <div class="dropdown">
+                                    <a class="btn btn--primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                      @lang('More Action')
+                                    </a>
+                                  
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                      <li><a class="dropdown-item" href="{{ route('admin.users.detail', $value->id) }}"><i class="far fa-edit text--primary mr-1"></i>@lang('Details')</a></li>
+                                      <li><a class="dropdown-item" href="{{route('admin.users.login',$value->id)}}"><i class="fa fa-sign-in-alt text--info mr-1"></i> @lang('Login As User')</a></li>
+                                      <li><a class="dropdown-item" href="{{route('admin.users.notification.single', $value->id)}}"><i class="las la-paper-plane text--warning mr-1"></i> @lang('Send Mail')</a></li>
+                                    </ul>
+                                  </div>
+                            </td>
+
+                        </tr>
+                        
+                        @empty
+                            <tr>
+                                <th colspan="100%" class="text-center">@lang('No data found')</th>
+                            </tr>
+                        @endforelse
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                <div class="card-footer">{{ $users->links() }}</div>
             </div>
-            @if ($users->hasPages())
-            <div class="card-footer py-4">
-                {{ paginateLinks($users) }}
-            </div>
-            @endif
         </div>
     </div>
 </div>
+
 @endsection
 
 @push('breadcrumb-plugins')
