@@ -1,13 +1,17 @@
 @extends('admin.layouts.app')
 @section('panel')
-   
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card b-radius--10 ">
-                <div class="card-body p-0">
-                    <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
-                            <thead>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('Course List')</h6>
+               
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Sl.')</th>
                                 <th>@lang('Course Title')</th>
@@ -18,57 +22,54 @@
                                 <th>@lang('Created_at')</th>
                                 <th>@lang('Action')</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @forelse($courses as $list)
-                                <tr>
-                                    <td>{{++$loop->index}}</td>
-                                    <td>{{ucwords($list->title)}}</td>
-                                    <td>{{ucwords(optional($list->category)->name)}}</td>
-                                    <td>{{optional($list->creator)->fullname}}</td>
-                                    <td>
-                                        <span class="badge bg-info ">
-                                            {{$list->price}} {{$general->cur_text}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        {{ showDateTime($list->created_at) }}
-                                    </td>
+                            <tr>
+                                <td>{{++$loop->index}}</td>
+                                <td>{{ucwords($list->title)}}</td>
+                                <td>{{ucwords(optional($list->category)->name)}}</td>
+                                <td>{{optional($list->creator)->fullname}}</td>
+                                <td>
+                                    <span class="badge bg-info ">
+                                        {{$list->price}} {{$general->cur_text}}
+                                    </span>
+                                </td>
+                                <td>
+                                    {{ showDateTime($list->created_at) }}
+                                </td>
 
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="las la-ellipsis-v"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                               
-                                                <li><a class="dropdown-item" href="{{route('admin.course.episode.list',$list->id)}}"><i class="las la-book-open text-warning"></i> @lang('Episode Lists')</a></li>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                           
+                                            <li><a class="dropdown-item" href="{{route('admin.course.episode.list',$list->id)}}"><i class="las la-book-open text-warning"></i> @lang('Episode Lists')</a></li>
 
-                                            
-                                            </ul>
-                                        </div>
+                                        
+                                        </ul>
+                                    </div>
 
-                                    </td>
+                                </td>
 
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
-                                </tr>
-                            @endforelse
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
+                            </tr>
+                        @endforelse
 
-                            </tbody>
-                        </table><!-- table end -->
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                @if ($courses->hasPages())
-                    <div class="card-footer py-4">
-                        {{ paginateLinks($courses) }}
-                    </div>
-                @endif
+                <div class="card-footer">{{ $courses->links() }}</div>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">

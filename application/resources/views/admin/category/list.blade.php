@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="card mb-4 card-primary shadow">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text--primary">@lang('User List')</h6>
+                    <h6 class="m-0 font-weight-bold text--primary">@lang('Category List')</h6>
                     <button type="button" class="btn btn-sm btn-outline--primary" data-bs-toggle="modal" data-bs-target="#addModal"><i class="las la-plus"></i>@lang('Add')</button>
                     
                 </div>
@@ -61,8 +61,6 @@
             </div>
         </div>
     </div>
-
- 
 
     <!-- Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">

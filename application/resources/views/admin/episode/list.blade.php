@@ -1,25 +1,29 @@
 @extends('admin.layouts.app')
 @section('panel')
-    
+
     <div class="row">
         <div class="col-lg-12">
-            <div class="card b-radius--10 ">
-                <div class="card-body p-0">
-                    <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
-                            <thead>
-                            <tr>
-                                <th>@lang('Sl.')</th>
-                                <th>@lang('Title')</th>
-                                <th>@lang('Category')</th>
-                                <th>@lang('Status')</th>
-                                <th>@lang('Descripton')</th>
-                                <th>@lang('Created_at')</th>
-                               <th>@lang('Action')</th>
-                            </tr>
+            <div class="card mb-4 card-primary shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text--primary">@lang('Episodes')</h6>
+                   
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-items-center table-borderless">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>@lang('Sl.')</th>
+                                    <th>@lang('Title')</th>
+                                    <th>@lang('Category')</th>
+                                    <th>@lang('Status')</th>
+                                    <th>@lang('Descripton')</th>
+                                    <th>@lang('Created_at')</th>
+                                    <th>@lang('Action')</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @forelse($episodes as $item)
+                                @forelse($episodes as $item)
                                 <tr>
                                     <td>{{++$loop->index}}</td>
                                     <td>{{ucwords($item->title)}}</td>
@@ -50,16 +54,12 @@
                                     <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
                                 </tr>
                             @endforelse
-
-                            </tbody>
-                        </table><!-- table end -->
+    
+                                </tbody>
+                        </table>
                     </div>
+                    <div class="card-footer">{{ $episodes->links() }}</div>
                 </div>
-                @if ($episodes->hasPages())
-                    <div class="card-footer py-4">
-                        {{ paginateLinks($episodes) }}
-                    </div>
-                @endif
             </div>
         </div>
     </div>
