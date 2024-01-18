@@ -19,13 +19,13 @@
                 <li class="sidebar__menu-header">@lang('Course Management')</li>
                 <li class="sidebar-menu-item {{menuActive('admin.category.*')}}">
                     <a href="{{route('admin.category.list')}}" class="nav-link ">
-                        <i class="menu-icon las la-list"></i>
+                        <i class="menu-icon las la-list text--info"></i>
                         <span class="menu-title">@lang('Category Lists')</span>
                     </a>
                 </li>
                 <li class="sidebar-menu-item {{menuActive('admin.charge')}}">
                     <a href="{{route('admin.charge')}}" class="nav-link ">
-                        <i class="menu-icon las la-coins"></i>
+                        <i class="menu-icon las la-coins text--info"></i>
                         <span class="menu-title">@lang('Course Charge')</span>
                     </a>
                 </li>
@@ -138,7 +138,7 @@
                 <li class="sidebar__menu-header">@lang('Gateway Method')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
-                        <i class="menu-icon las la-dollar-sign"></i>
+                        <i class="menu-icon las la-dollar-sign text--primary"></i>
                         <span class="menu-title">@lang('Payment Methods')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
@@ -163,7 +163,7 @@
                 <li class="sidebar__menu-header">@lang('Payout Settings')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.withdraw.*',3)}}">
-                        <i class="menu-icon las la la-credit-card"></i>
+                        <i class="menu-icon las la la-credit-card text--success"></i>
                         <span class="menu-title">@lang('Payout')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.withdraw.*',2)}}"">
@@ -201,34 +201,34 @@
                 </li>
                 <li class="sidebar-menu-item {{menuActive('admin.withdraw.method.index')}}">
                     <a href="{{route('admin.withdraw.method.index')}}" class="nav-link ">
-                        <i class="menu-icon las la la-credit-card"></i>
-                        <span class="menu-title">@lang('Withdrawal Methods')</span>
+                        <i class="menu-icon las la la-credit-card text--success"></i>
+                        <span class="menu-title">@lang('Payout Methods')</span>
                     </a>
                 </li> 
              
     <li class="sidebar__menu-header">@lang('Report')</li>
     <li class="sidebar-menu-item {{menuActive(['admin.report.transaction','admin.report.transaction.search'])}}">
         <a href="{{route('admin.report.transaction')}}" class="nav-link">
-            <i class="menu-icon las la-credit-card"></i>
+            <i class="menu-icon las la-credit-card text--warning"></i>
             <span class="menu-title">@lang('Transactions')</span>
         </a>
     </li>
     <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
         <a href="{{route('admin.report.login.history')}}" class="nav-link">
-            <i class="menu-icon las la-sign-in-alt"></i>
+            <i class="menu-icon las la-sign-in-alt text--warning"></i>
             <span class="menu-title">@lang('Login Activities')</span>
         </a>
     </li>
     <li class="sidebar-menu-item {{menuActive('admin.report.notification.history')}}">
         <a href="{{route('admin.report.notification.history')}}" class="nav-link">
-            <i class="menu-icon las la-bell"></i>
+            <i class="menu-icon las la-bell text--warning"></i>
             <span class="menu-title">@lang('Notifications')</span>
         </a>
     </li>
     <li class="sidebar__menu-header">@lang('Help Desk')</li>
     <li class="sidebar-menu-item {{menuActive('admin.ticket.*')}}">
         <a href="{{route('admin.ticket.pending')}}" class="nav-link ">
-            <i class="menu-icon las la la-life-ring"></i>
+            <i class="menu-icon las la la-life-ring text--success"></i>
             <span class="menu-title">@lang('Support Ticket')</span>
             @if(0 < $pendingTicketCount) <div class="blob white">
         </div>@endif
@@ -237,20 +237,20 @@
 <li class="sidebar__menu-header">@lang('Management of Content')</li>
 <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}}">
     <a href="{{route('admin.frontend.manage.pages')}}" class="nav-link ">
-        <i class="menu-icon la la-pager"></i>
+        <i class="menu-icon la la-pager text--danger"></i>
         <span class="menu-title">@lang('Main Pages')</span>
     </a>
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.policyPages')}}">
     <a href="{{route('admin.frontend.manage.policyPages')}}" class="nav-link ">
-        <i class="menu-icon la la-pager"></i>
+        <i class="menu-icon la la-pager text--danger"></i>
         <span class="menu-title">@lang('Policy Pages')</span>
     </a>
 </li>
 
 <li class="sidebar-menu-item sidebar-dropdown">
     <a href="javascript:void(0)" class="{{menuActive('admin.frontend.sections*',3)}}">
-        <i class="menu-icon la la-grip-horizontal"></i>
+        <i class="menu-icon la la-grip-horizontal text--danger"></i>
         <span class="menu-title">@lang('Sections')</span>
     </a>
     <div class="sidebar-submenu {{menuActive('admin.frontend.sections*',2)}} ">
@@ -275,26 +275,26 @@
 
 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
     <a href="{{route('admin.setting.index')}}" class="nav-link">
-        <i class="menu-icon las la-cog text-primary"></i>
+        <i class="menu-icon las la-cog text--primary"></i>
         <span class="menu-title">@lang('Control Panel')</span>
     </a>
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.setting.logo.icon')}}">
     <a href="{{route('admin.setting.logo.icon')}}" class="nav-link">
-        <i class="menu-icon las la-image"></i>
+        <i class="menu-icon las la-image text--info"></i>
         <span class="menu-title">@lang('Logo & Favicon')</span>
     </a>
 </li>
 <li class="sidebar-menu-item  {{menuActive(['admin.language.manage','admin.language.key'])}}">
     <a href="{{route('admin.language.manage')}}" class="nav-link"
         data-default-url="{{ route('admin.language.manage') }}">
-        <i class="menu-icon las la-language"></i>
+        <i class="menu-icon las la-language text--primary"></i>
         <span class="menu-title">@lang('Language') </span>
     </a>
 </li>
 <li class="sidebar-menu-item sidebar-dropdown">
     <a href="javascript:void(0)" class="{{menuActive('admin.setting.notification*',3)}}">
-        <i class="menu-icon las la-bell"></i>
+        <i class="menu-icon las la-bell text--warning"></i>
         <span class="menu-title">@lang('Email & Notification')</span>
     </a>
     <div class="sidebar-submenu {{menuActive('admin.setting.notification*',2)}} ">
@@ -328,19 +328,19 @@
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.extensions.index')}}">
     <a href="{{route('admin.extensions.index')}}" class="nav-link">
-        <i class="menu-icon las la-cogs"></i>
+        <i class="menu-icon las la-cogs text--primary"></i>
         <span class="menu-title">@lang('Plugins')</span>
     </a>
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.seo')}}">
     <a href="{{route('admin.seo')}}" class="nav-link">
-        <i class="menu-icon las la-project-diagram"></i>
+        <i class="menu-icon las la-project-diagram text--success"></i>
         <span class="menu-title">@lang('SEO')</span>
     </a>
 </li>
 <li class="sidebar-menu-item {{menuActive('admin.setting.cookie')}}">
     <a href="{{route('admin.setting.cookie')}}" class="nav-link">
-        <i class="menu-icon las la-check-circle"></i>
+        <i class="menu-icon las la-check-circle text--primary"></i>
         <span class="menu-title">@lang('GDPR Policy')</span>
     </a>
 </li>
