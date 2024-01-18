@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn w-100 btn-global btn--primary">@lang('Send')</button>
+                    <button type="submit" class="btn w-100 btn-global w-100 btn--primary">@lang('Send')</button>
                 </div>
             </form>
         </div>

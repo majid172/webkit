@@ -13,7 +13,7 @@ class DepositController extends Controller
 {
     public function pending()
     {
-        $pageTitle = 'Pending Deposits';
+        $pageTitle = 'Pending Funds';
         $deposits = $this->depositData('pending');
         return view('admin.deposit.log', compact('pageTitle', 'deposits'));
     }
@@ -21,35 +21,35 @@ class DepositController extends Controller
 
     public function approved()
     {
-        $pageTitle = 'Approved Deposits';
+        $pageTitle = 'Approved Funds';
         $deposits = $this->depositData('approved');
         return view('admin.deposit.log', compact('pageTitle', 'deposits'));
     }
 
     public function successful()
     {
-        $pageTitle = 'Successful Deposits';
+        $pageTitle = 'Successful Funds';
         $deposits = $this->depositData('successful');
         return view('admin.deposit.log', compact('pageTitle', 'deposits'));
     }
 
     public function rejected()
     {
-        $pageTitle = 'Rejected Deposits';
+        $pageTitle = 'Rejected Funds';
         $deposits = $this->depositData('rejected');
         return view('admin.deposit.log', compact('pageTitle', 'deposits'));
     }
 
     public function initiated()
     {
-        $pageTitle = 'Initiated Deposits';
+        $pageTitle = 'Initiated Funds';
         $deposits = $this->depositData('initiated');
         return view('admin.deposit.log', compact('pageTitle', 'deposits'));
     }
 
     public function deposit()
     {
-        $pageTitle = 'Deposit History';
+        $pageTitle = 'Fund History';
         $depositData = $this->depositData($scope = null, $summery = true);
         $deposits = $depositData['data'];
         $summery = $depositData['summery'];
@@ -133,7 +133,7 @@ class DepositController extends Controller
     {
         $general = gs();
         $deposit = Deposit::where('id', $id)->with(['user', 'gateway'])->firstOrFail();
-        $pageTitle = 'Diposit Request of ' . showAmount($deposit->amount) . ' '.$general->cur_text;
+        $pageTitle = 'Funding request from ' . showAmount($deposit->amount) . ' '.$general->cur_text;
         $details = ($deposit->detail != null) ? json_encode($deposit->detail) : null;
         return view('admin.deposit.detail', compact('pageTitle', 'deposit','details'));
     }
@@ -145,7 +145,7 @@ class DepositController extends Controller
 
         PaymentController::userDataUpdate($deposit,true);
 
-        $notify[] = ['success', 'Deposit request approved successfully'];
+        $notify[] = ['success', 'Fund request approved successfully'];
 
         return to_route('admin.deposit.pending')->withNotify($notify);
     }
@@ -173,7 +173,7 @@ class DepositController extends Controller
             'rejection_message' => $request->message
         ]);
 
-        $notify[] = ['success', 'Deposit request rejected successfully'];
+        $notify[] = ['success', 'Fund request rejected successfully'];
         return  to_route('admin.deposit.pending')->withNotify($notify);
 
     }

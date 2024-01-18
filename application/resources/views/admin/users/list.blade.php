@@ -57,7 +57,7 @@
         <div class="card mb-4 card-primary shadow">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text--primary">@lang('User List')</h6>
-                <a href="" class="btn btn-sm btn-outline--primary"><i
+                <a href="{{route('admin.users.notification.all')}}" class="btn btn-sm btn-outline--primary"><i
                             class="fas fa-envelope"></i> @lang('Send Mail to All')</a>
             </div>
             <div class="card-body">

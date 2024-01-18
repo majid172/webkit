@@ -4,7 +4,218 @@
 <div class="row">
     <div class="col-12">
         <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    
+                    <div class="card-header">
+                        <h5 class="card-title mb-0 text--primary">{{$user->fullname}}</h5>
+                        <div class="mt-2">
+                            <p><i class="las la-user me-1"></i>{{__($user->username)}}</p>
+                            <p><i class="las la-envelope me-1"></i>{{__($user->email)}}</p>
+                            <p><i class="las la-phone me-1"></i>{{__($user->mobile)}}</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('admin.users.update',[$user->id])}}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label>@lang('First Name')</label>
+                                        <input class="form-control" type="text" name="firstname" required
+                                            value="{{$user->firstname}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">@lang('Last Name')</label>
+                                        <input class="form-control" type="text" name="lastname" required
+                                            value="{{$user->lastname}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('Email') </label>
+                                        <input class="form-control" type="email" name="email" value="{{$user->email}}"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('Phone ') </label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text mobile-code"></span>
+                                            <input type="number" name="mobile" value="{{ old('mobile') }}" id="mobile"
+                                                class="form-control checkUser" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('City')</label>
+                                        <input class="form-control" type="text" name="city"
+                                            value="{{ @$user->address->city }}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="form-group ">
+                                        <label>@lang('Country')</label>
+                                        <select name="country" class="form-control">
+                                            @foreach($countries as $key => $country)
+                                            <option data-mobile_code="{{ $country->dial_code }}" value="{{ $key }}">{{
+                                                __($country->country) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="form-group ">
+                                        <label>@lang('State')</label>
+                                        <input class="form-control" type="text" name="state"
+                                            value="{{ @$user->address->state }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="form-group ">
+                                        <label>@lang('Zip/Postal')</label>
+                                        <input class="form-control" type="text" name="zip"
+                                            value="{{ @$user->address->zip }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group ">
+                                        <label>@lang('Address')</label>
+                                        <textarea class="form-control" type="text" name="address"
+                                            value="{{ @$user->address->address }}"></textarea>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            
+
+                            <div class="row">
+                                <div class="form-group  col-xl-3 col-md-6 col-12">
+                                    <label>@lang('Email Verification') </label>
+                                    <label class="switch m-0">
+                                        <input type="checkbox" class="toggle-switch" name="ev" {{ $user->ev ?
+                                        'checked' : null }}>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group  col-xl-3 col-md-6 col-12">
+                                    <label>@lang('Mobile Verification') </label>
+                                    <label class="switch m-0">
+                                        <input type="checkbox" class="toggle-switch" name="sv" {{ $user->sv ?
+                                        'checked' : null }}>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group  col-xl-3 col-md-6 col-12">
+                                    <label>@lang('2FA Verification') </label>
+                                    <label class="switch m-0">
+                                        <input type="checkbox" class="toggle-switch" name="ts" {{ $user->ts ?
+                                        'checked' : null }}>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group  col-xl-3 col-md-6 col-12">
+                                    <label>@lang('Know Your Customer') </label>
+                                    <label class="switch m-0">
+                                        <input type="checkbox" class="toggle-switch" name="kv" {{ $user->kv ?
+                                            'checked' : null }}>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group  text-end mb-0">
+                                        <button type="submit" class="btn btn--primary btn-global w-100">@lang('Update')
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card p-2">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-xl-4">
+                <div class="row gy-2 pb-2 gx-2">
+                    <div class="col-sm-6 col-xl-12">
+                        <div class="card prod-p-card background-pattern">
+                            <div class="card-body">
+                                <div class="row align-items-center m-b-0">
+                                    <ul class="d-flex flex-wrap gap-1">
+                                        <li class="flex-grow-1 flex-shrink-0">
+                                            <a class="d-block btn bg--primary bal-btn" href="javascript:void(0)"
+                                                data-bs-toggle="modal" data-bs-target="#addSubModal" data-act="add"><i
+                                                    class="las la-plus-circle"></i>
+                                                @lang('Add
+                                                Balance')</a>
+                                        </li>
+                                        <li class="flex-grow-1 flex-shrink-0">
+                                            <a class="d-block btn bg--primary bal-btn" href="javascript:void(0)"
+                                                data-bs-toggle="modal" data-bs-target="#addSubModal" data-act="sub"><i
+                                                    class="las la-minus-circle"></i>
+                                                @lang('Substract
+                                                Balance')</a>
+                                        </li>
+            
+                                        
+                                        <li class="flex-grow-1 flex-shrink-0">
+                                            <a class="d-block btn bg--primary"
+                                                href="{{ route('admin.users.notification.log',$user->id) }}">
+                                                <i class="las la-bell"></i> @lang('Notifiactions')
+                                            </a>
+                                        </li>
+                                        <li class="flex-grow-1 flex-shrink-0">
+                                            <a class="d-block btn bg--primary"
+                                                href="{{route('admin.report.login.history')}}?search={{ $user->username }}">
+                                                <i class="las la-list-alt"></i> @lang('Login History')
+                                            </a>
+                                        </li>
+                                        <li class="flex-grow-1 flex-shrink-0">
+                                            @if($user->status == 1)
+                                            <a class="d-block btn bg--primary" class="userStatus" data-bs-toggle="modal"
+                                                data-bs-target="#userStatusModal" href="javascript:void(0)">
+                                                <i class="las la-ban"></i> @lang('Ban User')
+                                            </a>
+                                            @else
+                                            <a class="userStatus bg--primary btn" data-bs-toggle="modal"
+                                                data-bs-target="#userStatusModal" href="javascript:void(0)">
+                                                <i class="las la-undo"></i> @lang('Unban User')
+                                            </a>
+                                            @endif
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
                 <div class="row gy-2 pb-2 gx-2">
                     <div class="col-sm-6 col-xl-12">
                         <a href="{{ route('admin.report.transaction') }}?search={{ $user->username }}">
@@ -30,7 +241,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center m-b-0">
                                         <div class="col">
-                                            <h6 class="m-b-5">@lang('Deposits')</h6>
+                                            <h6 class="m-b-5">@lang('Add Fund')</h6>
                                             <h3 class="m-b-0">{{ $general->cur_sym }}{{
                                                 showAmount($totalDeposit) }}
                                             </h3>
@@ -49,7 +260,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center m-b-0">
                                         <div class="col">
-                                            <h6 class="m-b-5">@lang('Withdrawals')</h6>
+                                            <h6 class="m-b-5">@lang('Payouts')</h6>
                                             <h3 class="m-b-0">{{ $general->cur_sym }}{{
                                                 showAmount($totalWithdrawals)
                                                 }}</h3>
@@ -80,204 +291,10 @@
                         </a>
                     </div>
                 </div>
+
+               
             </div>
-            <div class="col-xl-8">
-                <div class="card">
-                    <div class="card p-2">
-                        <ul class="d-flex flex-wrap gap-1">
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary bal-btn" href="javascript:void(0)"
-                                    data-bs-toggle="modal" data-bs-target="#addSubModal" data-act="add"><i
-                                        class="las la-plus-circle"></i>
-                                    @lang('Add
-                                    Balance')</a>
-                            </li>
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary bal-btn" href="javascript:void(0)"
-                                    data-bs-toggle="modal" data-bs-target="#addSubModal" data-act="sub"><i
-                                        class="las la-minus-circle"></i>
-                                    @lang('Substract
-                                    Balance')</a>
-                            </li>
-
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary" href="{{route('admin.users.login',$user->id)}}"
-                                    target="_blank">
-                                    <i class="las la-sign-in-alt"></i> @lang('Login as User')
-                                </a>
-                            </li>
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary"
-                                    href="{{ route('admin.users.notification.log',$user->id) }}">
-                                    <i class="las la-bell"></i> @lang('Notifiactions')
-                                </a>
-                            </li>
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary"
-                                    href="{{route('admin.report.login.history')}}?search={{ $user->username }}">
-                                    <i class="las la-list-alt"></i> @lang('Login History')
-                                </a>
-                            </li>
-                            <li class="flex-grow-1 flex-shrink-0">
-                                @if($user->status == 1)
-                                <a class="d-block btn bg--primary" class="userStatus" data-bs-toggle="modal"
-                                    data-bs-target="#userStatusModal" href="javascript:void(0)">
-                                    <i class="las la-ban"></i> @lang('Ban User')
-                                </a>
-                                @else
-                                <a class="userStatus bg--primary" data-bs-toggle="modal"
-                                    data-bs-target="#userStatusModal" href="javascript:void(0)">
-                                    <i class="las la-undo"></i> @lang('Unban User')
-                                </a>
-                                @endif
-                            </li>
-                            <li class="flex-grow-1 flex-shrink-0">
-                                <a class="d-block btn bg--primary"
-                                    href="{{route('admin.users.notification.single', $user->id)}}">
-                                    <i class="las la-paper-plane"></i> @lang('Send Email')
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">@lang('Information of') {{$user->fullname}}</h5>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{route('admin.users.update',[$user->id])}}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group  col-xl-3 col-md-6 col-12">
-                                    <label>@lang('Email Verification') </label>
-                                    <label class="switch m-0">
-                                        <input type="checkbox" class="toggle-switch" name="ev" {{ $user->ev ?
-                                        'checked' : null }}>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                                <div class="form-group  col-xl-3 col-md-6 col-12">
-                                    <label>@lang('Mobile Verification') </label>
-                                    <label class="switch m-0">
-                                        <input type="checkbox" class="toggle-switch" name="sv" {{ $user->sv ?
-                                        'checked' : null }}>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                                <div class="form-group  col-xl-3 col-md-6 col-12">
-                                    <label>@lang('2FA Verification') </label>
-                                    <label class="switch m-0">
-                                        <input type="checkbox" class="toggle-switch" name="ts" {{ $user->ts ?
-                                        'checked' : null }}>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                                <div class="form-group  col-xl-3 col-md-6 col-12">
-                                    <label>@lang('KYC') </label>
-                                    <label class="switch m-0">
-                                        <input type="checkbox" class="toggle-switch" name="kv" {{ $user->kv ?
-                                        'checked' : null }}>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <label>@lang('First Name')</label>
-                                        <input class="form-control" type="text" name="firstname" required
-                                            value="{{$user->firstname}}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">@lang('Last Name')</label>
-                                        <input class="form-control" type="text" name="lastname" required
-                                            value="{{$user->lastname}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>@lang('Email') </label>
-                                        <input class="form-control" type="email" name="email" value="{{$user->email}}"
-                                            required>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>@lang('Mobile Number') </label>
-                                        <div class="input-group ">
-                                            <span class="input-group-text mobile-code"></span>
-                                            <input type="number" name="mobile" value="{{ old('mobile') }}" id="mobile"
-                                                class="form-control checkUser" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <div class="form-group ">
-                                        <label>@lang('Address')</label>
-                                        <input class="form-control" type="text" name="address"
-                                            value="{{ @$user->address->address }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group">
-                                        <label>@lang('City')</label>
-                                        <input class="form-control" type="text" name="city"
-                                            value="{{ @$user->address->city }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group ">
-                                        <label>@lang('State')</label>
-                                        <input class="form-control" type="text" name="state"
-                                            value="{{ @$user->address->state }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group ">
-                                        <label>@lang('Zip/Postal')</label>
-                                        <input class="form-control" type="text" name="zip"
-                                            value="{{ @$user->address->zip }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group ">
-                                        <label>@lang('Country')</label>
-                                        <select name="country" class="form-control">
-                                            @foreach($countries as $key => $country)
-                                            <option data-mobile_code="{{ $country->dial_code }}" value="{{ $key }}">{{
-                                                __($country->country) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <div class="form-group  text-end mb-0">
-                                        <button type="submit" class="btn btn--primary btn-global">@lang('Save')
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
     </div>
@@ -302,7 +319,7 @@
                         <div class="input-group">
                             <input type="number" step="any" name="amount" class="form-control"
                                 placeholder="@lang('Please provide positive amount')" required>
-                            <div class="input-group-text">{{ __($general->cur_text) }}</div>
+                            <div class="input-group-text bg--primary">{{ __($general->cur_text) }}</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -312,7 +329,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary w-100 btn-global">@lang('Save')</button>
                 </div>
             </form>
         </div>
@@ -339,24 +356,24 @@
                 @csrf
                 <div class="modal-body">
                     @if($user->status == 1)
-                    <h6 class="mb-2">@lang('If you ban this user he/she won\'t able to access his/her
-                        dashboard.')</h6>
+                    <h6 class="mb-2">@lang('This user will not be able to access their dashboard if they are banned.')</h6>
                     <div class="form-group">
-                        <label>@lang('Reason')</label>
+                        <label>@lang('Justification')</label>
                         <textarea class="form-control" name="reason" rows="4" required></textarea>
                     </div>
                     @else
-                    <p><span>@lang('Ban reason was'):</span></p>
+                    <h5 class="mt-1">@lang('Do you really want to unban this user?')</h5>
+                    <p><span>@lang('The ban\'s rationale was'):</span></p>
                     <p>{{ $user->ban_reason }}</p>
-                    <h4 class="text-center mt-3">@lang('Are you sure to unban this user?')</h4>
+                    
                     @endif
                 </div>
                 <div class="modal-footer">
                     @if($user->status == 1)
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary w-100 btn-global">@lang('Save')</button>
                     @else
-                    <button type="button" class="btn btn--dark" data-bs-dismiss="modal">@lang('No')</button>
-                    <button type="submit" class="btn btn--primary">@lang('Yes')</button>
+                    <button type="button" class="btn btn-sm btn--dark" data-bs-dismiss="modal">@lang('No')</button>
+                    <button type="submit" class="btn btn-sm btn--primary">@lang('Yes')</button>
                     @endif
                 </div>
             </form>

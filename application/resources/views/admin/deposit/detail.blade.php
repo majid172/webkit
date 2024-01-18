@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 @section('panel')
 <div class="row mb-none-30 justify-content-center">
-    <div class="col-xl-4 col-md-6 mb-30">
+    <div class="col-xl-6 col-md-6 mb-30">
         <div class="card b-radius--10 overflow-hidden box--shadow1">
             <div class="card-body">
-                <h5 class="mb-20 text-muted">@lang('Deposit Via') {{ __(@$deposit->gateway->name) }}</h5>
+                <h5 class="mb-20 text-muted">@lang('Fund Via') {{ __(@$deposit->gateway->name) }}</h5>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         @lang('Date')
@@ -12,13 +12,12 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         @lang('Transaction Number')
-                        <span class="fw-bold">{{ $deposit->trx }}</span>
+                        <span class="fw-bold">{{ $deposit->trx }}</span> 
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         @lang('Username')
                         <span class="fw-bold">
-                            <a href="{{ route('admin.users.detail', $deposit->user_id) }}">{{ @$deposit->user->username
-                                }}</a>
+                            <a href="{{ route('admin.users.detail', $deposit->user_id) }}">{{ @$deposit->user->username }}</a>
                         </span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -64,10 +63,10 @@
         </div>
     </div>
     @if($details || $deposit->status == 2)
-    <div class="col-xl-8 col-md-6 mb-30">
+    <div class="col-xl-6 col-md-6 mb-30">
         <div class="card b-radius--10 overflow-hidden box--shadow1">
             <div class="card-body">
-                <h5 class="card-title mb-50 border-bottom pb-2">@lang('Deposit Info')</h5>
+                <h5 class="card-title mb-50 border-bottom pb-2">@lang('Fund Info')</h5>
                 @if($details != null)
                 @foreach(json_decode($details) as $val)
                 @if($deposit->method_code >= 1000)

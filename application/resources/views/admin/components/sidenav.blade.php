@@ -63,7 +63,7 @@
                                     <span class="menu-title">@lang('Banned Users')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.users.notification.all')}} ">
+                            <li class="sidebar-menu-item {{menuActive('admin.users.notification.all')}}">
                                 <a href="{{route('admin.users.notification.all')}}" class="nav-link">
                                     <i class="menu-icon las la-minus"></i>
                                     <span class="menu-title">@lang('Send Mail All User')</span>
@@ -84,18 +84,18 @@
                 </li>
 
                 {{-- PayIn --}}
-                <li class="sidebar__menu-header">@lang('PayIn Details')</li>
+                <li class="sidebar__menu-header">@lang('Fund Details')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.deposit.*',3)}}">
                         <i class="menu-icon las la-wallet text-primary"></i>
-                        <span class="menu-title">@lang('PayIn')</span>
+                        <span class="menu-title">@lang('Fund')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.deposit.*',2)}} ">
                         <ul>
                             <li class="sidebar-menu-item {{menuActive('admin.deposit.list')}} ">
                                 <a href="{{route('admin.deposit.list')}}" class="nav-link">
                                     <i class="menu-icon las la-minus"></i>
-                                    <span class="menu-title">@lang('All Payin')</span>
+                                    <span class="menu-title">@lang('Fund List')</span>
                                 </a>
                             </li>
                             <li class="sidebar-menu-item {{menuActive('admin.deposit.pending')}} ">
@@ -135,11 +135,11 @@
                     </div>
                 </li>
                 {{-- Gateways --}}
-                <li class="sidebar__menu-header">@lang('Gateway')</li>
+                <li class="sidebar__menu-header">@lang('Gateway Method')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
                         <i class="menu-icon las la-dollar-sign"></i>
-                        <span class="menu-title">@lang('Payment Gateways')</span>
+                        <span class="menu-title">@lang('Payment Methods')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
                         <ul>

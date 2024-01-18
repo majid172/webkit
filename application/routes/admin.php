@@ -125,7 +125,7 @@ Route::middleware('admin')->group(function () {
 
 
     // DEPOSIT SYSTEM
-    Route::name('deposit.')->controller('DepositController')->prefix('manage/deposits')->group(function(){
+    Route::name('deposit.')->controller('DepositController')->prefix('manage/funds')->group(function(){
         Route::get('/', 'deposit')->name('list');
         Route::get('pending', 'pending')->name('pending');
         Route::get('rejected', 'rejected')->name('rejected');

@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-global btn--primary me-2">@lang('Send')</button>
+                    <button type="submit" class="btn btn-global w-100 btn--primary me-2">@lang('Send')</button>
                 </div>
             </form>
         </div>
