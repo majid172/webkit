@@ -2,10 +2,10 @@
 
 @section('panel')
 <div class="row mb-none-30">
-    <div class="col-lg-4 col-md-4 mb-30">
+    <div class="col-lg-6 col-md-4 mb-30">
         <div class="card b-radius--10 overflow-hidden box--shadow1">
             <div class="card-body">
-                <h5 class="mb-20 text-muted">@lang('Withdraw Via') {{__(@$withdrawal->method->name)}}</h5>
+                <h5 class="mb-20 text-muted">@lang('Payout Through') {{__(@$withdrawal->method->name)}}</h5>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         @lang('Date')
@@ -69,13 +69,11 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8 col-md-8 mb-30">
+    <div class="col-lg-6 col-md-8 mb-30">
 
         <div class="card b-radius--10 overflow-hidden box--shadow1">
             <div class="card-body">
-                <h5 class="card-title border-bottom pb-2">@lang('User Withdraw Information')</h5>
-
-
+                <h5 class="card-title border-bottom pb-2">@lang('Information Payout by User')</h5>
                 @if($details != null)
                 @foreach(json_decode($details) as $val)
                 <div class="row mt-4">
@@ -86,7 +84,7 @@
                         @elseif($val->type == 'file')
                         @if($val->value)
                         <a href="{{ route('admin.download.attachment',encrypt(getFilePath('verify').'/'.$val->value)) }}"
-                            class="me-3"><i class="fa fa-file"></i> @lang('Attachment') </a>
+                            class="me-3"><i class="fa fa-file"></i> @lang('Attached') </a>
                         @else
                         @lang('No File')
                         @endif

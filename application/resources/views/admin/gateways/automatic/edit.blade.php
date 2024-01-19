@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @section('panel')
 <div class="row">
     <div class="col-lg-12">
@@ -11,12 +10,10 @@
                 <input type="hidden" name="alias" value="{{ $gateway->alias }}">
                 <input type="hidden" name="description" value="{{ $gateway->description }}">
 
-                <div class="card border--primary mt-2">
-                    <h5 class="card-header bg--primary">@lang('Gateway Configuration')</h5>
+                <div class="card  mt-2">
+                    
                         <div class="card-body">
-
                             <div class="payment-method-item block-item">
-
                                 <div class="px-2">
                                     <div class="payment-method-header">
 
@@ -43,15 +40,22 @@
                                             
                                             </div>
                                             @endif
-    
                                             <p>{{ __($gateway->description) }}</p>
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="px-3">
-
+                                    <div class="payment-method-body">
+                                        <div class="row">
+                                            @foreach($parameters->where('global', true) as $key => $param)
+                                            <div class="form-group col-lg-6">
+                                                <label>{{ __(@$param->title) }}</label>
+                                                <input type="text" class="form-control" name="global[{{ $key }}]"
+                                                    value="{{ @$param->value }}" required />
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                     @if($gateway->code < 1000 && $gateway->extra)
                                     <div class="payment-method-body">
                                         <div class="row">
@@ -70,20 +74,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                    <div class="payment-method-body">
-                                        <div class="row">
-                                            @foreach($parameters->where('global', true) as $key => $param)
-                                            <div class="form-group col-lg-6">
-                                                <label>{{ __(@$param->title) }}</label>
-                                                <input type="text" class="form-control" name="global[{{ $key }}]"
-                                                    value="{{ @$param->value }}" required />
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-
                                 </div>
-
                             </div>
                             <!-- payment-method-item start -->
                         </div>
@@ -92,13 +83,13 @@
 
                 @isset($gateway->currencies)
                     @foreach($gateway->currencies as $gatewayCurrency)
-                        <div class="card border--primary {{$loop->index == 0 ? 'mt-5' : ''}} mb-4">
+                        <div class="card  {{$loop->index == 0 ? 'mt-5' : ''}} mb-4">
 
-                            <div class="card-header bg--primary">
+                            <div class="card-header ">
                                 <div class="content w-100 ps-0">
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group">
-                                            <h4 class="bg--primary">{{ __($gateway->name) }} - {{__($gatewayCurrency->currency)}}
+                                            <h4 class="text--primary">{{ __($gateway->name) }} - {{__($gatewayCurrency->currency)}}
                                             </h4>
                                             <input type="text" hidden class="form-control"
                                                 name="currency[{{ $currencyIndex }}][name]"
@@ -115,19 +106,15 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <div class="card-body">
                                 <input type="hidden" name="currency[{{ $currencyIndex }}][symbol]"
                                 value="{{ $gatewayCurrency->symbol }}">
-                                <div class=" block-item child--item mb-1">      
-
+                                <div class=" block-item child--item mb-1"> 
                                     <div class="payment-method-body">
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="mt-2">
-                                                    <div class="">
+                                                    <div >
                                                         <div class="form-group">
                                                             <label>@lang('Min')</label>
                                                             <div class="input-group">
@@ -153,7 +140,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="mt-2">
                                                     <div class="">
                                                         <div class="form-group">
@@ -180,7 +167,26 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="mt-2">
+                                                    <div class="">
+                                                        <div class="form-group">
+                                                            <label>@lang('Dollar Rate')</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-text bg--primary">1 {{
+                                                                    __($general->cur_text) }} =</div>
+                                                                <input type="number" step="any" class="form-control"
+                                                                    name="currency[{{ $currencyIndex }}][rate]"
+                                                                    value="{{ getAmount($gatewayCurrency->rate) }}" required />
+                                                                <div class="input-group-text bg--primary"><span
+                                                                        class="currency_symbol text-white">{{
+                                                                        __($gatewayCurrency->baseSymbol()) }}</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="mt-2">
                                                     <div class="">
                                                         <div class="row">
@@ -205,19 +211,7 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('Dollar Rate')</label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-text bg--primary">1 {{
-                                                                    __($general->cur_text) }} =</div>
-                                                                <input type="number" step="any" class="form-control"
-                                                                    name="currency[{{ $currencyIndex }}][rate]"
-                                                                    value="{{ getAmount($gatewayCurrency->rate) }}" required />
-                                                                <div class="input-group-text bg--primary"><span
-                                                                        class="currency_symbol text-white">{{
-                                                                        __($gatewayCurrency->baseSymbol()) }}</span></div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,164 +249,156 @@
                 @endisset
 
 
-                    <div class="card border--primary mt-5 newMethodCurrency d-none">
-                        <h5 class="card-header bg--primary">@lang('Currency Configuration')</h5>
-                            <div class="card-body">
+                    <div class="card  mt-5 newMethodCurrency d-none">
+                        <div class="card-body">
+                            <div class="payment-method-item child--item newMethodCurrency d-none">
+                                <input disabled type="hidden" name="currency[{{ $currencyIndex }}][symbol]"
+                                    class="currencySymbol">
+                                <div class="payment-method-header">
 
-                                <div class="payment-method-item child--item newMethodCurrency d-none">
-                                    <input disabled type="hidden" name="currency[{{ $currencyIndex }}][symbol]"
-                                        class="currencySymbol">
-                                    <div class="payment-method-header">
-
-                                        <div class="content w-100 ps-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="form-group">
-                                                    <h4 class="mx-2" id="payment_currency_name">@lang('Name')</h4>
-                                                    <input hidden type="text" class="form-control" id="payment_currency_name_input"
-                                                        name="currency[{{ $currencyIndex }}][name]" required />
-                                                </div>
-                                                <div class="remove-btn">
-                                                    <button title="@lang('Remove')" type="button"
-                                                        class="btn btn-danger newCurrencyRemove">
-                                                        <i class="la la-trash-o"></i>
-                                                    </button>
-                                                </div>
+                                    <div class="content w-100 ps-0">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="form-group">
+                                                <h4 class="mx-2" id="payment_currency_name">@lang('Name')</h4>
+                                                <input hidden type="text" class="form-control" id="payment_currency_name_input"
+                                                    name="currency[{{ $currencyIndex }}][name]" required />
                                             </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="payment-method-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                                                <div class="mx-2">
-                                                    <div class="form-group">
-                                                        <label>@lang('Minimum Amount')</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-text bg--primary">{{ __($general->cur_text)
-                                                                }}</div>
-                                                            <input disabled type="number" step="any" class="form-control"
-                                                                name="currency[{{ $currencyIndex }}][min_amount]" required />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>@lang('Maximum Amount')</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-text bg--primary">{{ __($general->cur_text)
-                                                                }}</div>
-                                                            <input disabled type="number" step="any" class="form-control"
-                                                                name="currency[{{ $currencyIndex }}][max_amount]" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="remove-btn">
+                                                <button title="@lang('Remove')" type="button"
+                                                    class="btn btn-danger newCurrencyRemove">
+                                                    <i class="la la-trash-o"></i>
+                                                </button>
                                             </div>
-
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                                                <div class="mx-2">
-                                                    <div class="form-group">
-                                                        <label>@lang('Fixed Charge')</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-text bg--primary">{{ __($general->cur_text)
-                                                                }}</div>
-                                                            <input disabled type="number" step="any" class="form-control"
-                                                                name="currency[{{ $currencyIndex }}][fixed_charge]" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>@lang('Percent Charge')</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-text bg--primary">%</div>
-                                                            <input disabled type="number" step="any" class="form-control"
-                                                                name="currency[{{ $currencyIndex }}][percent_charge]" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                                                <div class="mx-2">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>@lang('Currency')</label>
-                                                                <input disabled type="step"
-                                                                    class="form-control currencyText border-radius-5"
-                                                                    name="currency[{{ $currencyIndex }}][currency]" readonly />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>@lang('Symbol')</label>
-                                                                <input disabled type="text"
-                                                                    name="currency[{{ $currencyIndex }}][symbol]"
-                                                                    class="form-control border-radius-5 symbl"
-                                                                    ata-crypto="{{ $gateway->crypto }}" disabled />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>@lang('Rate')</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text bg--primary">
-                                                                <b>1 </b>&nbsp; {{ __($general->cur_text) }}&nbsp; =
-                                                            </span>
-                                                            <input disabled type="number" step="any" class="form-control"
-                                                                name="currency[{{ $currencyIndex }}][rate]" required />
-                                                            <div class="input-group-text bg--primary"><span
-                                                                    class="currency_symbol text-white"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            @if($parameters->where('global', false)->count() != 0 )
-                                            <div class="col-lg-12">
-                                                <div class="mx-2">
-                                                    <div class="row">
-                                                        @foreach($parameters->where('global', false) as $key => $param)
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>{{ __($param->title) }}</label>
-                                                                <input disabled type="text" class="form-control"
-                                                                    name="currency[{{ $currencyIndex }}][param][{{ $key }}]"
-                                                                    required />
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <!-- **new payment-method-item end -->
 
+
+                                <div class="payment-method-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="mx-2">
+                                                <div class="form-group">
+                                                    <label>@lang('Minimum Amount')</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-text bg--primary">{{ __($general->cur_text)
+                                                            }}</div>
+                                                        <input disabled type="number" step="any" class="form-control"
+                                                            name="currency[{{ $currencyIndex }}][min_amount]" required />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>@lang('Maximum Amount')</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-text bg--primary">{{ __($general->cur_text)
+                                                            }}</div>
+                                                        <input disabled type="number" step="any" class="form-control"
+                                                            name="currency[{{ $currencyIndex }}][max_amount]" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="mx-2">
+                                                <div class="form-group">
+                                                    <label>@lang('Fixed Charge')</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-text bg--primary">{{ __($general->cur_text)
+                                                            }}</div>
+                                                        <input disabled type="number" step="any" class="form-control"
+                                                            name="currency[{{ $currencyIndex }}][fixed_charge]" required />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@lang('Percent Charge')</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-text bg--primary">%</div>
+                                                        <input disabled type="number" step="any" class="form-control"
+                                                            name="currency[{{ $currencyIndex }}][percent_charge]" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="mx-2">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>@lang('Currency')</label>
+                                                            <input disabled type="step"
+                                                                class="form-control currencyText border-radius-5"
+                                                                name="currency[{{ $currencyIndex }}][currency]" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>@lang('Symbol')</label>
+                                                            <input disabled type="text"
+                                                                name="currency[{{ $currencyIndex }}][symbol]"
+                                                                class="form-control border-radius-5 symbl"
+                                                                ata-crypto="{{ $gateway->crypto }}" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>@lang('Rate')</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg--primary">
+                                                            <b>1 </b>&nbsp; {{ __($general->cur_text) }}&nbsp; =
+                                                        </span>
+                                                        <input disabled type="number" step="any" class="form-control"
+                                                            name="currency[{{ $currencyIndex }}][rate]" required />
+                                                        <div class="input-group-text bg--primary"><span
+                                                                class="currency_symbol text-white"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @if($parameters->where('global', false)->count() != 0 )
+                                        <div class="col-lg-12">
+                                            <div class="mx-2">
+                                                <div class="row">
+                                                    @foreach($parameters->where('global', false) as $key => $param)
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ __($param->title) }}</label>
+                                                            <input disabled type="text" class="form-control"
+                                                                name="currency[{{ $currencyIndex }}][param][{{ $key }}]"
+                                                                required />
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
+                            <!-- **new payment-method-item end -->
+
+                        </div>
+                        
                     </div>
-
-
-                    <button type="submit" class="btn btn--primary btn-global my-4 float-end">
-                        @lang('Save')
-                    </button>
                 </div>
+                <button type="submit" class="btn btn--primary w-100 btn-global my-4">
+                    @lang('Save')
+                </button>
             </form>
         </div>
     </div>
 </div>
 
-
 <x-confirmation-modal></x-confirmation-modal>
 
 @endsection
-
-
-
-
 
 @push('breadcrumb-plugins')
 <a href="{{ route('admin.gateway.automatic.index') }}" class="btn btn-sm btn--primary"><i

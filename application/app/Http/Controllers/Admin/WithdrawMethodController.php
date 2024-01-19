@@ -11,14 +11,14 @@ class WithdrawMethodController extends Controller
 {
     public function methods()
     {
-        $pageTitle = 'Withdrawal Methods';
+        $pageTitle = 'Payout Methods';
         $methods = WithdrawMethod::orderBy('status','desc')->orderBy('id')->get();
         return view('admin.withdraw.index', compact('pageTitle', 'methods'));
     }
 
     public function create()
     {
-        $pageTitle = 'New Withdrawal Method';
+        $pageTitle = 'Create Payout Method';
         return view('admin.withdraw.create', compact('pageTitle'));
     }
 
@@ -63,7 +63,7 @@ class WithdrawMethodController extends Controller
 
     public function edit($id)
     {
-        $pageTitle = 'Update Withdrawal Method';
+        $pageTitle = 'Update Payout Method';
         $method = WithdrawMethod::with('form')->findOrFail($id);
         $form = $method->form;
         return view('admin.withdraw.edit', compact('pageTitle', 'method','form'));

@@ -1,12 +1,21 @@
 @extends('admin.layouts.app')
 @section('panel')
+
 <div class="row">
     <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
-                        <thead>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header">
+                <div class="d-flex flex-wrap justify-content-end">
+    
+                    <a class="btn btn--primary me-2 d-flex align-items-center" href="{{ route('admin.gateway.manual.create') }}"><i
+                        class="las la-plus"></i>@lang('Add New')</a>
+                </div>
+                
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Gateway')</th>
                                 <th>@lang('Status')</th>
@@ -58,20 +67,21 @@
                             @endforelse
 
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                
             </div>
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
+
 <x-confirmation-modal></x-confirmation-modal>
 @endsection
 
 
 @push('breadcrumb-plugins')
 <div class="d-flex flex-wrap justify-content-end">
-    <a class="btn btn--primary me-2 d-flex align-items-center" href="{{ route('admin.gateway.manual.create') }}"><i
-            class="las la-plus"></i>@lang('Add New')</a>
+    
     <div class="d-inline">
         <div class="input-group justify-content-end">
             <input type="text" name="search_table" class="form-control bg--white" placeholder="@lang('Search')...">

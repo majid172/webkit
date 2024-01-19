@@ -12,28 +12,28 @@ class WithdrawalController extends Controller
 {
     public function pending()
     {
-        $pageTitle = 'Pending Withdrawals';
+        $pageTitle = 'Pending Payouts';
         $withdrawals = $this->withdrawalData('pending');
         return view('admin.withdraw.withdrawals', compact('pageTitle', 'withdrawals'));
     }
 
     public function approved()
     {
-        $pageTitle = 'Approved Withdrawals';
+        $pageTitle = 'Approved Payouts';
         $withdrawals = $this->withdrawalData('approved');
         return view('admin.withdraw.withdrawals', compact('pageTitle', 'withdrawals'));
     }
 
     public function rejected()
     {
-        $pageTitle = 'Rejected Withdrawals';
+        $pageTitle = 'Rejected Payouts';
         $withdrawals = $this->withdrawalData('rejected');
         return view('admin.withdraw.withdrawals', compact('pageTitle', 'withdrawals'));
     }
 
     public function log()
     {
-        $pageTitle = 'Withdrawals Log';
+        $pageTitle = 'Payouts List';
         $withdrawalData = $this->withdrawalData($scope = null, $summery = true);
         $withdrawals = $withdrawalData['data'];
         $summery = $withdrawalData['summery'];
@@ -114,7 +114,7 @@ class WithdrawalController extends Controller
     {
         $general = gs();
         $withdrawal = Withdrawal::where('id',$id)->where('status', '!=', 0)->with(['user','method'])->firstOrFail();
-        $pageTitle = 'Withdraw Request of ' .showAmount($withdrawal->amount) . ' '.$general->cur_text;
+        $pageTitle = 'Request for Payout ' .showAmount($withdrawal->amount) . ' '.$general->cur_text;
         $details = $withdrawal->withdraw_information ? json_encode($withdrawal->withdraw_information) : null;
 
         return view('admin.withdraw.detail', compact('pageTitle', 'withdrawal','details'));

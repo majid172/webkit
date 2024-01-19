@@ -10,7 +10,7 @@
             <ul class="sidebar__menu">
                 <li class="sidebar-menu-item {{menuActive('admin.dashboard')}}">
                     <a href="{{route('admin.dashboard')}}" class="nav-link ">
-                        <i class="menu-icon las la-tachometer-alt"></i>
+                        <i class="menu-icon las la-tachometer-alt text--primary"></i>
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
@@ -138,7 +138,7 @@
                 <li class="sidebar__menu-header">@lang('Gateway Method')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
-                        <i class="menu-icon las la-dollar-sign text--primary"></i>
+                        <i class="menu-icon las la-money-check-alt text--danger"></i> 
                         <span class="menu-title">@lang('Payment Methods')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
@@ -209,7 +209,7 @@
     <li class="sidebar__menu-header">@lang('Report')</li>
     <li class="sidebar-menu-item {{menuActive(['admin.report.transaction','admin.report.transaction.search'])}}">
         <a href="{{route('admin.report.transaction')}}" class="nav-link">
-            <i class="menu-icon las la-credit-card text--warning"></i>
+            <i class="menu-icon las la-chart-line text--warning"></i> 
             <span class="menu-title">@lang('Transactions')</span>
         </a>
     </li>

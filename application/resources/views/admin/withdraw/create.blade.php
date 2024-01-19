@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="payment-method-item">
                         <div class="row mt-4">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <div class="card border my-2">
                                     <h5 class="card-header">@lang('Special Instructions') </h5>
                                     <div class="card-body">
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100">@lang('Save')</button>
                 </div>
             </form>
         </div><!-- card end -->

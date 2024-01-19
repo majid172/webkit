@@ -10,11 +10,11 @@
                 <div class="card-body">
                     <div class="payment-method-item">
                         <div class="row mt-4">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
-                                            <label>@lang('Name')</label>
+                                            <label>@lang('Method')</label>
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ $method->name }}" required />
                                         </div>
@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="card border mb-2">
-                                            <h5 class="card-header">@lang('Withdrawal Limit')</h5>
+                                            <h5 class="card-header">@lang('Payout Limit')</h5>
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>@lang('Min')</label>
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="card border">
-                                            <h5 class="card-header">@lang('Transaction Charge')</h5>
+                                            <h5 class="card-header">@lang('Charge for Transaction')</h5>
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>@lang('Fixed')</label>
@@ -95,13 +95,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <div class="card border my-2">
-                                    <h5 class="card-header">@lang('Special Instructions') </h5>
+                                    <h5 class="card-header">@lang('Instructions') </h5>
                                     <div class="card-body">
                                         <div class="form-group">
                                             <textarea rows="3" class="form-control trumEdit border-radius-5"
                                                 name="instruction">{{ $method->description}}</textarea>
+
+                                                {{-- <textarea class="form-control summernote" name="instruction"
+														  id="summernote" rows="20">{{ old('template') }}</textarea> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +182,7 @@
                 </div>
 
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100">@lang('Update')</button>
                 </div>
             </form>
         </div><!-- card end -->
@@ -269,6 +272,5 @@
         @endif
     })(jQuery);
 
-
-</script>
+	</script>
 @endpush

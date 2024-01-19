@@ -1,13 +1,7 @@
 @extends('admin.layouts.app')
-
 @section('panel')
 <div class="row">
-
     <div class="col-lg-12">
-        <div class="show-filter mb-3 text-end">
-            <button type="button" class="btn btn--primary showFilterBtn btn-sm"><i class="las la-filter"></i>
-                @lang('Filter')</button>
-        </div>
         <div class="card responsive-filter-card mb-4">
             <div class="card-body">
                 <form action="">
@@ -40,11 +34,16 @@
                 </form>
             </div>
         </div>
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two">
-                        <thead>
+
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('Transactions List')</h6>
+               
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('User')</th>
                                 <th>@lang('Transaction number')</th>
@@ -96,24 +95,18 @@
                             @endforelse
 
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                <div class="card-footer">{{ $transactions->links() }}</div>
             </div>
-            @if($transactions->hasPages())
-            <div class="card-footer py-4">
-                {{ paginateLinks($transactions) }}
-            </div>
-            @endif
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
-
 @endsection
 
 @push('style-lib')
 <link rel="stylesheet" href="{{asset('assets/admin/css/datepicker.min.css')}}">
 @endpush
-
 
 @push('script-lib')
 <script src="{{ asset('assets/admin/js/datepicker.min.js') }}"></script>

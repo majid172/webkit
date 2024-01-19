@@ -141,7 +141,7 @@ Route::middleware('admin')->group(function () {
 
 
     // WITHDRAW SYSTEM
-    Route::name('withdraw.')->prefix('manage/withdrawals')->group(function(){
+    Route::name('withdraw.')->prefix('manage/payouts')->group(function(){
 
         Route::controller('WithdrawalController')->group(function(){
             Route::get('pending', 'pending')->name('pending');

@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="payment-method-item">
                         <div class="row mt-4">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
@@ -91,9 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <div class="card border my-2">
-                                    <h5 class="card-header">@lang('Special Instructions') </h5>
+                                    <h5 class="card-header">@lang('Instructions') </h5>
                                     <div class="card-body">
                                         <div class="form-group">
                                             <textarea rows="3" class="form-control trumEdit border-radius-5"
@@ -110,7 +110,7 @@
                                         <div class="card-header d-flex justify-content-between">
                                             <h5>@lang('User Input Fields')</h5>
                                             <button type="button"
-                                                class="btn btn-sm bg--primary float-end form-generate-btn"> <i
+                                                class="btn btn-sm bg-outline-primary float-end form-generate-btn"> <i
                                                     class="la la-fw la-plus"></i>@lang('Add New')</button>
                                         </div>
                                         <div class="card-body">
@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100">@lang('Save')</button>
                 </div>
             </form>
         </div>

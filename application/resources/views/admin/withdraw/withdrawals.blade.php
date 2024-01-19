@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
                                 <div class="col">
-                                    <h6 class="m-b-5 text-white">@lang('Approved Withdrawals')</h6>
+                                    <h6 class="m-b-5 text-white">@lang('Approved Payouts')</h6>
                                     <h3 class="m-b-0 text-white">{{ __($general->cur_sym) }}{{ showAmount($successful)
                                         }}
                                     </h3>
@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
                                 <div class="col">
-                                    <h6 class="m-b-5">@lang('Pending Withdrawals')</h6>
+                                    <h6 class="m-b-5">@lang('Pending Payouts')</h6>
                                     <h3 class="m-b-0 ">{{ __($general->cur_sym) }}{{ showAmount($pending) }}
                                     </h3>
                                 </div>
@@ -43,7 +43,7 @@
                         <div class="card-body">
                             <div class="row align-items-center m-b-0">
                                 <div class="col">
-                                    <h6 class="m-b-5 text-white">@lang('Rejected Withdrawals')</h6>
+                                    <h6 class="m-b-5 text-white">@lang('Rejected Payouts')</h6>
                                     <h3 class="m-b-0 text-white">{{ __($general->cur_sym) }}{{ showAmount($rejected) }}
                                     </h3>
                                 </div>
@@ -55,85 +55,86 @@
         </div>
     </div>
     @endif
-    <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
 
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two">
-                        <thead>
+
+
+        <div class="col-lg-12">
+            <div class="card mb-4 card-primary shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text--primary">@lang('List')</h6>
+                   
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-items-center table-borderless">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>@lang('Sl.')</th>
+                                    <th>@lang('User')</th>
+                                    <th>@lang('Amount')</th>
+                                    <th>@lang('Conversion')</th>
+                                    <th>@lang('Method')</th>
+                                    <th>@lang('Payouts at')</th>
+                                    <th>@lang('Status')</th>
+                                    <th>@lang('Action')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                @forelse($withdrawals as $key=>$withdraw)
+                                @php
+                                $details = ($withdraw->withdraw_information != null) ?
+                                json_encode($withdraw->withdraw_information) : null;
+                                @endphp
                             <tr>
-                                <th>@lang('Gateway')</th>
-                                <th>@lang('Created at')</th>
-                                <th>@lang('User')</th>
-                                <th>@lang('Amount')</th>
-                                <th>@lang('Conversion')</th>
-                                <th>@lang('Status')</th>
-                                <th>@lang('Action')</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($withdrawals as $withdraw)
-                            @php
-                            $details = ($withdraw->withdraw_information != null) ?
-                            json_encode($withdraw->withdraw_information) : null;
-                            @endphp
-                            <tr>
-                                <td>
-                                    <span class="fw-bold"><a href="{{ appendQuery('method',@$withdraw->method->id) }}">
-                                            {{ __(@$withdraw->method->name) }}</a></span>
+                                <td data-label="SL">
+                                    {{++$key}}
                                 </td>
-                                <td>
-                                    {{ showDateTime($withdraw->created_at) }}
-                                </td>
-
-                                <td>
-                                    <span class="fw-bold">{{ optional($withdraw->user)->fullname }}</span>
-                                </td>
-
-
-                                <td>
+                                <td data-label="@lang('Name')"> <span class="fw-bold">{{ optional($withdraw->user)->fullanme }}</span></td>
+                                
+                                <td data-label="@lang('Balance')">
                                     <strong title="@lang('Amount after charge')">
                                         {{ showAmount($withdraw->amount-$withdraw->charge) }} {{ __($general->cur_text)
                                         }}
                                     </strong>
-
                                 </td>
-
-                                <td>
+                                <td data-label="@lang('Conversion')">
                                     <strong>{{ showAmount($withdraw->final_amount) }} {{ __($withdraw->currency)
-                                        }}</strong>
+                                    }}</strong>
                                 </td>
-
-                                <td>
-                                    @php echo $withdraw->statusBadge @endphp
+                                <td data-label="@lang('Method')">
+                                    <span class="fw-bold"><a href="{{ appendQuery('method',@$withdraw->method->id) }}">
+                                        {{ __(@$withdraw->method->name) }}</a></span>
                                 </td>
-                                <td>
+                                <td data-label="@lang('Payouts at')">{{ showDateTime($withdraw->created_at) }}</td>
+                               
+                                
+                                <td data-label="@lang('Status')"> {!! $withdraw->statusBadge !!}</td>
+    
+                                <td data-label="@lang('Action')">
                                     <a title="@lang('Details')"
                                         href="{{ route('admin.withdraw.details', $withdraw->id) }}"
                                         class="btn btn-sm btn--primary ms-1">
                                         <i class="la la-eye"></i>
                                     </a>
                                 </td>
+    
                             </tr>
+                            
                             @empty
-                            <tr>
-                                <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
-                            </tr>
+                                <tr>
+                                    <th colspan="100%" class="text-center">{{ __($emptyMessage) }}</th>
+                                    
+                                </tr>
                             @endforelse
-
-                        </tbody>
-                    </table><!-- table end -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">{{ $withdrawals->links() }}</div>
                 </div>
             </div>
-            @if ($withdrawals->hasPages())
-            <div class="card-footer py-4">
-                {{ paginateLinks($withdrawals) }}
-            </div>
-            @endif
-        </div><!-- card end -->
-    </div>
+        </div>
+  
 </div>
 
 @endsection

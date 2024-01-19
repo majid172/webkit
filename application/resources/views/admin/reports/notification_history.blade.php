@@ -1,12 +1,16 @@
 @extends('admin.layouts.app')
 @section('panel')
+
 <div class="row">
     <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two">
-                        <thead>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('User Login')</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('User')</th>
                                 <th>@lang('Sender')</th>
@@ -45,18 +49,13 @@
                             </tr>
                             @endforelse
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                <div class="card-footer">{{ $logs->links() }}</div>
             </div>
-            @if($logs->hasPages())
-            <div class="card-footer py-4">
-                {{ paginateLinks($logs) }}
-            </div>
-            @endif
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="notifyDetailModal" tabindex="-1" aria-labelledby="notifyDetailModalLabel"
     aria-hidden="true">

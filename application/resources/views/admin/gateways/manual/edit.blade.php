@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="payment-method-item">
                         <div class="row mt-4">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
@@ -37,7 +37,7 @@
                                                     =
                                                 </span>
                                                 <input type="text" class="form-control" name="rate"
-                                                    value="{{ getAmount($method->singleCurrency->rate) }}" required />
+                                                    value="{{ getAmount(@$method->singleCurrency->rate) }}" required />
                                                 <span class="currency_symbol input-group-text bg--primary"></span>
                                             </div>
                                         </div>
@@ -79,7 +79,7 @@
                                                     <label>@lang('Fixed')</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="fixed_charge"
-                                                            value="{{ getAmount($method->singleCurrency->fixed_charge) }}"
+                                                            value="{{ getAmount(optional($method->singleCurrency)->fixed_charge) }}"
                                                             required />
                                                         <span class="input-group-text bg--primary"> {{
                                                             __($general->cur_text) }} </span>
@@ -89,7 +89,7 @@
                                                     <label>@lang('Percentage')</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="percent_charge"
-                                                            value="{{ getAmount($method->singleCurrency->percent_charge) }}"
+                                                            value="{{ getAmount(optional($method->singleCurrency)->percent_charge) }}"
                                                             required>
                                                         <span class="input-group-text bg--primary">%</span>
                                                     </div>
@@ -99,9 +99,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <div class="card border my-2">
-                                    <h5 class="card-header">@lang('Special Instructions') </h5>
+                                    <h5 class="card-header">@lang('Instructions') </h5>
                                     <div class="card-body">
                                         <div class="form-group">
                                             <textarea rows="3" class="form-control trumEdit border-radius-5"
@@ -183,7 +183,7 @@
                 </div>
 
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100">@lang('Save')</button>
                 </div>
             </form>
         </div>

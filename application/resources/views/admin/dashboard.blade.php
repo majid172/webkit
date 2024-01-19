@@ -154,7 +154,7 @@
                                     <a title="@lang('View all')" class="dashboard-widget-link"
                                         href="{{route('admin.withdraw.pending')}}"></a>
                                     <h5>{{$withdrawals['total_withdraw_pending']}}</h5>
-                                    <span>@lang('Pending Withdrawals')</span>
+                                    <span>@lang('Pending Payouts')</span>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                     <a title="@lang('View all')" class="dashboard-widget-link"
                                         href="{{route('admin.deposit.pending')}}"></a>
                                     <h5>{{$deposit['total_deposit_pending']}}</h5>
-                                    <span>@lang('Pending Deposits')</span>
+                                    <span>@lang('Pending Funds')</span>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                                         href="{{route('admin.deposit.rejected')}}">
                                     </a>
                                     <h5>{{$deposit['total_deposit_rejected']}}</h5>
-                                    <span>@lang('Rejected Deposits')</span>
+                                    <span>@lang('Rejected Funds')</span>
                                 </div>
                             </div>
                         </div>
@@ -197,9 +197,9 @@
                     <h5 class="card-title">@lang('Current Tickets')</h5>
                     <a href="{{route('admin.ticket.pending')}}" class="float-end" target="_blank">@lang('View all')</a>
                 </div>
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light">
-                        <thead>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Subject')</th>
                                 <th>@lang('Status')</th>
@@ -220,6 +220,7 @@
                         </tbody>
                     </table>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -227,7 +228,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@lang('Report on Monthly Deposits and Withdrawals')</h5>
+                <h5 class="card-title">@lang('Report on Monthly Funds and Payouts')</h5>
                 <div id="account-chart"></div>
             </div>
         </div>
@@ -256,7 +257,6 @@
 @push('script')
 
 <script src="{{asset('assets/admin/js/apexcharts.min.js')}}"></script>
-{{-- <script src="{{asset('assets/admin/js/chart.js')}}"></script> --}}
 <script>
     "use strict";
     // [ account-chart ] start

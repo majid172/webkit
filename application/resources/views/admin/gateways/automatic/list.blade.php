@@ -1,14 +1,11 @@
 @extends('admin.layouts.app')
-
 @section('panel')
 <div class="row">
-
     <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
                         <thead>
                             <tr>
                                 <th>@lang('Gateway')</th>
@@ -65,12 +62,14 @@
                             @endforelse
 
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                
             </div>
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
+
 
 <x-confirmation-modal></x-confirmation-modal>
 @endsection
