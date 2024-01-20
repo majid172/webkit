@@ -5,6 +5,11 @@
         <div class="card">
             <form action="" method="POST">
                 @csrf
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text--primary">@lang('Email Config')</h6>
+                    <button type="button" data-bs-target="#testMailModal" data-bs-toggle="modal" class="btn btn-sm btn--primary "><i class="las la-envelope me-1"></i>@lang('Test Mail')</button>
+                </div>
+                
                 <div class="card-body">
                     <div class="form-group">
                         <label class="mb-4">@lang('Email Send Method')</label>
@@ -60,8 +65,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-end">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn--primary btn-sm w-100 btn-global">@lang('Save')</button>
                 </div>
             </form>
         </div><!-- card end -->
@@ -96,17 +101,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global">@lang('Send')</button>
+                    <button type="submit" class="btn btn--primary btn-global btn-sm w-100">@lang('Send')</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
-@push('breadcrumb-plugins')
-<button type="button" data-bs-target="#testMailModal" data-bs-toggle="modal" class="btn btn-sm btn--primary">@lang('Test
-    Mail')</button>
-@endpush
+
 @push('script')
 <script>
     (function ($) {

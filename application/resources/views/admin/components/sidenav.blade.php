@@ -293,13 +293,13 @@
             <li class="sidebar-menu-item {{menuActive('admin.setting.notification.email')}} ">
                 <a href="{{route('admin.setting.notification.email')}}" class="nav-link">
                     <i class="menu-icon las la-caret-right"></i>
-                    <span class="menu-title">@lang('Email Config')</span>
+                    <span class="menu-title">@lang('Email Configuration')</span>
                 </a>
             </li>
             <li class="sidebar-menu-item {{menuActive('admin.setting.notification.sms')}} ">
                 <a href="{{route('admin.setting.notification.sms')}}" class="nav-link">
                     <i class="menu-icon las la-caret-right"></i>
-                    <span class="menu-title">@lang('SMS Config')</span>
+                    <span class="menu-title">@lang('SMS Configuration')</span>
                 </a>
             </li>
         </ul>
