@@ -18,6 +18,11 @@ class GeneralSettingController extends Controller
         return view('admin.setting.general', compact('pageTitle','timezones'));
     }
 
+    public function controlPanel()
+    {
+        $pageTitle = "Control Panel";
+        return view('admin.setting.control_panel',compact('pageTitle'));
+    }
     public function update(Request $request)
     {
         $request->validate([

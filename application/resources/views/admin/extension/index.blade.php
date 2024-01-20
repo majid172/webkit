@@ -1,13 +1,19 @@
 @extends('admin.layouts.app')
 
 @section('panel')
+
+
 <div class="row">
-    <div class="col-md-12">
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
-                        <thead>
+    <div class="col-lg-12">
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('Extension List')</h6>
+                
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Extension')</th>
                                 <th>@lang('Status')</th>
@@ -15,6 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                           
                             @foreach($extensions as $extension)
                             <tr>
                                 <td>
@@ -35,17 +42,17 @@
                                 <td>
                                     <div class="button--group">
                                         <button title="@lang('Edit')" type="button"
-                                            class="btn btn-sm btn--primary ms-1 mb-2 editBtn"
+                                            class="btn btn-sm btn-outline--primary ms-1 mb-2 editBtn"
                                             data-name="{{ __($extension->name) }}"
                                             data-shortcode="{{ json_encode($extension->shortcode) }}"
                                             data-action="{{ route('admin.extensions.update', $extension->id) }}">
-                                            <i class="la la-pen"></i>
+                                            <i class="las la-edit"></i>
                                         </button>
                                         @if($extension->status == 0)
                                         <button title="@lang('Enable')" type="button"
-                                            class="btn btn-sm btn--success ms-1 mb-2 confirmationBtn"
+                                            class="btn btn-sm btn-outline-success ms-1 mb-2 confirmationBtn"
                                             data-action="{{ route('admin.extensions.status', $extension->id) }}"
-                                            data-question="@lang('Are you sure to enable this extension?')">
+                                            data-question="@lang('Do you really want to activate this extension?')">
                                             <i class="la la-check-circle"></i>
                                         </button>
                                         @else
@@ -63,11 +70,11 @@
                         </tbody>
                     </table>
                 </div>
+                
             </div>
         </div>
     </div>
 </div>
-
 
 
 {{-- EDIT METHOD MODAL --}}
@@ -92,7 +99,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global" id="editBtn">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary w-100 btn-global" id="editBtn">@lang('Update')</button>
                 </div>
             </form>
         </div>

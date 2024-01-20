@@ -18,8 +18,8 @@
                         <div class="col-xl-12 mt-xl-0 mt-4">
                             <div class="form-group ">
                                 <label>@lang('Meta Keywords')</label>
-                                <small class="ms-2 mt-2  ">@lang('Separate multiple keywords by')
-                                    <code>,</code>(@lang('comma')) @lang('or') <code>@lang('enter')</code>
+                                <small class="ms-2 mt-2  ">@lang('Use a comma to separate several terms, or enter the key')
+
                                     @lang('key')</small>
                                 <select name="keywords[]" class="form-control select2-auto-tokenize" multiple="multiple"
                                     required>

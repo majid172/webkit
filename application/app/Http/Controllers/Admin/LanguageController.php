@@ -128,7 +128,7 @@ class LanguageController extends Controller
         $lang = Language::find($id);
         $pageTitle = "Update " . $lang->name . " Keywords";
         $json = file_get_contents(resource_path('lang/') . $lang->code . '.json');
-        $list_lang = Language::all();
+        $list_lang = Language::paginate(getPaginate());
 
 
         if (empty($json)) {

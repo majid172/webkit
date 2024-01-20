@@ -2,11 +2,17 @@
 @section('panel')
 <div class="row">
     <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
-                        <thead>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('Languages List')</h6>
+               
+                <a class="btn btn-sm btn--primary" data-bs-toggle="modal" data-bs-target="#createModal"><i
+                    class="las la-plus"></i>@lang('Add Language')</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Name')</th>
                                 <th>@lang('Code')</th>
@@ -15,6 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                           
                             @forelse ($languages as $item)
                             <tr>
                                 <td>{{__($item->name)}}</td>
@@ -53,19 +60,18 @@
                             </tr>
                             @endforelse
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                
             </div>
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
-
-
 
 {{-- NEW MODAL --}}
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="createModalLabel"> @lang('Add New Language')</h4>
@@ -93,16 +99,16 @@
                         <label>@lang('Default Language')</label>
                         <div class="col-sm-12">
                             <select name="is_default" id="setDefault" class="form-control">
-                                <option value="1">Default</option>
-                                <option value="0">Not Default</option>
+                                <option value="1">@lang('Default')</option>
+                                <option value="0">@lang('Not Default')</option>
                             </select>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global" id="btn-save"
-                        value="add">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100" id="btn-save"
+                        value="add">@lang('Add Language')</button>
                 </div>
             </form>
         </div>
@@ -111,7 +117,7 @@
 
 {{-- EDIT MODAL --}}
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="editModalLabel">@lang('Edit Language')</h4>
@@ -139,8 +145,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn--primary btn-global" id="btn-save"
-                        value="add">@lang('Save')</button>
+                    <button type="submit" class="btn btn--primary btn-global w-100" id="btn-save"
+                        value="add">@lang('Update Language')</button>
                 </div>
             </form>
         </div>
@@ -152,8 +158,7 @@
 
 
 @push('breadcrumb-plugins')
-<a class="btn btn-sm btn--primary" data-bs-toggle="modal" data-bs-target="#createModal"><i
-        class="las la-plus"></i>@lang('Add New')</a>
+
 @endpush
 
 @push('script')

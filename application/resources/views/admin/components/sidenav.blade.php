@@ -273,25 +273,15 @@
 </li>
 <li class="sidebar__menu-header">@lang('Settings Panel' )</li>
 
-<li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
-    <a href="{{route('admin.setting.index')}}" class="nav-link">
+<li class="sidebar-menu-item {{menuActive('admin.control.panle')}}">
+    <a href="{{route('admin.control.panel')}}" class="nav-link">
         <i class="menu-icon las la-cog text--primary"></i>
         <span class="menu-title">@lang('Control Panel')</span>
     </a>
 </li>
-<li class="sidebar-menu-item {{menuActive('admin.setting.logo.icon')}}">
-    <a href="{{route('admin.setting.logo.icon')}}" class="nav-link">
-        <i class="menu-icon las la-image text--info"></i>
-        <span class="menu-title">@lang('Logo & Favicon')</span>
-    </a>
-</li>
-<li class="sidebar-menu-item  {{menuActive(['admin.language.manage','admin.language.key'])}}">
-    <a href="{{route('admin.language.manage')}}" class="nav-link"
-        data-default-url="{{ route('admin.language.manage') }}">
-        <i class="menu-icon las la-language text--primary"></i>
-        <span class="menu-title">@lang('Language') </span>
-    </a>
-</li>
+
+
+
 <li class="sidebar-menu-item sidebar-dropdown">
     <a href="javascript:void(0)" class="{{menuActive('admin.setting.notification*',3)}}">
         <i class="menu-icon las la-bell text--warning"></i>
@@ -326,24 +316,8 @@
         </ul>
     </div>
 </li>
-<li class="sidebar-menu-item {{menuActive('admin.extensions.index')}}">
-    <a href="{{route('admin.extensions.index')}}" class="nav-link">
-        <i class="menu-icon las la-cogs text--primary"></i>
-        <span class="menu-title">@lang('Plugins')</span>
-    </a>
-</li>
-<li class="sidebar-menu-item {{menuActive('admin.seo')}}">
-    <a href="{{route('admin.seo')}}" class="nav-link">
-        <i class="menu-icon las la-project-diagram text--success"></i>
-        <span class="menu-title">@lang('SEO')</span>
-    </a>
-</li>
-<li class="sidebar-menu-item {{menuActive('admin.setting.cookie')}}">
-    <a href="{{route('admin.setting.cookie')}}" class="nav-link">
-        <i class="menu-icon las la-check-circle text--primary"></i>
-        <span class="menu-title">@lang('GDPR Policy')</span>
-    </a>
-</li>
+
+
 </ul>
 </div>
 </div>

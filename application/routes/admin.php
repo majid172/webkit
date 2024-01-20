@@ -204,6 +204,7 @@ Route::middleware('admin')->group(function () {
     });
 
     Route::controller('GeneralSettingController')->group(function(){
+        Route::get('control-panel','controlPanel')->name('control.panel');
         // General Setting
         Route::get('global/settings', 'index')->name('setting.index');
         Route::post('global/settings', 'update')->name('setting.update');

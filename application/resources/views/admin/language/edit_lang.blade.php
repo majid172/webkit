@@ -3,42 +3,25 @@
 
 <div id="app">
     <div class="row">
-
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card mb-4 card-primary shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text--primary">@lang('Language Keywords of') {{ __($lang->name) }}</h6>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#addModal"
+                                class="btn btn-sm btn--primary float-end"><i class="fa fa-plus"></i> @lang('Add New Key') </button>
+                </div>
                 <div class="card-body">
-
-                    <div class="row justify-content-between mt-3">
-                        <div class="col-md-7">
-                            <ul>
-                                <li>
-                                    <h5>@lang('Language Keywords of') {{ __($lang->name) }}</h5>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-5 mt-md-0 mt-3">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#addModal"
-                                class="btn btn-sm btn--primary float-end"><i class="fa fa-plus"></i> @lang('Add
-                                New Key') </button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light tabstyle--two custom-data-table white-space-wrap" id="myTable">
-                            <thead>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-items-center table-borderless">
+                            <thead class="thead-light">
                                 <tr>
-                                    <th>
-                                        @lang('Key')
-                                    </th>
-                                    <th>
-                                        {{__($lang->name)}}
-                                    </th>
-
+                                    <th>@lang('Key')</th>
+                                    <th>{{__($lang->name)}}</th>
                                     <th class="w-85">@lang('Action')</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                               
                                 @forelse($json as $k => $language)
                                 <tr>
                                     <td class="white-space-wrap">{{$k}}</td>
@@ -49,7 +32,7 @@
                                         <a title="@lang('Edit')" href="javascript:void(0)" data-bs-target="#editModal"
                                             data-bs-toggle="modal" data-title="{{$k}}" data-key="{{$k}}"
                                             data-value="{{$language}}" class="editModal btn btn-sm btn--primary">
-                                            <i class="la la-pencil"></i>
+                                            <i class="las la-edit"></i>
                                         </a>
 
                                         <a title="@lang('Remove')" href="javascript:void(0)" data-key="{{$k}}"
@@ -67,6 +50,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -75,10 +59,10 @@
 
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="addModalLabel"> @lang('Add New')</h4>
+                    <h4 class="modal-title" id="addModalLabel"> @lang('Add New Key')</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i class="las la-times"></i>
                     </button>
@@ -90,7 +74,6 @@
                         <div class="form-group">
                             <label for="key" class="fw-bold">@lang('Key')</label>
                             <input type="text" class="form-control" id="key" name="key" value="{{old('key')}}" required>
-
                         </div>
                         <div class="form-group">
                             <label for="value" class="fw-bold">@lang('Value')</label>
@@ -100,7 +83,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn--primary btn-global"> @lang('Save')</button>
+                        <button type="submit" class="btn btn--primary btn-global w-100"> @lang('Add Key')</button>
                     </div>
                 </form>
 
@@ -111,7 +94,7 @@
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="editModalLabel">@lang('Edit')</h4>
@@ -129,7 +112,7 @@
                         <input type="hidden" name="key">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                        <button type="submit" class="btn btn--primary btn-global w-100">@lang('Save')</button>
                     </div>
                 </form>
 
