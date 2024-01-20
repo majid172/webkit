@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="card mb-4 card-primary shadow">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text--primary">@lang('Course List')</h6>
+                <h6 class="m-0 font-weight-bold text--primary">@lang('All Courses List')</h6>
                
             </div>
             <div class="card-body">
@@ -15,9 +15,9 @@
                             <tr>
                                 <th>@lang('Sl.')</th>
                                 <th>@lang('Course Title')</th>
+                                <th>@lang('No. of Episode')</th>
                                 <th>@lang('Category')</th>
                                 <th>@lang('Instructor')</th>
-
                                 <th>@lang('Price')</th>
                                 <th>@lang('Created_at')</th>
                                 <th>@lang('Action')</th>
@@ -28,21 +28,21 @@
                             <tr>
                                 <td>{{++$loop->index}}</td>
                                 <td>{{ucwords($list->title)}}</td>
-                                <td>{{ucwords(optional($list->category)->name)}}</td>
+                                <td>{{optional($list->episodes)->count()}}</td>
+                                <td>
+                                    <span class="badge  badge--warning">{{ucwords(optional($list->category)->name)}}</span>
+                                </td>
                                 <td>{{optional($list->creator)->fullname}}</td>
                                 <td>
-                                    <span class="badge bg-info ">
-                                        {{$list->price}} {{$general->cur_text}}
-                                    </span>
+                                    <span class="text--success">{{$general->cur_sym}}{{$list->price}} </span>
                                 </td>
                                 <td>
                                     {{ showDateTime($list->created_at) }}
                                 </td>
-
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="las la-ellipsis-v"></i>
+                                        <button class="btn btn-outline--primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-ellipsis-v"></i> @lang('View')
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                            

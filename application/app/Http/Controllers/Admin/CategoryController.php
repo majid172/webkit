@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function list()
     {
         $pageTitle = 'Category List';
-        $lists = Category::paginate();
+        $lists = Category::with('course')->paginate();
         return view('admin.category.list',compact('pageTitle','lists'));
     }
 
@@ -81,7 +81,7 @@ class CategoryController extends Controller
 
     public function courseList($cat_id)
     {
-        $courses = Course::where('category_id',$cat_id)->with('category','creator')->paginate(getPaginate());
+        $courses = Course::where('category_id',$cat_id)->with('category','creator','episodes')->paginate(getPaginate());
         $pageTitle = "Course List";
         return view('admin.category.courses',compact('pageTitle','courses'));
     }

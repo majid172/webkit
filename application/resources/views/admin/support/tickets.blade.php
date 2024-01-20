@@ -46,9 +46,7 @@
                                     @endif
                                 </td>
                                 
-                                <td>
-                                    @php echo $item->statusBadge; @endphp
-                                </td>
+                                <td> {!! $item->statusBadge !!} </td>
                                 <td>
                                     <a title="@lang('Details')" href="{{ route('admin.ticket.view', $item->id) }}"
                                         class="btn btn-sm btn--primary ms-1">

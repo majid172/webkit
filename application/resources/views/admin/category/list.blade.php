@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>@lang('Sl.')</th>
                                     <th>@lang('Categories Name')</th>
+                                    <th>@lang('No. of Course')</th>
                                     <th>@lang('Description')</th>
                                     <th>@lang('Created_at')</th>
                                     <th>@lang('Action')</th>
@@ -25,15 +26,16 @@
                                     <tr>
                                         <td>{{++$loop->index}}</td>
                                         <td>{{ucwords($list->name)}}</td>
-                                        <td>{{Str::limit($list->description,40)}}</td>
+                                        <td>{{optional($list->course)->count()}}</td>
+                                        <td title="{{$list->description}}">{{Str::limit($list->description,40)}}</td>
                                         <td>
                                             {{ showDateTime($list->created_at) }}
                                         </td>
     
                                         <td>
                                             <div class="dropdown">
-                                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="las la-ellipsis-v"></i>
+                                                <button class="btn btn-outline--primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="las la-ellipsis-v"></i> @lang('More')
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                     <li><a class="dropdown-item edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{$list->id}}" data-name="{{__($list->name)}}" data-description="{{__($list->description)}}" href="javascript:void(0)"><i class="las la-edit text-info"></i> @lang('Edit')</a></li>
