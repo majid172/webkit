@@ -225,15 +225,7 @@
             <span class="menu-title">@lang('Notifications')</span>
         </a>
     </li>
-    <li class="sidebar__menu-header">@lang('Help Desk')</li>
-    <li class="sidebar-menu-item {{menuActive('admin.ticket.*')}}">
-        <a href="{{route('admin.ticket.pending')}}" class="nav-link ">
-            <i class="menu-icon las la la-life-ring text--success"></i>
-            <span class="menu-title">@lang('Support Ticket')</span>
-            @if(0 < $pendingTicketCount) <div class="blob white">
-        </div>@endif
-        </a>
-    </li>
+    
 <li class="sidebar__menu-header">@lang('Management of Content')</li>
 <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}}">
     <a href="{{route('admin.frontend.manage.pages')}}" class="nav-link ">
@@ -279,9 +271,6 @@
         <span class="menu-title">@lang('Control Panel')</span>
     </a>
 </li>
-
-
-
 <li class="sidebar-menu-item sidebar-dropdown">
     <a href="javascript:void(0)" class="{{menuActive('admin.setting.notification*',3)}}">
         <i class="menu-icon las la-bell text--warning"></i>
@@ -317,6 +306,15 @@
     </div>
 </li>
 
+<li class="sidebar__menu-header">@lang('Help Desk')</li>
+    <li class="sidebar-menu-item {{menuActive('admin.ticket.*')}}">
+        <a href="{{route('admin.ticket.pending')}}" class="nav-link ">
+            <i class="menu-icon las la la-life-ring text--success"></i>
+            <span class="menu-title">@lang('Support Ticket')</span>
+            @if(0 < $pendingTicketCount) <div class="blob white">
+        </div>@endif
+        </a>
+    </li>
 
 </ul>
 </div>
