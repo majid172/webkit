@@ -306,16 +306,43 @@
     </div>
 </li>
 
-<li class="sidebar__menu-header">@lang('Help Desk')</li>
-    <li class="sidebar-menu-item {{menuActive('admin.ticket.*')}}">
-        <a href="{{route('admin.ticket.pending')}}" class="nav-link ">
-            <i class="menu-icon las la la-life-ring text--success"></i>
-            <span class="menu-title">@lang('Support Ticket')</span>
-            @if(0 < $pendingTicketCount) <div class="blob white">
-        </div>@endif
-        </a>
-    </li>
 
+<li class="sidebar__menu-header">@lang('Help Desk')</li>
+<li class="sidebar-menu-item sidebar-dropdown">
+    <a href="javascript:void(0)" class="{{menuActive('admin.ticket*',3)}}">
+        <i class="menu-icon las la la-life-ring text--success"></i>
+        <span class="menu-title">@lang('Support Ticket')</span>
+    </a>
+    <div class="sidebar-submenu {{menuActive('admin.ticket*',2)}} ">
+        <ul>
+            <li class="sidebar-menu-item {{menuActive('admin.ticket')}} ">
+                <a href="{{route('admin.ticket')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('All Tickets')</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item {{menuActive('admin.ticket.pending')}} ">
+                <a href="{{route('admin.ticket.pending')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('Pending Tickets')</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item {{menuActive('admin.ticket.answered')}} ">
+                <a href="{{route('admin.ticket.answered')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('Answared Tickets')</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item {{menuActive('admin.ticket.closed')}} ">
+                <a href="{{route('admin.ticket.closed')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('Closed Tickets')</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+   
 </ul>
 </div>
 </div>
