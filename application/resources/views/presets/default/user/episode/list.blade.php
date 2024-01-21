@@ -24,7 +24,12 @@
                                     
                                 </div>
                                 <p>
-                                    <span class="badge bg-primary">{{$general->cur_sym}}{{getAmount($item->price)}}</span>
+                                    @php
+                                        $path = (getFilePath('episode').'/' . @$item->file_path .'/'. @$item->file);
+                                        $file = $getID3->analyze($path);
+                                        $duration = date('H:i:s', $file['playtime_seconds']);
+                                    @endphp
+                                    <span class="badge bg-primary">@lang('Duration') - {{$duration}}</span>
                                 </p>
                                 <a href="{{route('user.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 100, '...')}}</a>
                             </div>

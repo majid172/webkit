@@ -72,7 +72,6 @@ class CourseController extends Controller
     {
         $pageTitle = "Episode Lists";
         $episodes = Episode::where('category_id',$category_id)->where('status',1)->with('category')->get();
-        
         return view($this->activeTemplate.'user.course.episode',compact('pageTitle','episodes'));
     }
 
@@ -91,9 +90,6 @@ class CourseController extends Controller
         return view($this->activeTemplate.'user.course.details',compact('pageTitle','details','relateds'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function subscribe($category_id,$user)
     {
         $pageTitle = "Course Subscription";
@@ -104,9 +100,6 @@ class CourseController extends Controller
         return view($this->activeTemplate.'user.course.subscribe',compact('category','pageTitle','user','gatewayCurrency'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function allCourses($category_id)
     {
         $pageTitle = 'All Courses';
@@ -150,11 +143,4 @@ class CourseController extends Controller
         return redirect()->back()->withNotify($notify);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

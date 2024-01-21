@@ -19,8 +19,9 @@ class EpisodeController extends Controller
         $pageTitle = "Episode List";
         $user = auth()->user();
         $episodes = Episode::where('course_id',$course_id)->where('status',1)->get();
+        $getID3 = new \getID3;
         
-        return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes','course_id'));
+        return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes','course_id','getID3'));
     }
 
     public function create($course_id)
