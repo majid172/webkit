@@ -23,11 +23,19 @@ $courses = \App\Models\Course::with('episodes','creator','subscription')->limit(
                     </div>
                     <div class="text-center p-4 pb-0">
                         <h3 class="mb-0">{{$general->cur_sym}}{{getAmount($item->price)}}</h3>
+                        <div class="mb-3">
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small>(123)</small>
+                        </div>
                         <h5 class="mb-4">{{ucwords($item->title)}}</h5>
                     </div>
                     <div class="d-flex border-top">
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{optional($item->creator)->fullname}}</small>
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>@lang('Episode')  ({{optional($item->episodes)->count()}})</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-play-circle text-primary me-2"></i>@lang('Episode')  ({{optional($item->episodes)->count()}})</small>
                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>@lang('Students') ({{optional($item->subscription)->count()}})</small>
                     </div>
                 </div>

@@ -46,7 +46,6 @@
                             <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4>
                             @endif
                             
-                            {{-- <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($total_cost)}}</h4> --}}
                         </div>
                     </div>
                 </div>
