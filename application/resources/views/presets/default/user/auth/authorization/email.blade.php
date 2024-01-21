@@ -17,7 +17,7 @@
     
                         <div class="mb-3">
                             <p>
-                                @lang('Should you receive no code'), <a href="{{route('user.send.verify.code', 'email')}}">
+                                @lang('Should you receive no code'), <a href="{{route('user.send.verify.code', 'email')}}" class="text-primary">
                                     @lang('Try again')</a>
                             </p>
     

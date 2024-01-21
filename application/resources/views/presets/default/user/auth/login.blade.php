@@ -48,19 +48,6 @@
                         <p class="mb-0 text-secondary">@lang('Don\'t have any account?') <a href="{{ route('user.register') }}" class="text-primary">@lang('SignUp')</a></p>
                     </form>
                 </div>
-                {{-- <div class="text-end">
-                    <a href="{{ route('home') }}" class="fw-bold home-link"> <i class="las la-long-arrow-alt-left"></i>
-                        @lang('Go to Home')</a>
-                </div>
-                <div class="card custom--card">
-                    <div class="card-header">
-                        <h5 class="card-title">@lang('Login')</h5>
-                    </div>
-
-                    <div class="card-body">
-                        
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

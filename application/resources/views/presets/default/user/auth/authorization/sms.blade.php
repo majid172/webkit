@@ -19,7 +19,7 @@
     
                         <div class="mb-3">
                             <p>
-                                @lang('Should you receive no code'), <a href="{{route('user.send.verify.code', 'phone')}}" class="forget-pass">@lang('Try again')</a>
+                                @lang('Should you receive no code'), <a href="{{route('user.send.verify.code', 'phone')}}" class="forget-pass text-primary">@lang('Try again')</a>
                             </p>
     
                             @if($errors->has('resend'))
