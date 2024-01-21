@@ -29,7 +29,7 @@
                                 <h4 class="text-primary">{{$buyer}}</h4> 
                                 @else
                                 <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                                <h4 class="text-primary">1</h4> 
+                                <h4 class="text-primary">{{$total_episodes}}</h4> 
                                 @endif
                                 
                             </a>

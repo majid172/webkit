@@ -15,11 +15,11 @@
                
                 <li class="list-group-item dropdown">
                     <a href="javascript:void(0)" class="nav-link dropdown-toggle text-primary " data-toggle="dropdown" data-placement="right" title="PayIn">
-                        <i class="las la-money-bill-wave-alt me-1 fs-4"></i>@lang('PayIn')
+                        <i class="las la-money-bill-wave-alt me-1 fs-4"></i>@lang('Fund')
                     </a>
                     <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-primary" href="{{route('user.deposit')}}"><i class="las la-wallet me-2 fs-5"></i>@lang('Add Money')</a>
-                        <a class="dropdown-item text-primary" href="{{route('user.deposit.history')}}"><i class="las la-history me-2 fs-5 "></i>@lang(' History')</a>
+                        <a class="dropdown-item text-primary" href="{{route('user.deposit.history')}}"><i class="las la-history me-2 fs-5 "></i>@lang(' Fund History')</a>
                     
                     </div>
                 </li>

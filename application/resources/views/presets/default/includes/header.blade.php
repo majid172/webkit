@@ -3,8 +3,10 @@ $pages = \App\Models\Page::get();
 @endphp
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="{{route('home')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
+        <img src="{{ getImage('assets/images/logoIcon/logo.png') }}" alt="">
+        {{-- <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i></h2> --}}
     </a>
+   
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>

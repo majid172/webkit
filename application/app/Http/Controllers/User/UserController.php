@@ -41,20 +41,17 @@ class UserController extends Controller
                                 {
                                     $q->where('user_id',$user->id);
                                 })->count();
-                                    
-                             
-        // dd($data['total_course']->toArray());
-        // $data['total_episodes'] = Episode::with('category')
-        //         ->whereHas('category',function($query){
-        //             $query->where('is_subscribed',1)->with('subscription')->whereRelation('subscription','user_id',auth()->user()->id);
-        //         })->count();
-
+         
+        $data['total_episodes'] = Episode::with('course')
+                                    ->whereHas('course',function($q){
+                                        $q->whereRelation('subscription','user_id',auth()->user()->id);
+                                    })->count();
+       
         $data['total_cost'] = Course::with('subscription')
                                 ->whereHas('subscription',function($query) use($user){
                                     $query->where('user_id',$user->id);
                                 })->sum('price');
-        //     $query->where('user_id',auth()->user()->id);
-        // })->sum('price');
+      
 
         $data['deposit_pending']    = Deposit::where('user_id',auth()->user()->id)->where('status',2)->count();
 
