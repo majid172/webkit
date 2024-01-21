@@ -9,7 +9,6 @@ Route::namespace('User\Auth')->name('user.')->group(function () {
         Route::get('/login', 'showLoginForm')->name('login');
         Route::post('/login', 'login');
         Route::get('/login/google/redirect','googleLogin')->name('login.google');
-        
         Route::get('logout', 'logout')->name('logout');
     });
 

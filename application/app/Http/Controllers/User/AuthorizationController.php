@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 
-
 class AuthorizationController extends Controller
 {
     protected function checkCodeValidity($user,$addMin = 2)
@@ -19,28 +18,27 @@ class AuthorizationController extends Controller
             return false;
         }
         return true;
-    }
-
+    }    
     public function authorizeForm()
     {
         $user = auth()->user();
 
         if (!$user->status) {
-            $pageTitle = 'Banned';
+            $pageTitle = 'Banned User';
             $type = 'ban';
 
         }elseif(!$user->ev) {
             $type = 'email';
-            $pageTitle = 'Verify Email';
+            $pageTitle = 'Email Verification';
             $notifyTemplate = 'EVER_CODE';
 
         }elseif (!$user->sv) {
             $type = 'sms';
-            $pageTitle = 'Verify Mobile Number';
+            $pageTitle = 'Mobile Number Verification';
             $notifyTemplate = 'SVER_CODE';
 
         }elseif (!$user->tv) {
-            $pageTitle = '2FA Verification';
+            $pageTitle = 'Two Factor Verification';
             $type = '2fa';
 
         }else{

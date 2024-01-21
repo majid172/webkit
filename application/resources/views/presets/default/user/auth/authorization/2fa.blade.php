@@ -18,6 +18,23 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7 col-xl-5">
+            <div class="shadow-lg p-4 mb-5 bg-body rounded ">
+                <form action="{{route('user.go2fa.verify')}}" method="POST" class="submit-form">
+                    @csrf
+                    @include($activeTemplate.'components.verification_code')
+                    <div class="form--group">
+                        <button type="submit" class="btn btn--base w-100">@lang('Save')</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
 @endsection
 @push('script')
 <script>
