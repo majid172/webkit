@@ -13,7 +13,7 @@ class ReportController extends Controller
 {
     public function transaction(Request $request)
     {
-        $pageTitle = 'Transaction Logs';
+        $pageTitle = 'Transaction History';
 
         $transactions = Transaction::with('user')->orderBy('id','desc');
         if ($request->search) {

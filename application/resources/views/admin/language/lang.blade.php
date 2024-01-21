@@ -33,24 +33,21 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="button--group">
-                                        <a title="@lang('Translate')" href="{{route('admin.language.key', $item->id)}}"
-                                            class="btn btn-sm btn--success">
-                                            <i class="la la-language"></i>
-                                        </a>
-                                        <a title="@lang('Edit')" href="javascript:void(0)"
-                                            class="btn btn-sm btn--primary ms-1 editBtn"
-                                            data-url="{{ route('admin.language.manage.update', $item->id)}}"
-                                            data-lang="{{ json_encode($item->only('name', 'text_align', 'is_default')) }}">
-                                            <i class="la la-pen"></i>
-                                        </a>
-                                        @if($item->id != 1)
-                                        <button title="@lang('Edit')" class="btn btn-sm btn--danger confirmationBtn"
-                                            data-question="@lang('Are you sure to remove this language from this system?')"
-                                            data-action="{{ route('admin.language.manage.delete', $item->id) }}">
-                                            <i class="la la-trash"></i>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline--primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-ellipsis-v"></i> @lang('More')
                                         </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                           
+                                            <li><a class="dropdown-item text--warning" href="{{route('admin.language.key', $item->id)}}"><i class="la la-language"></i> @lang('Language')</a></li>
+
+                                            <li><a class="dropdown-item editBtn text--info" title="@lang('Edit')" href="javascript:void(0)" data-url="{{ route('admin.language.manage.update', $item->id)}}" data-lang="{{ json_encode($item->only('name', 'text_align', 'is_default')) }}"><i class="la la-edit"></i> @lang('Edit')</a></li>
+
+                                            @if($item->id != 1)
+                                            <li><a class="dropdown-item confirmationBtn text--danger" href="javascript:void(0)" data-question="@lang('Are you sure to remove this language from this system?')" data-action="{{ route('admin.language.manage.delete', $item->id) }}"> <i class="la la-trash"></i> @lang('Remove')</a></li>
+                                        
                                         @endif
+                                        </ul>
                                     </div>
                                 </td>
                             </tr>

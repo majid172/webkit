@@ -13,7 +13,7 @@ class LanguageController extends Controller
 
     public function langManage($lang = false)
     {
-        $pageTitle = 'Manage Languages';
+        $pageTitle = 'Control Languages ';
         $languages = Language::orderBy('is_default','desc')->get();
         return view('admin.language.lang', compact('pageTitle', 'languages'));
     }

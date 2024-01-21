@@ -37,7 +37,7 @@
 
         <div class="card mb-4 card-primary shadow">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text--primary">@lang('Transactions List')</h6>
+                <h6 class="m-0 font-weight-bold text--primary">@lang('All Transactions')</h6>
                
             </div>
             <div class="card-body">
@@ -45,30 +45,21 @@
                     <table class="table table-striped table-hover align-items-center table-borderless">
                         <thead class="thead-light">
                             <tr>
-                                <th>@lang('User')</th>
                                 <th>@lang('Transaction number')</th>
-                                <th>@lang('Date')</th>
                                 <th>@lang('Amount')</th>
                                 <th>@lang('Post Balance')</th>
+                                <th>@lang('Date')</th>
                                 <th>@lang('Details')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($transactions as $trx)
                             <tr>
+                                
                                 <td>
-                                    <a href="{{ appendQuery('search',optional($trx->user)->username) }}">{{
-                                        optional($trx->user)->fullname }}</a>
+                                    <strong>{{ $trx->trx }}</strong> <br>
+                                    <a href="{{ appendQuery('search',optional($trx->user)->username) }}">{{optional($trx->user)->fullname }}</a>
                                 </td>
-
-                                <td>
-                                    <strong>{{ $trx->trx }}</strong>
-                                </td>
-
-                                <td>
-                                    {{ showDateTime($trx->created_at) }}
-                                </td>
-
                                 <td class="budget">
                                     @if ($trx->trx_type == '+')
                                     <span class="fw-bold text-success">
@@ -82,10 +73,10 @@
                                     
                                 </td>
 
-                                <td class="budget">
-                                    {{ __($general->cur_sym) }} {{ showAmount($trx->post_balance) }} 
+                                <td class="budget text--success fw-bold">
+                                    {{ __($general->cur_sym) }}{{ showAmount($trx->post_balance) }} 
                                 </td>
-
+                                <td>{{ showDateTime($trx->created_at) }}</td>
                                 <td>{{ __($trx->details) }}</td>
                             </tr>
                             @empty

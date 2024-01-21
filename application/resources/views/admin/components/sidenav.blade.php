@@ -69,8 +69,19 @@
                                     <span class="menu-title">@lang('Send Mail All User')</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
+                                <a href="{{route('admin.report.login.history')}}" class="nav-link">
+                                    <i class="menu-icon las la-angle-double-right"></i>
+                                    <span class="menu-title">@lang('Send Mail All User')</span>
+                                </a>
+                            </li>
                             
-                            
+                            <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
+                                <a href="{{route('admin.report.login.history')}}" class="nav-link">
+                                    <i class="menu-icon las la-angle-double-right"></i>
+                                    <span class="menu-title">@lang('Login Activities')</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -84,7 +95,7 @@
                 </li>
 
                 {{-- PayIn --}}
-                <li class="sidebar__menu-header">@lang('Fund Details')</li>
+                <li class="sidebar__menu-header">@lang('Transaction Details')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.deposit.*',3)}}">
                         <i class="menu-icon las la-wallet text-primary"></i>
@@ -134,33 +145,6 @@
                         </ul>
                     </div>
                 </li>
-                {{-- Gateways --}}
-                <li class="sidebar__menu-header">@lang('Gateway Method')</li>
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
-                        <i class="menu-icon las la-money-check-alt text--danger"></i> 
-                        <span class="menu-title">@lang('Payment Methods')</span>
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
-                        <ul>
-                            <li class="sidebar-menu-item {{menuActive('admin.gateway.automatic.index')}} ">
-                                <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link">
-                                    <i class="menu-icon las la-angle-double-right"></i>
-                                    <span class="menu-title">@lang('Automatic')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.gateway.manual.index')}} ">
-                                <a href="{{route('admin.gateway.manual.index')}}" class="nav-link">
-                                    <i class="menu-icon las la-angle-double-right"></i>
-                                    <span class="menu-title">@lang('Manual')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                {{-- payout --}}
-                <li class="sidebar__menu-header">@lang('Payout Settings')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.withdraw.*',3)}}">
                         <i class="menu-icon las la la-credit-card text--success"></i>
@@ -206,25 +190,20 @@
                     </a>
                 </li> 
              
-    <li class="sidebar__menu-header">@lang('Report')</li>
-    <li class="sidebar-menu-item {{menuActive(['admin.report.transaction','admin.report.transaction.search'])}}">
-        <a href="{{route('admin.report.transaction')}}" class="nav-link">
-            <i class="menu-icon las la-chart-line text--warning"></i> 
-            <span class="menu-title">@lang('Transactions')</span>
-        </a>
-    </li>
-    <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
-        <a href="{{route('admin.report.login.history')}}" class="nav-link">
-            <i class="menu-icon las la-sign-in-alt text--warning"></i>
-            <span class="menu-title">@lang('Login Activities')</span>
-        </a>
-    </li>
-    <li class="sidebar-menu-item {{menuActive('admin.report.notification.history')}}">
-        <a href="{{route('admin.report.notification.history')}}" class="nav-link">
-            <i class="menu-icon las la-bell text--warning"></i>
-            <span class="menu-title">@lang('Notifications')</span>
-        </a>
-    </li>
+                <li class="sidebar-menu-item {{menuActive(['admin.report.transaction','admin.report.transaction.search'])}}">
+                    <a href="{{route('admin.report.transaction')}}" class="nav-link">
+                        <i class="menu-icon las la-chart-line text--warning"></i> 
+                        <span class="menu-title">@lang('Transactions')</span>
+                    </a>
+                </li>
+
+                <li class="sidebar__menu-header">@lang('Notification')</li>
+                <li class="sidebar-menu-item {{menuActive('admin.report.notification.history')}}">
+                    <a href="{{route('admin.report.notification.history')}}" class="nav-link">
+                        <i class="menu-icon las la-bell text--warning"></i>
+                        <span class="menu-title">@lang('Notifications')</span>
+                    </a>
+                </li>
     
 <li class="sidebar__menu-header">@lang('Management of Content')</li>
 <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}}">
@@ -263,8 +242,8 @@
         </ul>
     </div>
 </li>
-<li class="sidebar__menu-header">@lang('Settings Panel' )</li>
 
+<li class="sidebar__menu-header">@lang('Settings Panel' )</li>
 <li class="sidebar-menu-item {{menuActive('admin.control.panle')}}">
     <a href="{{route('admin.control.panel')}}" class="nav-link">
         <i class="menu-icon las la-cog text--primary"></i>
@@ -300,6 +279,28 @@
                 <a href="{{route('admin.setting.notification.sms')}}" class="nav-link">
                     <i class="menu-icon las la-angle-double-right"></i>
                     <span class="menu-title">@lang('SMS Configuration')</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+<li class="sidebar-menu-item sidebar-dropdown">
+    <a href="javascript:void(0)" class="{{menuActive('admin.gateway.*',3)}}">
+        <i class="menu-icon las la-money-check-alt text--danger"></i> 
+        <span class="menu-title">@lang('Payment Settings')</span>
+    </a>
+    <div class="sidebar-submenu {{menuActive('admin.gateway.*',2)}}"">
+        <ul>
+            <li class="sidebar-menu-item {{menuActive('admin.gateway.automatic.index')}} ">
+                <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('Auto Payment')</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item {{menuActive('admin.gateway.manual.index')}} ">
+                <a href="{{route('admin.gateway.manual.index')}}" class="nav-link">
+                    <i class="menu-icon las la-angle-double-right"></i>
+                    <span class="menu-title">@lang('Manual Payment')</span>
                 </a>
             </li>
         </ul>

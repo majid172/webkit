@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="col-lg-9 justify-content-center p-3">
                                     <h5>@lang('Language')</h5>
-                                    <p class="text-secondary">@lang('Basic such as, site title, timezone, currency, notifications, verifications and so on.')</p>
-                                    <a href="{{route('admin.language.manage')}}">@lang('Change Settings')</a>
+                                    <p class="text-secondary">@lang('Language configurations include adding keywords, creating new languages, and more.')</p>
+                                    <a href="{{route('admin.language.manage')}}">@lang('Update Settings')</a>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +42,8 @@
                                 </div>
                                 <div class="col-lg-9 justify-content-center p-3">
                                     <h5>@lang('SEO')</h5>
-                                    <p class="text-secondary">@lang('Basic such as, site title, timezone, currency, notifications, verifications and so on.')</p>
-                                    <a href="{{route('admin.seo')}}">@lang('Change Settings')</a>
+                                    <p class="text-secondary">@lang('Social title, Social description, Meta image, Meta keywords, and so forth.')</p>
+                                    <a href="{{route('admin.seo')}}">@lang('Update Settings')</a>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                 </div>
                                 <div class="col-lg-9 justify-content-center p-3">
                                     <h5>@lang('Logo & Favicon')</h5>
-                                    <p class="text-secondary">@lang('Basic such as, site title, timezone, currency, notifications, verifications and so on.')</p>
-                                    <a href="{{route('admin.setting.logo.icon')}}">@lang('Change Settings')</a>
+                                    <p class="text-secondary">@lang('Settings for logos, including admin, footer, and favicon logos as well as breadcrumb.')</p>
+                                    <a href="{{route('admin.setting.logo.icon')}}">@lang('Update Settings')</a>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                                 </div>
                                 <div class="col-lg-9 justify-content-center p-3">
                                     <h5>@lang('Plugins')</h5>
-                                    <p class="text-secondary">@lang('Basic such as, site title, timezone, currency, notifications, verifications and so on.')</p>
-                                    <a href="{{route('admin.extensions.index')}}">@lang('Change Settings')</a>
+                                    <p class="text-secondary">@lang('Send messages to your clients, use reCAPTCHA to secure your website and so forth.')</p>
+                                    <a href="{{route('admin.extensions.index')}}">@lang('Update Settings')</a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 <div class="col-lg-9 justify-content-center p-3">
                                     <h5>@lang('GDPR Policy')</h5>
                                     <p class="text-secondary">@lang('Basic such as, site title, timezone, currency, notifications, verifications and so on.')</p>
-                                    <a href="{{route('admin.setting.cookie')}}">@lang('Change Settings')</a>
+                                    <a href="{{route('admin.setting.cookie')}}">@lang('Update Settings')</a>
                                 </div>
                             </div>
                         </div>
@@ -96,14 +96,3 @@
     </div>
 </div>
 @endsection
-
-{{-- <div class="card card-large-icons shadow">
-    <div class="card-icon bg-primary text-white">
-        <i class="fas fa-cog"></i>
-    </div>
-    <div class="card-body">
-        <h4>Basic</h4>
-        <p>Basic such as, site title, timezone, currency, notifications, verifications and so on.</p>
-        <a href="" class="card-cta">Change Setting<i class="fas fa-chevron-right"></i></a>
-    </div>
-</div> --}}

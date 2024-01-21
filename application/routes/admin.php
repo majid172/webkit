@@ -168,9 +168,9 @@ Route::middleware('admin')->group(function () {
 
     // Report
     Route::controller('ReportController')->group(function(){
-        Route::get('report/transaction', 'transaction')->name('report.transaction');
-        Route::get('report/login/history', 'loginHistory')->name('report.login.history');
-        Route::get('report/login/ipHistory/{ip}', 'loginIpHistory')->name('report.login.ipHistory');
+        Route::get('/transaction', 'transaction')->name('report.transaction');
+        Route::get('/login/history', 'loginHistory')->name('report.login.history');
+        Route::get('/login/ipHistory/{ip}', 'loginIpHistory')->name('report.login.ipHistory');
         Route::get('report/notification/history', 'notificationHistory')->name('report.notification.history');
         Route::get('report/email/detail/{id}', 'emailDetails')->name('report.email.details');
     });
