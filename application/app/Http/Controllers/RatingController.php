@@ -9,11 +9,22 @@ class RatingController extends Controller
 {
     public function rating(Request $request)
     {
-       $rating = new Rating();
-       $rating->course_id = $request->course_id;
-       $rating->user_id = auth()->user()->id;
-       $rating->rating = $request->rating;
-       $rating->save();
-       return response()->json(['message' => 'Rating saved successfully']);
+        $exist = Rating::where([
+                    'course_id' => $request->course_id,
+                    'user_id' => auth()->user()->id
+                ])->first();
+        
+        if ($exist) {
+            $rating = $exist;
+        } else {
+            $rating = new Rating();
+        }
+        $rating->course_id = $request->course_id;
+        $rating->user_id = auth()->user()->id;
+        $rating->rating = $request->rating;
+        $rating->save();
+        return 'ok';
+        // return response()->json(['rating' => $rating]);
+        
     }
 }

@@ -17,11 +17,21 @@
                     <div class='row'>
                         <div class="rating left">
                         <div class="stars right">
-                            <a class="star" data-course_id="{{$details->course_id}}"></a>
-                            <a class="star" data-course_id="{{$details->course_id}}"></a>
-                            <a class="star rated" data-course_id="{{$details->course_id}}"></a>
-                            <a class="star" data-course_id="{{$details->course_id}}"></a>
-                            <a class="star" data-course_id="{{$details->course_id}}"></a>
+                            @php
+                                $maxRating = 5; 
+                                $rating = App\Models\Rating::where([
+                                        'course_id' => $details->course_id,
+                                        'user_id' => auth()->user()->id
+                                    ])->first();
+
+                                $currentRating = $rating->rating; 
+                                for ($i = 1; $i <= $maxRating; $i++) {
+                                    $starClass = ($i <= $currentRating) ? 'rated' : '';
+                                    echo "<a class='star $starClass' data-course_id='{$details->course_id}'></a>";
+                                }
+                            @endphp     
+                            
+
                         </div>
                         </div>
                     </div>
@@ -75,7 +85,7 @@
         font-family: 'FontAwesome';
         content: '\f005';
         color: #d0e8f0;
-        font-size: 2em;
+        font-size: 1.8em;
         }
 
         .rating .stars .star:hover:before,
@@ -90,7 +100,6 @@
     </style>
 @endpush
 @push('script')
-<script src="{{asset($activeTemplateTrue.'js/rating_jquery.min.js')}}"></script>
 <script>
     jQuery(document).ready(function($) {
         $('.rating .star').hover(function() {
@@ -109,9 +118,10 @@
         });
 });
 </script>
+
 <script>
-    $(document).ready(function($){
-        $('.star').on('click', function() {
+    
+    $('.star').on('click', function() {
         var rating = $(this).index() + 1;
         var course_id = $(this).data('course_id');
         
@@ -120,18 +130,19 @@
             method: 'GET',
             data:{
                 rating:rating,
-                course_id:course_id
+                course_id:course_id,
+                // _token: '{{ csrf_token() }}'
             }, 
             success: function(data) {
-                console.log('rate'+data);
+                console.log(data.rating.user_id);
                
             },
             error: function(xhr, status, error) {
-                console.log(error);
+                console.log('error');
             }
         });
     });
-    })
+  
 </script>
 
 @endpush
