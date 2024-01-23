@@ -31,7 +31,7 @@
                                     @endphp
                                     <span class="badge bg-primary">@lang('Duration') - {{$duration}}</span>
                                 </p>
-                                <a href="{{route('user.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 100, '...')}}</a>
+                                <a href="{{route('user.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 200, '...')}}</a>
                             </div>
                             <div>
                                 <a href="{{route('user.episode.details',$item->id)}}"><i class="las la-play-circle text-primary fs-1"></i></a>

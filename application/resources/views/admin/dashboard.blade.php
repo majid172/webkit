@@ -355,7 +355,7 @@
     stroke: {
         curve: 'smooth'
     },
-    colors: ['#FFC107'],
+    colors: ['#7752fe'],
         labels: @json($userLogins['labels']),
     xaxis: {
         type: 'date',

@@ -11,8 +11,21 @@
                         <source src="{{getImage(getFilePath('episode').'/' . @$details->file_path .'/'. @$details->file)}}" type="video/mp4">
                     </video>
                     <p class="text-secondary p-3">{{__($details->description)}}</p>
-                </div>
 
+                    <hr>
+                    <h4 class="text-primary">@lang('Ratings')</h4>
+                    <div class='row'>
+                        <div class="rating left">
+                        <div class="stars right">
+                            <a class="star" data-course_id="{{$details->course_id}}"></a>
+                            <a class="star" data-course_id="{{$details->course_id}}"></a>
+                            <a class="star rated" data-course_id="{{$details->course_id}}"></a>
+                            <a class="star" data-course_id="{{$details->course_id}}"></a>
+                            <a class="star" data-course_id="{{$details->course_id}}"></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 {{-- <div class="shadow p-3 mb-5 bg-body rounded">
                     <h5 class="text-primary">@lang('Related Episodes') ({{$relateds->count()}})</h5>
                     <div class="row mt-4 justify-content-center">
@@ -43,3 +56,82 @@
     </div>
 </div>
 @endsection
+@push('style')
+{{-- <link rel="stylesheet" href="{{asset($activeTemplateTrue.'css/rating.min.css')}}"> --}}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style>
+
+        .rating .stars {
+        margin-right: 15px;
+        }
+
+        .rating .stars .star {
+        float: left;
+        padding: 5px 2px;
+        cursor: pointer;
+        }
+
+        .rating .stars .star:before {
+        font-family: 'FontAwesome';
+        content: '\f005';
+        color: #d0e8f0;
+        font-size: 2em;
+        }
+
+        .rating .stars .star:hover:before,
+        .rating .stars .star.to_rate:before,
+        .rating .stars .star.rated:before {
+        color: #ecc012;;
+        }
+
+        .rating .stars .star.no_to_rate:before {
+        color: #d0e8f0;
+        }
+    </style>
+@endpush
+@push('script')
+<script src="{{asset($activeTemplateTrue.'js/rating_jquery.min.js')}}"></script>
+<script>
+    jQuery(document).ready(function($) {
+        $('.rating .star').hover(function() {
+            $(this).addClass('to_rate');
+            $(this).parent().find('.star:lt(' + $(this).index() + ')').addClass('to_rate');
+            $(this).parent().find('.star:gt(' + $(this).index() + ')').addClass('no_to_rate');
+        }).mouseout(function() {
+            $(this).parent().find('.star').removeClass('to_rate');
+            $(this).parent().find('.star:gt(' + $(this).index() + ')').removeClass('no_to_rate');
+        }).click(function() {
+            $(this).removeClass('to_rate').addClass('rated');
+            $(this).parent().find('.star:lt(' + $(this).index() + ')').removeClass('to_rate').addClass('rated');
+            $(this).parent().find('.star:gt(' + $(this).index() + ')').removeClass('no_to_rate').removeClass('rated');
+            /*Save your rate*/
+            /*TODO*/
+        });
+});
+</script>
+<script>
+    $(document).ready(function($){
+        $('.star').on('click', function() {
+        var rating = $(this).index() + 1;
+        var course_id = $(this).data('course_id');
+        
+        $.ajax({
+            url: "{{route('user.rating')}}",
+            method: 'GET',
+            data:{
+                rating:rating,
+                course_id:course_id
+            }, 
+            success: function(data) {
+                console.log('rate'+data);
+               
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+    })
+</script>
+
+@endpush
