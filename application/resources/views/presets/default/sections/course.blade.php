@@ -1,6 +1,6 @@
 @php
 $content = getContent('course.content',true);
-$courses = \App\Models\Course::with('episodes','creator','subscription')->limit(4)->inRandomOrder()->get();
+$courses = \App\Models\Course::with('episodes','creator','subscription','rating')->limit(4)->inRandomOrder()->get();
 
 @endphp
 <div class="container-xxl py-5">
@@ -24,12 +24,25 @@ $courses = \App\Models\Course::with('episodes','creator','subscription')->limit(
                     <div class="text-center p-4 pb-0">
                         <h3 class="mb-0">{{$general->cur_sym}}{{getAmount($item->price)}}</h3>
                         <div class="mb-3">
-                            <small class="fa fa-star text-primary"></small>
-                            <small class="fa fa-star text-primary"></small>
-                            <small class="fa fa-star text-primary"></small>
-                            <small class="fa fa-star text-primary"></small>
-                            <small class="fa fa-star text-primary"></small>
-                            <small>(123)</small>
+                            @php
+                                $total = 0;
+                                $count = $item->rating->count();
+                                $avg = 0;
+
+                                if ($count > 0) {
+                                    foreach ($item->rating as $rating) {
+                                        $total += $rating['rating'];
+                                    }
+                                    $avg = $total / $count;
+                                }
+
+                                $maxRating = 5;
+                                for ($i = 1; $i <= $maxRating; $i++) {
+                                    $starClass = ($i <= $avg) ? 'fas fa-star text-warning' : 'far fa-star';
+                                    echo "<small class='$starClass' data-course_id='{$item->id}'></small>";
+                                }
+                            @endphp
+                            <small>({{optional($item->rating)->count()}})</small>
                         </div>
                         <h5 class="mb-4">{{ucwords($item->title)}}</h5>
                     </div>

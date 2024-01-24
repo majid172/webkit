@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -23,5 +24,9 @@ class Course extends Model
     public function subscription()
     {
         return $this->hasMany(Subscription::class,'course_id');
+    }
+    public function rating()
+    {
+        return $this->hasMany(Rating::class,'course_id');
     }
 }

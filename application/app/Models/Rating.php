@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     use HasFactory;
+    protected $guarded = []; //all insert column
+    
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
