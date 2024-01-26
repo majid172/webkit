@@ -74,17 +74,21 @@ class EpisodeController extends Controller
             $notify[] = ['error', 'You need to purchase this course.'];
             return redirect()->back()->withNotify($notify);
         }
-        $details      = Episode::where('id',$id)->first();
-        // $relateds   = Episode::where('id','!=',$id)
-        //                 ->with('category')->limit(3)->get();
-        return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details'));
+        $details = Episode::where('id',$id)->first();
+        $relateds = Episode::where('id','!=',$id)->with('course')
+                    ->whereHas('course',function ($q) use($details){
+                        $q->where('id',$details->course_id);
+                    })
+                    ->limit(3)->get();
+        return view($this->activeTemplate.'user.episode.details',compact('pageTitle','details','relateds'));
     }
 
     public function allEpisodes($course_id)
     {
         $pageTitle  = "All Episodes";
         $episodes   = Episode::where('course_id',$course_id)->where('status',1)->get();
-        return view($this->activeTemplate.'episodes',compact('pageTitle','episodes','course_id'));
+        $getID3 = new \getID3;
+        return view($this->activeTemplate.'episodes',compact('pageTitle','episodes','course_id','getID3'));
     }
 
     

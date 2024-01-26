@@ -102,13 +102,7 @@ class SiteController extends Controller
         return back();
     }
 
-    public function blogDetails($slug,$id){
-        $blog = Frontend::where('id',$id)->where('data_keys','blog.element')->firstOrFail();
-        $pageTitle = $blog->data_values->title;
-        return view($this->activeTemplate.'blog_details',compact('blog','pageTitle'));
-    }
-
-
+   
     public function cookieAccept(){
         $general = gs();
         Cookie::queue('gdpr_cookie',$general->site_name , 43200);
