@@ -48,21 +48,25 @@
     
     
                             <div class="row mb-3">
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Zip Code')</label>
                                     <input type="text" class="form-control form--control" name="zip"
                                         value="{{@$user->address->zip}}">
                                 </div>
     
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('City')</label>
                                     <input type="text" class="form-control form--control" name="city"
                                         value="{{@$user->address->city}}">
                                 </div>
     
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Country')</label>
                                     <input class="form-control form--control" value="{{@$user->address->country}}" disabled>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="form-label">@lang('Profile Image')</label>
+                                    <input type="file" class="form-control form--control" value="" name="profile_img">
                                 </div>
     
                             </div>

@@ -1,17 +1,20 @@
 @extends('admin.layouts.app')
 @section('panel')
+
+
 <div class="row">
-    <div class="text-right mb-3">
-        <a href="{{route('admin.frontend.sections.element',$key)}}" class="btn btn-sm btn--primary"><i
-            class="las la-plus"></i>@lang('Add New')</a>
-    </div>
     <div class="col-lg-12">
-        <div class="card b-radius--10 ">
-            
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
-                        <thead>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('List')</h6>
+                <a href="{{route('admin.frontend.sections.element',$key)}}" class="btn btn-sm btn-outline--primary"><i
+                    class="las la-plus"></i>@lang('Add New')</a>
+                
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('SL')</th>
                                 @if(@$section->element->images)
@@ -28,8 +31,9 @@
                                 @endforeach
                                 <th>@lang('Action')</th>
                             </tr>
+                            
                         </thead>
-                        <tbody class="list">
+                        <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>@lang('Cookie Policy')</td>
@@ -106,14 +110,13 @@
                             </tr>
                             @endforelse
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
                 </div>
+                
             </div>
-        </div><!-- card end -->
+        </div>
     </div>
 </div>
-
-
 
 <x-confirmation-modal></x-confirmation-modal>
 @endsection

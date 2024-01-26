@@ -52,7 +52,7 @@ trait FileInfo
         ];
         $data['userProfile'] = [
             'path'      =>'assets/images/user/profile',
-            'size'      =>'350x300',
+            'size'      =>'80x80',
         ];
         $data['adminProfile'] = [
             'path'      =>'assets/admin/images/profile',

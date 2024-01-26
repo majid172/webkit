@@ -9,22 +9,22 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $pdata->id }}">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>@lang('Page Name')</label>
                                 <input type="text" class="form-control" name="name" value="{{ $pdata->name }}" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>@lang('Page Slug')</label>
                                 <input type="text" class="form-control" name="slug" value="{{ $pdata->slug }}" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12 w-100">
                             <div class="form-group">
                                 <label>&nbsp;</label>
-                                <button type="submit" class="btn btn--primary btn-global">@lang('Save')</button>
+                                <button type="submit" class="btn btn--primary btn-global">@lang('Update')</button>
                             </div>
                         </div>
                     </div>
@@ -41,23 +41,23 @@
     <div class="col-md-6 mt-md-0 mt-3">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">@lang('Available Page Components')</h3>
-                <small>@lang('Drag sections to the right and update the page')</small>
+                <h3 class="card-title">@lang('Available Elements on the Page')</h3>
+                <small>@lang('To update the page, drag & drop sections to the right.')</small>
             </div>
             <div class="card-body">
                 <ol class="simple_with_no_drop vertical">
                     @foreach($sections as $k => $secs)
                     @if(!@$secs['no_selection'])
                     <li class="highlight icon-move clearfix d-flex align-items-center">
-                        <i class="fas fa-expand-arrows-alt"></i>
+                        <i class="fas fa-expand-arrows-alt text--primary"></i>
                         <span class="d-inline-block me-auto ms-2"> {{__($secs['name'])}}</span>
                         <i class="ms-auto d-inline-block remove-icon fa fa-times"></i>
                         <input type="hidden" name="secs[]" value="{{$k}}">
                         @if($secs['builder'])
                         <div class="float-end d-inline-block manage-content">
                             <a href="{{ route('admin.frontend.sections',$k) }}" target="_blank"
-                                class="btn bg--primary text-center cog-btn" title="@lang('Manage Content')">
-                                <i class="fa fa-pen p-0 m-0"></i>
+                                class="btn bg--primary text-center cog-btn" title="@lang('Control Content')">
+                                <i class="fa fa-edit p-0 m-0"></i>
                             </a>
                         </div>
                         @endif
@@ -81,17 +81,17 @@
                         @if($pdata->secs != null)
                         @foreach(json_decode($pdata->secs) as $sec)
                         <li class="highlight icon-move item">
-                            <i class="fas fa-expand-arrows-alt"></i>
+                            <i class="fas fa-expand-arrows-alt text--primary"></i>
                             <span class="d-inline-block me-auto ms-2"> {{ __(@$sections[$sec]['name'])
                                 }}</span>
-                            <i class="ms-auto d-inline-block remove-icon fa fa-times"></i>
+                            <i class="ms-auto d-inline-block remove-icon fa fa-times text--primary"></i>
                             <input type="hidden" name="secs[]" value="{{$sec}}">
                         </li>
                         @endforeach
                         @endif
                     </ol>
                     <div class="form-group text-end">
-                        <button type="submit" class="btn btn--primary btn-global">@lang('Update')</button>
+                        <button type="submit" class="btn btn--primary btn-global w-100">@lang('Update')</button>
                     </div>
                 </form>
             </div>

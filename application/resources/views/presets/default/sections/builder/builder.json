@@ -43,13 +43,7 @@
             "modal": true
         }
     },
-    "about_dark": {
-        "builder": false,
-        "name": "About Us Dark",
-        "content": {
 
-        }
-    },
 
     "instructor": {
         "builder": true,
@@ -57,12 +51,8 @@
         "content": {
             "heading": "text",
             "subheading": "text"
-        },
-        "element": {
-            "title": "text",
-            "subtitle": "text",
-            "modal": true
         }
+        
     },
     "testimonial": {
         "builder": true,
@@ -104,22 +94,7 @@
         }
     },
 
-    "counter": {
-        "builder": true,
-        "name": "Counter Section",
-        "content": {
-            "heading": "text",
-            "subheading": "text"
-        },
-        "element": {
-            "title": "text",
-            "counter_digit": "text",
-            "sub_title": "text",
-            "counter_icon": "icon",
-            "counter_icon_2": "icon",
-            "modal": true
-        }
-    },
+   
     "policy_pages": {
         "builder": false,
         "no_selection":true,
@@ -130,38 +105,8 @@
             "modal": false
         }
     },
-    "faq": {
-        "builder": true,
-        "name": "FAQ Section",
-        "content": {
-            "heading": "text",
-            "subheading": "text"
-        },
-        "element": {
-            "question": "text",
-            "answer": "textarea-rich",
-            "modal": false
-        }
-    },
-    "blog": {
-        "builder": true,
-        "name": "Blog Section",
-        "content": {
-            "heading": "text",
-            "subheading": "text"
-        },
-        "element": {
-            "images":{
-                "blog_image":{
-                    "size":"728x465",
-                    "thumb":"120x80"
-                }
-            },
-            "title": "text",
-            "description": "textarea-rich",
-            "modal": false
-        }
-    },
+    
+    
     "subscribe": {
         "builder": true,
         "name": "Subscribe Section",

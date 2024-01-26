@@ -1,6 +1,11 @@
 @php
     $content = getContent('instructor.content',true);
-    $instructors = App\Models\User::where('user_type',1)->inRandomOrder()->limit(3)->get();
+    if(request()->url() == url('/').'/instructors'){
+        $instructors = App\Models\User::where('user_type',1)->inRandomOrder()->get();
+    }else{
+        $instructors = App\Models\User::where('user_type',1)->inRandomOrder()->limit(3)->get();
+    }
+   
 @endphp
 <div class="container-xxl py-5">
     <div class="container">
@@ -24,17 +29,17 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-0">
                             @if (isset($instructor->firstname))
-                            {{ucfirst($instructor->firstname)}} {{$instructor->lastname}}
+                            <a href="{{route('instructor.details',$instructor->id)}}" class="text-primary">{{ucfirst($instructor->firstname)}} {{$instructor->lastname}}</a>
                             @else 
-                            {{ucfirst($instructor->username)}}
+                            <a href="{{route('instructor.details',$instructor->id)}}" class="text-primary">{{ucfirst($instructor->username)}}</a>
                             @endif
                         </h5>
                         <small>{{ucfirst($instructor->designation)}}</small>

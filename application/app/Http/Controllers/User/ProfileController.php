@@ -38,7 +38,23 @@ class ProfileController extends Controller
             'country' => @$user->address->country,
             'city' => $request->city,
         ];
-
+        
+        if($request->hasFile('profile_img')){
+            
+            try {
+                $directory = date("Y")."/".date("m");
+                
+                $path = getFilePath('userProfile').'/'.$directory;
+                $size = getFileSize('userProfile');
+                $file = fileUploader($request->profile_img, $path,$size);
+                $user->image = $file;
+                $user->img_path = $directory;
+                
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your profile image'];
+                return back()->withNotify($notify);
+            }
+        }
         $user->save();
         $notify[] = ['success', 'Profile has been updated successfully'];
         return back()->withNotify($notify);

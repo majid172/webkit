@@ -2,20 +2,25 @@
 @section('panel')
 <div class="row">
     <div class="col-lg-12">
-        <button type="button" class="btn btn-sm btn--primary addBtn"><i class="las la-plus"></i>@lang('Add New')</button>
-        <div class="card b-radius--10 mt-3">
-           
-            <div class="card-body p-0">
-                <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light style--two custom-data-table">
-                        <thead>
+        <div class="card mb-4 card-primary shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text--primary">@lang('Page List')</h6>
+                
+                <button type="button" class="btn btn-sm btn-outline--primary addBtn"><i class="las la-plus"></i>@lang('Add New')</button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-items-center table-borderless">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('Name')</th>
                                 <th>@lang('Slug')</th>
                                 <th>@lang('Action')</th>
                             </tr>
+                            
                         </thead>
                         <tbody>
+                           
                             @forelse($pdata as $k => $data)
                             <tr>
                                 <td>{{ __($data->name) }}</td>
@@ -44,12 +49,11 @@
                         </tbody>
                     </table>
                 </div>
+                
             </div>
         </div>
     </div>
-    
 </div>
-
 {{-- Add METHOD MODAL --}}
 <div id="addModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">

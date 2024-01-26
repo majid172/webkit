@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\EpisodeController;
 use App\Lib\Router;
@@ -30,6 +31,7 @@ Route::controller('User\CourseController')->group(function(){
 });
 Route::get('/episode/{course_id}',[EpisodeController::class,'allEpisodes'])->name('allEpisodes');
 
+Route::get('/instructor/details/{id}',[InstructorController::class,'details'])->name('instructor.details');
 Route::controller('SiteController')->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact', 'contactSubmit');
