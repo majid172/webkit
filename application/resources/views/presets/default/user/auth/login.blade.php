@@ -67,9 +67,7 @@
         outline: none;
     }
 
-    body {
-    font-family: 'Roboto', sans-serif;
-}
+
 
 .login-box {
     /* margin-top: 75px; */
@@ -138,15 +136,14 @@ input[type=password] {
     border-color: inherit;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border-bottom: 2px solid #8F77D9;
+    border-bottom: 2px solid var(--secondary);
     outline: 0;
-    background-color: #ffffff;
-    color: #52565b;
+   
 }
 
 input:focus {
     outline: none;
-    box-shadow: 0 0 0;
+    /* box-shadow: 0 0 0; */
 }
 
 label {

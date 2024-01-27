@@ -19,7 +19,7 @@
                 <div class="team-item bg-light">
                     <div class="overflow-hidden">
                         @if (isset($instructor->image))
-                        <img class="img-fluid" src="img/team-1.jpg" alt="">
+                        <img class="img-fluid" src="{{getImage(getFilePath('userProfile').'/' . @$instructor->img_path .'/'. @$instructor->image )}}" alt="{{@$instructor->image}}" alt="">
                         @else 
                         <div class="no-image-container">
                             {{ucwords(substr($instructor->fullname,1,2))}}

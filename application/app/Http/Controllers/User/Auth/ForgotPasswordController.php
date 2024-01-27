@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        $pageTitle = "Account Recovery";
+        $pageTitle = "Reset Password";
         return view($this->activeTemplate . 'user.auth.passwords.email', compact('pageTitle'));
     }
 
