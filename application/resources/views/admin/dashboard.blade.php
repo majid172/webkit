@@ -1,10 +1,9 @@
 @extends('admin.layouts.app')
-
 @section('panel')
 @if(@json_decode($general->system_info)->message)
 <div class="row">
     @foreach(json_decode($general->system_info)->message as $msg)
-    <div class="col-md-12">
+    <div class="col-md-12 ">
         <div class="alert border border--primary" role="alert">
             <div class="alert__icon bg--primary"><i class="far fa-bell"></i></div>
             <p class="alert__message">@php echo $msg; @endphp</p>
@@ -24,12 +23,12 @@
                     <a href="{{route('admin.deposit.list')}}">
                     <div class="row">
                         <div class="col-lg-3 mx-auto bg--primary d-flex align-items-center justify-content-center">
-                            <i class="fas fa-coins" style="font-size: 2rem;"></i> 
+                            <i class="fas fa-coins" style="font-size: 2rem;"></i>
                         </div>
                         <div class="col-lg-9 justify-content-center p-3">
                             <h6 class="m-b-5">@lang('Funded Amount')</h6>
                             <h3 class="m-b-0">{{ $general->cur_sym}}{{showAmount($deposit['total_deposit_amount'])}}</h3>
-                            
+
                         </div>
                     </div>
                     </a>
@@ -40,12 +39,12 @@
                     <a href="{{route('admin.deposit.list')}}">
                     <div class="row">
                         <div class="col-lg-3 mx-auto bg--primary d-flex align-items-center justify-content-center">
-                            <i class="las la-percent" style="font-size: 2rem;"></i> 
+                            <i class="las la-percent" style="font-size: 2rem;"></i>
                         </div>
                         <div class="col-lg-9 justify-content-center p-3">
                             <h6 class="m-b-5">@lang('Funded Charge')</h6>
                             <h3 class="m-b-0 ">{{ $general->cur_sym}}{{showAmount($deposit['total_deposit_charge'])}}</h3>
-                            
+
                         </div>
                     </div>
                     </a>
@@ -56,13 +55,13 @@
                     <a href="{{route('admin.withdraw.log')}}">
                     <div class="row">
                         <div class="col-lg-3 mx-auto bg--primary d-flex align-items-center justify-content-center">
-                            <i class="lar la-credit-card" style="font-size: 2rem;"></i> 
+                            <i class="lar la-credit-card" style="font-size: 2rem;"></i>
                         </div>
                         <div class="col-lg-9 justify-content-center p-3">
                             <h6 class="m-b-5 ">@lang('Total Payout')</h6>
                             <h3 class="m-b-0">{{ $general->cur_sym
                                 }}{{showAmount($withdrawals['total_withdraw_amount'])}}</h3>
-                            
+
                         </div>
                     </div>
                     </a>
@@ -73,12 +72,12 @@
                     <a href="{{route('admin.withdraw.approved')}}">
                     <div class="row">
                         <div class="col-lg-3 mx-auto bg--primary d-flex align-items-center justify-content-center">
-                            <i class="las la-percent" style="font-size: 2rem;"></i> 
+                            <i class="las la-percent" style="font-size: 2rem;"></i>
                         </div>
                         <div class="col-lg-9 justify-content-center p-3">
                             <h6 class="m-b-5">@lang('Payout Charge')</h6>
                             <h3 class="m-b-0">{{ $general->cur_sym}}{{showAmount($withdrawals['total_withdraw_charge'])}}</h3>
-                            
+
                         </div>
                     </div>
                     </a>
@@ -206,7 +205,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -385,7 +384,7 @@
     }) ();
 
 
- 
+
 
 </script>
 @endpush

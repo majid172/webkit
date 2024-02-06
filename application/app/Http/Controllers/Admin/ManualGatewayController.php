@@ -90,9 +90,6 @@ class ManualGatewayController extends Controller
         $method->description = $request->instruction;
         $method->form_id = @$generate->id ?? 0;
         $method->save();
-
-
-
         $singleCurrency = $method->singleCurrency;
         $singleCurrency->name = $request->name;
         $singleCurrency->gateway_alias = strtolower(trim(str_replace(' ','_',$method->name)));
