@@ -8,20 +8,21 @@
                     <div class="col-lg-4">
                         <div class="shadow mb-5 bg-body rounded">
                             <div class="row">
-                                <div class="col-lg-4 mx-auto bg-primary d-flex align-items-center justify-content-center ">
+                                <div class="col-lg-4 mx-auto bg-primary ve d-flex align-items-center
+                                justify-content-center ">
                                     <i class="las la-film text-light" style="font-size: 2.5rem;"></i>
                                 </div>
                                 <div class="col-lg-8 p-3">
                                     <a href="{{route('user.course.list')}}">
-                               
+
                                         @if (auth()->user()->user_type == 1)
                                             <h6 class="text-secondary"> @lang('Total Created Courses')</h6>
                                             <h4 class="text-primary">{{$create_course}}</h4>
-                                        @else 
+                                        @else
                                             <h6 class="text-secondary">@lang('Purchase Courses')</h6>
                                             <h4 class="text-primary">{{$total_course}}</h4>
                                         @endif
-                                    
+
                                     </a>
                                 </div>
                             </div>
@@ -37,18 +38,18 @@
                                     <a href="{{route('user.course.list')}}">
                                         @if (auth()->user()->user_type == 1)
                                         <h6 class="text-secondary"> @lang('Total Buyer')</h6>
-                                        <h4 class="text-primary">{{$buyer}}</h4> 
+                                        <h4 class="text-primary">{{$buyer}}</h4>
                                         @else
                                         <h6 class="text-secondary">@lang('Total Episodes')</h6>
-                                        <h4 class="text-primary">{{$total_episodes}}</h4> 
+                                        <h4 class="text-primary">{{$total_episodes}}</h4>
                                         @endif
                                     </a>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4">
                         <div class="shadow mb-5 bg-body rounded">
                             <div class="row">
@@ -65,7 +66,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -96,7 +97,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow mb-5 bg-body rounded">
