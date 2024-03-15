@@ -19,14 +19,26 @@
                                 <input type="text" class="form-control" placeholder="@lang('Trx number')">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="@lang('Trx number')">
+                                <input type="number" class="form-control" placeholder="@lang('Min amount')">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="@lang('Status')">
+                                <input type="number" class="form-control" placeholder="@lang('Max amount')">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <select type="text" class="form-control"  placeholder="@lang('Status')">
+                                    <option value="">@lang('Status')</option>
+                                    <option value="0">@lang('Initiated')</option>
+                                    <option value="2">@lang('Pending')</option>
+                                    <option value="1">@lang('Approved')</option>
+                                    <option value="1">@lang('Succeed')</option>
+                                    <option value="3">@lang('Rejected')</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -52,61 +64,63 @@
                                             <th>@lang('Gateway')</th>
                                             <th class="text-center">@lang('Initiated')</th>
                                             <th class="text-center">@lang('Amount')</th>
+                                            <th class="text-center">@lang('Transaction')</th>
                                             <th class="text-center">@lang('Conversion')</th>
                                             <th class="text-center">@lang('Status')</th>
-                                            <th>@lang('Details')</th>
+{{--                                            <th>@lang('Details')</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($deposits as $deposit)
-                                        <tr>
+                                        <tr class="td_font" style="font-size: 14px;">
                                             <td>
                                                 <span class="fw-bold"> <span class="text-primary">{{
-                                                        __($deposit->gateway?->name) }}</span> </span>
+                                                        __(@$deposit->gateway?->name) }}</span> </span>
 
                                             </td>
 
                                             <td class="text-center">
-                                                {{ showDateTime($deposit->created_at) }}<br>{{
-                                                diffForHumans($deposit->created_at) }}
+                                                {{ showDateTime($deposit->created_at) }}
                                             </td>
                                             <td class="text-center">
                                                 {{ __($general->cur_sym) }}{{ showAmount($deposit->amount ) }} + <span
                                                     class="text-danger" title="@lang('charge')">{{
                                                     showAmount($deposit->charge)}} </span>
                                                 <br>
-                                                <strong title="@lang('Amount with charge')">
+                                                <strong class="text-secondary" title="@lang('Amount with charge')">
                                                     {{ showAmount($deposit->amount+$deposit->charge) }} {{
                                                     __($general->cur_text) }}
                                                 </strong>
                                             </td>
+                                            <td class="text-center fw-bold text-primary">{{__($deposit->trx)}}</td>
                                             <td class="text-center">
                                                 1 {{ __($general->cur_text) }} = {{ showAmount($deposit->rate) }}
                                                 {{__($deposit->method_currency)}}
                                                 <br>
-                                                <strong>{{ showAmount($deposit->final_amo) }}
+                                                <strong class="text-secondary">{{ showAmount($deposit->final_amo) }}
                                                     {{__($deposit->method_currency)}}</strong>
                                             </td>
-                                            <td class="text-center">
-                                                @php echo $deposit->statusBadge @endphp
+                                            <td class="text-center">{!! $deposit->statusBadge !!}
+
+
                                             </td>
                                             @php
                                             $details = ($deposit->detail != null) ? json_encode($deposit->detail) : null;
                                             @endphp
 
-                                            <td>
-                                                <a href="javascript:void(0)"
-                                                    class="btn btn--base btn-sm @if($deposit->method_code >= 1000) detailBtn @else disabled @endif"
-                                                    @if($deposit->method_code >= 1000)
-                                                    data-info="{{ $details }}"
-                                                    @endif
-                                                    @if ($deposit->status == 3)
-                                                    data-admin_feedback="{{ $deposit->admin_feedback }}"
-                                                    @endif
-                                                    >
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                            </td>
+{{--                                            <td>--}}
+{{--                                                <a href="javascript:void(0)"--}}
+{{--                                                    class="btn btn--base btn-sm @if($deposit->method_code >= 1000) detailBtn @else disabled @endif"--}}
+{{--                                                    @if($deposit->method_code >= 1000)--}}
+{{--                                                    data-info="{{ $details }}"--}}
+{{--                                                    @endif--}}
+{{--                                                    @if ($deposit->status == 3)--}}
+{{--                                                    data-admin_feedback="{{ $deposit->admin_feedback }}"--}}
+{{--                                                    @endif--}}
+{{--                                                    >--}}
+{{--                                                    <i class="fa fa-eye"></i>--}}
+{{--                                                </a>--}}
+{{--                                            </td>--}}
                                         </tr>
                                         @empty
                                         <tr>

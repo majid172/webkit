@@ -30,18 +30,18 @@ class Deposit extends Model
     public function badgeData(){
         $html = '';
         if($this->status == 2){
-            $html = '<span class="badge badge--warning">'.trans('Pending').'</span>';
+            $html = '<span class="badge bg--warning">'.trans('Pending').'</span>';
         }
         elseif($this->status == 1 && $this->method_code >= 1000){
-            $html = '<span class="badge badge--success">'.trans('Approved').'</span>';
+            $html = '<span class="badge bg-success">'.trans('Approved').'</span>';
         }
         elseif($this->status == 1 && $this->method_code < 1000){
-            $html = '<span class="badge badge--success">'.trans('Succeed').'</span>';
+            $html = '<span class="badge bg-success">'.trans('Succeed').'</span>';
         }
         elseif($this->status == 3){
-            $html = '<span class="badge badge--danger">'.trans('Rejected').'</span>';
+            $html = '<span class="badge bg-danger">'.trans('Rejected').'</span>';
         }else{
-            $html = '<span><span class="badge badge--dark">'.trans('Initiated').'</span></span>';
+            $html = '<span><span class="badge bg-dark">'.trans('Initiated').'</span></span>';
         }
         return $html;
     }
