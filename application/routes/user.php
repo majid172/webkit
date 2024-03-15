@@ -4,7 +4,7 @@ use App\Http\Controllers\User\EpisodeController;
 use App\Http\Controllers\RatingController;
 
 Route::namespace('User\Auth')->name('user.')->group(function () {
-       
+
 
     Route::controller('LoginController')->group(function(){
         Route::get('/login', 'showLoginForm')->name('login');
@@ -58,7 +58,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::post('twofactor/disable', 'disable2fa')->name('twofactor.disable');
 
                 //Report
-                Route::any('deposit/history', 'depositHistory')->name('deposit.history');
+                Route::any('fund/history', 'fundHistory')->name('deposit.history');
                 Route::get('transactions','transactions')->name('transactions');
 
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');

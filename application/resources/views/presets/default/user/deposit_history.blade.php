@@ -6,24 +6,49 @@
         <div class="row justify-content-center">
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
-                <div class="shadow p-3 mb-5 bg-body rounded">
-                    <form action="">
-                        <div class="mb-3 d-flex justify-content-end w-50">
-                            <div class="input-group">
-                                <input type="text" name="search" class="form-control" value="{{ request()->search }}"
-                                    placeholder="@lang('Search by transactions')">
-                                <button class="input-group-text bg-primary text-white">
-                                    <i class="las la-search"></i>
-                                </button>
+                <div class="shadow p-3 rounded mb-3">
+                    <h6 class="text-secondary pb-2">@lang('Search Fund History')</h6>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="@lang('Gateway')">
                             </div>
                         </div>
-                    </form>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="@lang('Trx number')">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="@lang('Trx number')">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="@lang('Status')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow p-3 mb-5 bg-body rounded">
+{{--                    <form action="">--}}
+{{--                        <div class="mb-3 d-flex justify-content-end w-50">--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" name="search" class="form-control" value="{{ request()->search }}"--}}
+{{--                                    placeholder="@lang('Search by transactions')">--}}
+{{--                                <button class="input-group-text bg-primary text-white">--}}
+{{--                                    <i class="las la-search"></i>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                     <div class=" custom--card">
                         <div class="p-0">
                             <div class="table-responsive">
                                 <table class="table custom--table">
                                     <thead>
-                                        <tr class="text-primary">
+                                        <tr class="text-light bg-primary">
                                             <th>@lang('Gateway')</th>
                                             <th class="text-center">@lang('Initiated')</th>
                                             <th class="text-center">@lang('Amount')</th>
@@ -38,9 +63,9 @@
                                             <td>
                                                 <span class="fw-bold"> <span class="text-primary">{{
                                                         __($deposit->gateway?->name) }}</span> </span>
-    
+
                                             </td>
-    
+
                                             <td class="text-center">
                                                 {{ showDateTime($deposit->created_at) }}<br>{{
                                                 diffForHumans($deposit->created_at) }}
@@ -68,7 +93,7 @@
                                             @php
                                             $details = ($deposit->detail != null) ? json_encode($deposit->detail) : null;
                                             @endphp
-    
+
                                             <td>
                                                 <a href="javascript:void(0)"
                                                     class="btn btn--base btn-sm @if($deposit->method_code >= 1000) detailBtn @else disabled @endif"
@@ -85,7 +110,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td class="text-muted text-center" colspan="100%">
+                                            <td class="text-muted text-center" >
                                                 <img src="{{asset('assets/images/empty.png')}}" alt="emptyImag"> <br>
                                                 {{ __($emptyMessage) }}
                                             </td>

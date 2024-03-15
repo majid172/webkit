@@ -41,17 +41,17 @@ class UserController extends Controller
                                 {
                                     $q->where('user_id',$user->id);
                                 })->count();
-         
+
         $data['total_episodes'] = Episode::with('course')
                                     ->whereHas('course',function($q){
                                         $q->whereRelation('subscription','user_id',auth()->user()->id);
                                     })->count();
-       
+
         $data['total_cost'] = Course::with('subscription')
                                 ->whereHas('subscription',function($query) use($user){
                                     $query->where('user_id',$user->id);
                                 })->sum('price');
-      
+
 
         $data['deposit_pending']    = Deposit::where('user_id',auth()->user()->id)->where('status',2)->count();
 
@@ -60,9 +60,9 @@ class UserController extends Controller
         return view($this->activeTemplate . 'user.dashboard',$data, compact('pageTitle'));
     }
 
-    public function depositHistory(Request $request)
+    public function fundHistory(Request $request)
     {
-        $pageTitle = 'Deposit History';
+        $pageTitle = 'Fund History';
         $deposits = auth()->user()->deposits();
         if ($request->search) {
             $deposits = $deposits->where('trx',$request->search);
