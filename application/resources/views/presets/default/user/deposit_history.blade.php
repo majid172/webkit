@@ -100,10 +100,7 @@
                                                 <strong class="text-secondary">{{ showAmount($deposit->final_amo) }}
                                                     {{__($deposit->method_currency)}}</strong>
                                             </td>
-                                            <td class="text-center">{!! $deposit->statusBadge !!}
-
-
-                                            </td>
+                                            <td class="text-center">{!! $deposit->statusBadge !!}</td>
                                             @php
                                             $details = ($deposit->detail != null) ? json_encode($deposit->detail) : null;
                                             @endphp

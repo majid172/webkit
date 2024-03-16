@@ -133,18 +133,42 @@ class WithdrawController extends Controller
             'post_balance' => showAmount($user->balance),
         ]);
 
-        $notify[] = ['success', 'Withdraw request sent successfully'];
+        $notify[] = ['success', 'Payout request sent successfully'];
         return to_route('user.withdraw.history')->withNotify($notify);
     }
 
     public function withdrawLog(Request $request)
     {
-        $pageTitle = "Withdraw Log";
+        $pageTitle = "Payout History";
         $withdraws = Withdrawal::where('user_id', auth()->id())->where('status', '!=', 0);
-        if ($request->search) {
-            $withdraws = $withdraws->where('trx',$request->search);
-        }
+//        if ($request->search) {
+//            $withdraws = $withdraws->where('trx',$request->search);
+//        }
         $withdraws = $withdraws->with('method')->orderBy('id','desc')->paginate(getPaginate());
         return view($this->activeTemplate.'user.withdraw.log', compact('pageTitle','withdraws'));
+    }
+    public function search(Request $request)
+    {
+        $data = $request->all();
+        $trx = $data['trx'] ?? null;
+        $gateway = $data['gateway'] ?? null;
+        $status = $data['status'] ?? null;
+
+        $withdraws = Withdrawal::where('user_id', auth()->id())
+                        ->where('status', '!=', 0)
+                        ->when($trx, function ($query) use( $trx) {
+                            return $query->where('trx','like','%'. $trx.'%');
+                        })
+                        ->when($gateway,function ($query) use ($gateway){
+                            return $query->where('gateway', 'like', '%' . $gateway . '%');
+                        })
+                        ->when($status,function ($query) use ($status){
+                            return $query->where('status',$status);
+                        })
+                        ->with('method')
+                        ->orderBy('id', 'desc')
+                        ->get();
+        return response()->json($withdraws, 200);
+
     }
 }

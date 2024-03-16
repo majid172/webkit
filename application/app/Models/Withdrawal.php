@@ -31,11 +31,11 @@ class Withdrawal extends Model
     public function badgeData(){
         $html = '';
         if($this->status == 2){
-            $html = '<span class="badge badge--warning">'.trans('Pending').'</span>';
+            $html = '<span class="badge bg-warning">'.trans('Pending').'</span>';
         }elseif($this->status == 1){
-            $html = '<span class="badge badge--success">'.trans('Approved').'</span>';
+            $html = '<span class="badge bg-success">'.trans('Approved').'</span>';
         }elseif($this->status == 3){
-            $html = '<span class="badge badge--danger">'.trans('Rejected').'</span>';
+            $html = '<span class="badge bg-danger">'.trans('Rejected').'</span>';
         }
         return $html;
     }
