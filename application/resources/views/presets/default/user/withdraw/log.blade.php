@@ -149,9 +149,7 @@
             } else {
                 var adminFeedback = '';
             }
-
             modal.find('.feedback').html(adminFeedback);
-
             modal.modal('show');
         });
     })(jQuery);

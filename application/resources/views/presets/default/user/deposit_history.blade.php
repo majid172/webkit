@@ -166,8 +166,6 @@
 </div>
 
 @endsection
-
-
 @push('script')
 <script>
     (function ($) {
@@ -201,10 +199,7 @@
             } else {
                 var adminFeedback = '';
             }
-
             modal.find('.feedback').html(adminFeedback);
-
-
             modal.modal('show');
         });
     })(jQuery);
