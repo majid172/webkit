@@ -48,7 +48,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="table_body">
                         @forelse($withdraws as $withdraw)
                             <tr style="font-size: 14px;">
                                 <td>
@@ -68,9 +68,7 @@
                                 <td class="text-center">
                                     <strong>{{ showAmount($withdraw->final_amount) }} {{ __($withdraw->currency)}}</strong>
                                 </td>
-                                <td class="text-center">{!! $withdraw->statusBadge !!}
-
-                                </td>
+                                <td class="text-center">{!! $withdraw->statusBadge !!}</td>
 
                             </tr>
                         @empty
@@ -93,8 +91,6 @@
         </div>
     </div>
 </div>
-
-
 
 {{-- APPROVE MODAL --}}
 <div id="detailModal" class="modal fade" tabindex="-1" role="dialog">
@@ -156,7 +152,7 @@
 </script>
 <script>
     $(document).ready(function() {
-            $('#gateway, #trx_id, #status').on('input click', function() {
+            $('#gateway, #trx_id, #status').on('input ', function() {
                 let trx = $('#trx_id').val();
                 let gateway = $('#gateway').val();
                 let status = $('#status').val();
@@ -169,8 +165,30 @@
                         status: status
                     },
                     success: function(response) {
-                        console.log(response);
+
+                        var searchValue = $('#table_body');
+                        searchValue.empty();
+                        $.each(response, function(index, withdraw) {
+                            console.log(withdraw.created_at)
+                            var row = `
+            <tr>
+
+<td>${withdraw.method_name}</td>
+<td class="text-center">${withdraw.createDate}</td>
+<td class="text-center ">${withdraw.amount} ${withdraw.currency}</td>
+<td class="text-primary text-center fw-bold">${withdraw.trx}</td>
+<td class="text-center">
+    <strong>${withdraw.final_amount} ${withdraw.currency}</strong>
+</td>
+<td class="text-primary text-center">${withdraw.status}</td>
+
+</tr>
+        `;
+                            searchValue.append(row);
+                        });
                     },
+
+
                     error: function(xhr, status, error) {
                         console.error(status, error);
                     }

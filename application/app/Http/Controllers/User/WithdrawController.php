@@ -149,26 +149,41 @@ class WithdrawController extends Controller
     }
     public function search(Request $request)
     {
-        $data = $request->all();
-        $trx = $data['trx'] ?? null;
-        $gateway = $data['gateway'] ?? null;
-        $status = $data['status'] ?? null;
+        $request->validate([
+            'trx' => 'nullable|string',
+            'gateway' => 'nullable|string',
+            'status' => 'nullable|integer',
+        ]);
+
+        $trx = $request->input('trx');
+        $gateway = $request->input('gateway');
+        $status = $request->input('status');
 
         $withdraws = Withdrawal::where('user_id', auth()->id())
-                        ->where('status', '!=', 0)
-                        ->when($trx, function ($query) use( $trx) {
-                            return $query->where('trx','like','%'. $trx.'%');
-                        })
-                        ->when($gateway,function ($query) use ($gateway){
-                            return $query->where('gateway', 'like', '%' . $gateway . '%');
-                        })
-                        ->when($status,function ($query) use ($status){
-                            return $query->where('status',$status);
-                        })
-                        ->with('method')
-                        ->orderBy('id', 'desc')
-                        ->get();
+            ->where('status', '!=', 0)
+            ->when($trx, function ($query, $trx) {
+                return $query->where('trx', 'like', '%' . $trx . '%');
+            })
+            ->when($gateway, function ($query, $gateway) {
+                return $query->where('gateway', 'like', '%' . $gateway . '%');
+            })
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->with('method')
+            ->orderByDesc('id')
+            ->get()
+            ->map(function ($withdraw) {
+                $withdraw->method_name = $withdraw->method->name;
+                $withdraw->createDate = showDateTime($withdraw->created_at);
+                $withdraw->amount = showAmount($withdraw->amount - $withdraw->charge);
+                $withdraw->final_amount = showAmount($withdraw->final_amount);
+                $withdraw->status = $withdraw->statusBadge;
+                return $withdraw;
+            });
+
         return response()->json($withdraws, 200);
 
     }
+
 }
