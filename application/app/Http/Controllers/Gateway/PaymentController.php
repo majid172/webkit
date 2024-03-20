@@ -31,7 +31,7 @@ class PaymentController extends Controller
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
         $pageTitle= "Course Purchase";
-        
+
         return view($this->activeTemplate . 'user.payment.coursePay', compact('gatewayCurrency','pageTitle','amount','courseId'));
     }
 
@@ -51,7 +51,7 @@ class PaymentController extends Controller
             'currency' => 'required',
         ]);
 
-        
+
         $gate = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->where('method_code', $request->method_code)->where('currency', $request->currency)->first();
@@ -67,7 +67,7 @@ class PaymentController extends Controller
 
         $charge = $gate->fixed_charge + ($request->amount * $gate->percent_charge / 100);
         $payable = $request->amount + $charge;
-        
+
         $final_amo = $payable * $gate->rate;
 
         $data = new Deposit();
@@ -113,7 +113,6 @@ class PaymentController extends Controller
         $trx = session()->get('trx');
         if((session()->get('course_id')) || (session()->get('user_id')))
         {
-            
             $course_id = session()->get('course_id');
             $user_id = session()->get('user_id');
             if(isSubscribe($course_id,$user_id))
@@ -128,6 +127,7 @@ class PaymentController extends Controller
         $deposit = Deposit::where(['trx'=> $trx,'status'=>0])->latest()->with('gateway')->firstOrFail();
 
         if ($deposit->method_code >= 1000) {
+
             return to_route('user.deposit.manual.confirm');
         }
         $dirName = $deposit->gateway->alias;
@@ -149,9 +149,9 @@ class PaymentController extends Controller
             $deposit->save();
         }
 
-        
+
         $pageTitle = 'Confirmation of Payment';
-        
+
         return view($this->activeTemplate . $data->view, compact('data', 'pageTitle', 'deposit'));
     }
 
@@ -202,14 +202,16 @@ class PaymentController extends Controller
 
     public function manualDepositConfirm()
     {
-        $track = session()->get('Track');
+//        $track = session()->get('Track');
+        $track = session()->get('trx');
         $data = Deposit::with('gateway')->where('status', 0)->where('trx', $track)->first();
+
         if (!$data) {
             return to_route(gatewayRedirectUrl());
         }
         if ($data->method_code > 999) {
 
-            $pageTitle = 'Deposit Confirm';
+            $pageTitle = 'Fund Confirm';
             $method = $data->gatewayCurrency();
             $gateway = $method->method;
             return view($this->activeTemplate . 'user.payment.manual', compact('data', 'pageTitle', 'method','gateway'));
@@ -219,8 +221,9 @@ class PaymentController extends Controller
 
     public function manualDepositUpdate(Request $request)
     {
-        $track = session()->get('Track');
+        $track = session()->get('trx');
         $data = Deposit::with('gateway')->where('status', 0)->where('trx', $track)->first();
+
         if (!$data) {
             return to_route(gatewayRedirectUrl());
         }
@@ -232,7 +235,6 @@ class PaymentController extends Controller
         $validationRule = $formProcessor->valueValidation($formData);
         $request->validate($validationRule);
         $userData = $formProcessor->processFormData($request, $formData);
-
 
         $data->detail = $userData;
         $data->status = 2; // pending

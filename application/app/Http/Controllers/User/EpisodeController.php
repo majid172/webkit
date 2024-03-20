@@ -8,6 +8,7 @@ use App\Models\CategoryDetails;
 use App\Models\Episode;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\u;
 
 class EpisodeController extends Controller
 {
@@ -18,9 +19,13 @@ class EpisodeController extends Controller
     {
         $pageTitle = "Episode List";
         $user = auth()->user();
+        if(!$user)
+        {
+            abort(403);
+        }
         $episodes = Episode::where('course_id',$course_id)->where('status',1)->get();
         $getID3 = new \getID3;
-        
+
         return view($this->activeTemplate.'user.episode.list',compact('pageTitle','episodes','course_id','getID3'));
     }
 
@@ -30,7 +35,7 @@ class EpisodeController extends Controller
         return view($this->activeTemplate.'user.episode.create',compact('pageTitle','course_id'));
     }
 
-    
+
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
@@ -51,7 +56,7 @@ class EpisodeController extends Controller
                 return back()->withNotify($notify);
             }
         }
-        $episode->description = $request->description; 
+        $episode->description = $request->description;
         $episode->save();
         $notify[] = ['success', $episode->title . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
@@ -68,7 +73,7 @@ class EpisodeController extends Controller
                         ->whereHas('course.subscription',function($q){
                             $q->where('user_id',auth()->user()->id);
                         })->first();
-                        
+
         if(!$is_subscribe)
         {
             $notify[] = ['error', 'You need to purchase this course.'];
@@ -91,7 +96,7 @@ class EpisodeController extends Controller
         return view($this->activeTemplate.'episodes',compact('pageTitle','episodes','course_id','getID3'));
     }
 
-    
+
     public function update(Request $request, string $id)
     {
         //

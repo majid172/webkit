@@ -59,7 +59,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 mt-3">@lang('Save')</button>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">@lang('Pay')</button>
                         </div>
                     </div>
                 </form>
