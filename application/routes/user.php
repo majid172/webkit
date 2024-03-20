@@ -97,8 +97,8 @@ Route::middleware('auth')->name('user.')->group(function () {
             Route::controller('WithdrawController')->prefix('payout')->name('withdraw')->group(function(){
                 Route::get('/', 'withdrawMoney');
                 Route::post('/', 'withdrawStore')->name('.money');
-                Route::get('preview', 'withdrawPreview')->name('.preview');
-                Route::post('preview', 'withdrawSubmit')->name('.submit');
+                Route::get('pre-release', 'withdrawPreview')->name('.preview');
+                Route::post('pre-release', 'withdrawSubmit')->name('.submit');
                 Route::get('history', 'withdrawLog')->name('.history');
                 Route::get('search','search')->name('.search');
             });
