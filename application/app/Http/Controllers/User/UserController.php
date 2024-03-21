@@ -70,6 +70,40 @@ class UserController extends Controller
         $deposits = $deposits->with(['gateway'])->orderBy('id','desc')->paginate(getPaginate());
         return view($this->activeTemplate.'user.deposit_history', compact('pageTitle', 'deposits'));
     }
+    public function fundSearch(Request $request)
+    {
+        $search = $request->all();
+        $deposits = auth()->user()->deposits()->with('gateway')->orderByDesc('id')
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($query) use ($search) {
+                    $query->when(isset($search['trx']), function ($query) use ($search) {
+                        $query->where('trx', 'like', '%' . $search['trx'] . '%');
+                    })
+                        ->when(isset($search['status']), function ($query) use ($search) {
+                            $query->where('status', $search['status']);
+                        })
+                        ->when(isset($search['min']), function ($query) use ($search) {
+                            $query->where('amount', '<=', $search['min']);
+                        })
+                        ->when(isset($search['max']), function ($query) use ($search) {
+                            $query->where('amount', '>=', $search['max']);
+                        });
+                });
+            })
+            ->get()
+            ->map(function ($deposit) {
+                $deposit->method_name = $deposit->gateway->name;
+                $deposit->createDate = showDateTime($deposit->created_at);
+                $deposit->amount = showAmount($deposit->amount - $deposit->charge);
+                $deposit->conversion = gs()->cur_text.' '.'='. showAmount($deposit->rate);
+                $deposit->final_amount = showAmount($deposit->final_amo);
+                $deposit->status = $deposit->statusBadge;
+                return $deposit;
+            });
+
+        return response()->json($deposits, 200);
+
+    }
 
     public function show2faForm()
     {

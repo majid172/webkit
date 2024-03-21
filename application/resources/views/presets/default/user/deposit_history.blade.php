@@ -11,25 +11,20 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <input type="text" id="gateway" class="form-control" placeholder="@lang('Gateway')">
+                                <input type="text" id="trx" class="form-control" placeholder="@lang('Trx number')">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <input type="text" id="trx" class="form-control" placeholder="@lang('Trx number')">
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="form-group">
                                 <input type="number" id="min" class="form-control" placeholder="@lang('Min amount')">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <input type="number" id="max" class="form-control" placeholder="@lang('Max amount')">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <select type="text" id="status" class="form-control"  placeholder="@lang('Status')">
                                     <option value="">@lang('Status')</option>
@@ -70,7 +65,7 @@
 {{--                                            <th>@lang('Details')</th>--}}
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="table_body">
                                         @forelse($deposits as $deposit)
                                         <tr class="td_font" style="font-size: 14px;">
                                             <td>
@@ -205,9 +200,8 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('#gateway, #trx, #min,#max,#status').on('input', function() {
+        $('#trx, #min,#max,#status').on('input', function() {
             let trx = $('#trx').val();
-            let gateway = $('#gateway').val();
             let status = $('#status').val();
             let min = $('#min').val();
             let max = $('#max').val();
@@ -216,7 +210,6 @@
                 method: 'GET',
                 data: {
                     trx: trx,
-                    gateway: gateway,
                     min: min,
                     max: max,
                     status: status
@@ -224,18 +217,20 @@
                 success: function(response) {
                     var searchValue = $('#table_body');
                     searchValue.empty();
-                    $.each(response, function(index, withdraw) {
-                        console.log(withdraw.created_at)
+                    $.each(response, function(index, fund) {
+                        // console.log(fund.method_name,fund.status,fund.final_amount,fund.amount)
                         var row = `
                                 <tr>
-                                    <td>${withdraw.method_name}</td>
-                                    <td class="text-center">${withdraw.createDate}</td>
-                                    <td class="text-center ">${withdraw.amount} ${withdraw.currency}</td>
-                                    <td class="text-primary text-center fw-bold">${withdraw.trx}</td>
+                                    <td><span class="fw-bold"> <span class="text-primary">${fund.method_name}</span></td>
+                                    <td class="text-center">${fund.createDate}</td>
+                                    <td class="text-center ">${fund.amount} ${fund.currency}</td>
+                                    <td class="text-center fw-bold text-primary">${fund.trx}</td>
                                     <td class="text-center">
-                                        <strong>${withdraw.final_amount} ${withdraw.currency}</strong>
+                                        1 ${fund.conversion} ${fund.method_currency}
+                                    <br>
+                                        <strong class="text-secondary">${fund.final_amount} ${fund.method_currency}</strong>
                                     </td>
-                                    <td class="text-primary text-center">${withdraw.status}</td>
+                                    <td class="text-primary text-center">${fund.status}</td>
                                 </tr>`;
                         searchValue.append(row);
                     });

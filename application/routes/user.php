@@ -59,7 +59,7 @@ Route::middleware('auth')->name('user.')->group(function () {
 
                 //Report
                 Route::any('fund/history', 'fundHistory')->name('deposit.history');
-                Route::get('')
+                Route::get('fund/search','fundSearch')->name('deposit.search');
                 Route::get('transactions','transactions')->name('transactions');
 
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');
