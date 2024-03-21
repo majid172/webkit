@@ -59,6 +59,7 @@ Route::middleware('auth')->name('user.')->group(function () {
 
                 //Report
                 Route::any('fund/history', 'fundHistory')->name('deposit.history');
+                Route::get('')
                 Route::get('transactions','transactions')->name('transactions');
 
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');
@@ -106,12 +107,13 @@ Route::middleware('auth')->name('user.')->group(function () {
 
         // Payment
         Route::middleware('registration.complete')->controller('Gateway\PaymentController')->group(function(){
-            Route::any('/deposit', 'deposit')->name('deposit');
+            Route::any('/fund', 'deposit')->name('deposit');
             Route::any('/payment/{amount}/{courseId}','payment')->name('payment');
-            Route::post('deposit/insert', 'depositInsert')->name('deposit.insert');
-            Route::get('deposit/confirm', 'depositConfirm')->name('deposit.confirm');
-            Route::get('deposit/manual', 'manualDepositConfirm')->name('deposit.manual.confirm');
-            Route::post('deposit/manual', 'manualDepositUpdate')->name('deposit.manual.update');
+            Route::post('fund/insert', 'depositInsert')->name('deposit.insert');
+            Route::get('fund/confirm', 'depositConfirm')->name('deposit.confirm');
+            Route::get('fund/manual', 'manualDepositConfirm')->name('deposit.manual.confirm');
+            Route::post('fund/manual', 'manualDepositUpdate')->name('deposit.manual.update');
+
         });
 
     });

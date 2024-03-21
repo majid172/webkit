@@ -165,30 +165,24 @@
                         status: status
                     },
                     success: function(response) {
-
                         var searchValue = $('#table_body');
                         searchValue.empty();
                         $.each(response, function(index, withdraw) {
                             console.log(withdraw.created_at)
                             var row = `
-            <tr>
-
-<td>${withdraw.method_name}</td>
-<td class="text-center">${withdraw.createDate}</td>
-<td class="text-center ">${withdraw.amount} ${withdraw.currency}</td>
-<td class="text-primary text-center fw-bold">${withdraw.trx}</td>
-<td class="text-center">
-    <strong>${withdraw.final_amount} ${withdraw.currency}</strong>
-</td>
-<td class="text-primary text-center">${withdraw.status}</td>
-
-</tr>
-        `;
+                                <tr>
+                                    <td>${withdraw.method_name}</td>
+                                    <td class="text-center">${withdraw.createDate}</td>
+                                    <td class="text-center ">${withdraw.amount} ${withdraw.currency}</td>
+                                    <td class="text-primary text-center fw-bold">${withdraw.trx}</td>
+                                    <td class="text-center">
+                                        <strong>${withdraw.final_amount} ${withdraw.currency}</strong>
+                                    </td>
+                                    <td class="text-primary text-center">${withdraw.status}</td>
+                                </tr>`;
                             searchValue.append(row);
                         });
                     },
-
-
                     error: function(xhr, status, error) {
                         console.error(status, error);
                     }

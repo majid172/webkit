@@ -11,27 +11,27 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="@lang('Gateway')">
+                                <input type="text" id="gateway" class="form-control" placeholder="@lang('Gateway')">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="@lang('Trx number')">
+                                <input type="text" id="trx" class="form-control" placeholder="@lang('Trx number')">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" class="form-control" placeholder="@lang('Min amount')">
+                                <input type="number" id="min" class="form-control" placeholder="@lang('Min amount')">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" class="form-control" placeholder="@lang('Max amount')">
+                                <input type="number" id="max" class="form-control" placeholder="@lang('Max amount')">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <select type="text" class="form-control"  placeholder="@lang('Status')">
+                                <select type="text" id="status" class="form-control"  placeholder="@lang('Status')">
                                     <option value="">@lang('Status')</option>
                                     <option value="0">@lang('Initiated')</option>
                                     <option value="2">@lang('Pending')</option>
@@ -186,9 +186,7 @@
                     }
                 });
             }
-
             modal.find('.userData').html(html);
-
             if ($(this).data('admin_feedback') != undefined) {
                 var adminFeedback = `
                         <div class="my-3">
@@ -203,6 +201,51 @@
             modal.modal('show');
         });
     })(jQuery);
+
+</script>
+<script>
+    $(document).ready(function() {
+        $('#gateway, #trx, #min,#max,#status').on('input', function() {
+            let trx = $('#trx').val();
+            let gateway = $('#gateway').val();
+            let status = $('#status').val();
+            let min = $('#min').val();
+            let max = $('#max').val();
+            $.ajax({
+                url: "{{ route('user.deposit.search') }}",
+                method: 'GET',
+                data: {
+                    trx: trx,
+                    gateway: gateway,
+                    min: min,
+                    max: max,
+                    status: status
+                },
+                success: function(response) {
+                    var searchValue = $('#table_body');
+                    searchValue.empty();
+                    $.each(response, function(index, withdraw) {
+                        console.log(withdraw.created_at)
+                        var row = `
+                                <tr>
+                                    <td>${withdraw.method_name}</td>
+                                    <td class="text-center">${withdraw.createDate}</td>
+                                    <td class="text-center ">${withdraw.amount} ${withdraw.currency}</td>
+                                    <td class="text-primary text-center fw-bold">${withdraw.trx}</td>
+                                    <td class="text-center">
+                                        <strong>${withdraw.final_amount} ${withdraw.currency}</strong>
+                                    </td>
+                                    <td class="text-primary text-center">${withdraw.status}</td>
+                                </tr>`;
+                        searchValue.append(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(status, error);
+                }
+            });
+        });
+    });
 
 </script>
 @endpush
