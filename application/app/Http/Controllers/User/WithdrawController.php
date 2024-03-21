@@ -155,20 +155,30 @@ class WithdrawController extends Controller
             'status' => 'nullable|integer',
         ]);
 
-        $trx = $request->input('trx');
-        $gateway = $request->input('gateway');
-        $status = $request->input('status');
+//        $trx = $request->input('trx');
+//        $gateway = $request->input('gateway');
+//        $status = $request->input('status');
+        $search = $request->all();
 
         $withdraws = Withdrawal::where('user_id', auth()->id())
-            ->where('status', '!=', 0)
-            ->when($trx, function ($query, $trx) {
-                return $query->where('trx', 'like', '%' . $trx . '%');
-            })
-            ->when($gateway, function ($query, $gateway) {
-                return $query->where('gateway', 'like', '%' . $gateway . '%');
-            })
-            ->when($status, function ($query, $status) {
-                return $query->where('status', $status);
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($query) use ($search) {
+                    $query->when(isset($search['trx']), function ($query) use ($search) {
+                        $query->where('trx', 'like', '%' . $search['trx'] . '%');
+                    })
+                        ->when(isset($search['status']), function ($query) use ($search) {
+                            $query->where('status', $search['status']);
+                        })
+                        ->when(isset($search['min']) && isset($search['max']), function ($query) use ($search) {
+                            $query->whereBetween('amount', [$search['min'], $search['max']]);
+                        })
+                        ->when(isset($search['min']) && !isset($search['max']), function ($query) use ($search) {
+                            $query->where('amount', '>=', $search['min']);
+                        })
+                        ->when(isset($search['max']) && !isset($search['min']), function ($query) use ($search) {
+                            $query->where('amount', '<=', $search['max']);
+                        });
+                });
             })
             ->with('method')
             ->orderByDesc('id')

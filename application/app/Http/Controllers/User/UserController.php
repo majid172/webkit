@@ -82,11 +82,14 @@ class UserController extends Controller
                         ->when(isset($search['status']), function ($query) use ($search) {
                             $query->where('status', $search['status']);
                         })
-                        ->when(isset($search['min']), function ($query) use ($search) {
-                            $query->where('amount', '<=', $search['min']);
+                        ->when(isset($search['min']) && isset($search['max']), function ($query) use ($search) {
+                            $query->whereBetween('amount', [$search['min'], $search['max']]);
                         })
-                        ->when(isset($search['max']), function ($query) use ($search) {
-                            $query->where('amount', '>=', $search['max']);
+                        ->when(isset($search['min']) && !isset($search['max']), function ($query) use ($search) {
+                            $query->where('amount', '>=', $search['min']);
+                        })
+                        ->when(isset($search['max']) && !isset($search['min']), function ($query) use ($search) {
+                            $query->where('amount', '<=', $search['max']);
                         });
                 });
             })
@@ -102,6 +105,7 @@ class UserController extends Controller
             });
 
         return response()->json($deposits, 200);
+
 
     }
 

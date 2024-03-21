@@ -8,35 +8,7 @@
             <div class="col-md-9">
                 <div class="shadow p-3 rounded mb-3">
                     <h6 class="text-secondary pb-2">@lang('Search Fund History')</h6>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <input type="text" id="trx" class="form-control" placeholder="@lang('Trx number')">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <input type="number" id="min" class="form-control" placeholder="@lang('Min amount')">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <input type="number" id="max" class="form-control" placeholder="@lang('Max amount')">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <select type="text" id="status" class="form-control"  placeholder="@lang('Status')">
-                                    <option value="">@lang('Status')</option>
-                                    <option value="0">@lang('Initiated')</option>
-                                    <option value="2">@lang('Pending')</option>
-                                    <option value="1">@lang('Approved')</option>
-                                    <option value="1">@lang('Succeed')</option>
-                                    <option value="3">@lang('Rejected')</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    @include($activeTemplate.'includes.search')
                 </div>
                 <div class="shadow p-3 mb-5 bg-body rounded">
 {{--                    <form action="">--}}
@@ -117,8 +89,8 @@
                                         @empty
                                         <tr>
                                             <td class="text-muted text-center" >
-                                                <img src="{{asset('assets/images/empty.png')}}" alt="emptyImag"> <br>
-                                                {{ __($emptyMessage) }}
+                                                <img src="{{asset('assets/images/empty.png')}}" alt="emptyImag">
+                                                <p>{{ __($emptyMessage) }}</p>
                                             </td>
                                         </tr>
                                         @endforelse
@@ -217,24 +189,36 @@
                 success: function(response) {
                     var searchValue = $('#table_body');
                     searchValue.empty();
-                    $.each(response, function(index, fund) {
-                        // console.log(fund.method_name,fund.status,fund.final_amount,fund.amount)
-                        var row = `
-                                <tr>
-                                    <td><span class="fw-bold"> <span class="text-primary">${fund.method_name}</span></td>
-                                    <td class="text-center">${fund.createDate}</td>
-                                    <td class="text-center ">${fund.amount} ${fund.currency}</td>
-                                    <td class="text-center fw-bold text-primary">${fund.trx}</td>
-                                    <td class="text-center">
-                                        1 ${fund.conversion} ${fund.method_currency}
-                                    <br>
-                                        <strong class="text-secondary">${fund.final_amount} ${fund.method_currency}</strong>
-                                    </td>
-                                    <td class="text-primary text-center">${fund.status}</td>
-                                </tr>`;
-                        searchValue.append(row);
-                    });
+
+                    if (response.length === 0) {
+                        var messageRow = `
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <img src="{{asset('assets/images/empty.png')}}" width="">
+                                    <p>No Data found.</p>
+                                </td>
+                            </tr>`;
+                        searchValue.append(messageRow);
+                    } else {
+                        $.each(response, function(index, fund) {
+                            var row = `
+                <tr>
+                    <td><span class="fw-bold"> <span class="text-primary">${fund.method_name}</span></td>
+                    <td class="text-center">${fund.createDate}</td>
+                    <td class="text-center ">${fund.amount} ${fund.method_currency}</td>
+                    <td class="text-center fw-bold text-primary">${fund.trx}</td>
+                    <td class="text-center">
+                        1 ${fund.conversion} ${fund.method_currency}
+                        <br>
+                        <strong class="text-secondary">${fund.final_amount} ${fund.method_currency}</strong>
+                    </td>
+                    <td class="text-primary text-center">${fund.status}</td>
+                </tr>`;
+                            searchValue.append(row);
+                        });
+                    }
                 },
+
                 error: function(xhr, status, error) {
                     console.error(status, error);
                 }

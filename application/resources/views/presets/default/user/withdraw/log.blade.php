@@ -8,32 +8,7 @@
             <div class="col-lg-9 ">
                 <div class="shadow p-3 rounded mb-3">
                     <h6 class="text-secondary pb-2">@lang('Search Payout History')</h6>
-                    <form action="{{route('user.withdraw.search')}}">
-                        @csrf
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <input type="text" id="gateway" class="form-control" placeholder="@lang('Gateway')">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <input type="text" id="trx_id" class="form-control" placeholder="@lang('Trx number')">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <select class="form-control" id="status">
-                                        <option value="">@lang('Status')</option>
-                                        <option value="1">@lang('Approved')</option>
-                                        <option value="2">@lang('Pending')</option>
-                                        <option value="3">@lang('Rejected')</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
+                    @include($activeTemplate.'includes.search')
                 </div>
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <table class="table">
@@ -154,22 +129,35 @@
     $(document).ready(function() {
             $('#gateway, #trx_id, #status').on('input ', function() {
                 let trx = $('#trx_id').val();
-                let gateway = $('#gateway').val();
+                let min = $('#min').val();
+                let max = $('#max').val();
                 let status = $('#status').val();
                 $.ajax({
                     url: "{{ route('user.withdraw.search') }}",
                     method: 'GET',
                     data: {
                         trx: trx,
-                        gateway: gateway,
+                        min:min,
+                        max:max,
                         status: status
                     },
                     success: function(response) {
                         var searchValue = $('#table_body');
                         searchValue.empty();
-                        $.each(response, function(index, withdraw) {
-                            console.log(withdraw.created_at)
-                            var row = `
+                        if(response.length == 0)
+                        {
+                            var messageRow = `
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <img src="{{asset('assets/images/empty.png')}}" width="">
+                                    <p>No Data found.</p>
+                                </td>
+                            </tr>`;
+                            searchValue.append(messageRow);
+                        }
+                        else{
+                            $.each(response, function(index, withdraw) {
+                                var row = `
                                 <tr>
                                     <td>${withdraw.method_name}</td>
                                     <td class="text-center">${withdraw.createDate}</td>
@@ -180,8 +168,10 @@
                                     </td>
                                     <td class="text-primary text-center">${withdraw.status}</td>
                                 </tr>`;
-                            searchValue.append(row);
-                        });
+                                searchValue.append(row);
+                            });
+                        }
+
                     },
                     error: function(xhr, status, error) {
                         console.error(status, error);
