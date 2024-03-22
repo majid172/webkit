@@ -54,6 +54,10 @@ trait FileInfo
             'path'      =>'assets/images/user/profile',
             'size'      =>'80x80',
         ];
+        $data['instructor'] =[
+            'path' => 'assets/images/instructor',
+            'size' => '500x500',
+        ];
         $data['adminProfile'] = [
             'path'      =>'assets/admin/images/profile',
             'size'      =>'400x400',

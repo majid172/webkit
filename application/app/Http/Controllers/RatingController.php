@@ -25,7 +25,6 @@ class RatingController extends Controller
             $rating->user_id = auth()->user()->id;
             $rating->rating = $request->rating;
             $rating->save();
-
         }
         return 'ok';
         // return response()->json(['rating' => $rating]);

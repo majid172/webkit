@@ -73,7 +73,10 @@ class EpisodeController extends Controller
         $episode_creator= Episode::with('course')->whereHas('course',function($q){
                             $q->where('creator_id',auth()->user()->id);
                         })->first();
-        $creator_id = optional($episode_creator->course)->creator_id;
+        $creator_id = null;
+        if ($episode_creator) {
+            $creator_id = optional($episode_creator->course)->creator_id;
+        }
 
         $is_subscribe = Episode::where('id',$id)
                         ->whereHas('course.subscription',function($q){

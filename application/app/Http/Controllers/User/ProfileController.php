@@ -38,18 +38,24 @@ class ProfileController extends Controller
             'country' => @$user->address->country,
             'city' => $request->city,
         ];
-        
+
         if($request->hasFile('profile_img')){
-            
             try {
                 $directory = date("Y")."/".date("m");
-                
-                $path = getFilePath('userProfile').'/'.$directory;
-                $size = getFileSize('userProfile');
-                $file = fileUploader($request->profile_img, $path,$size);
-                $user->image = $file;
+                if ($user->user_type == 1)
+                {
+                    $instructor_path = getFilePath('instructor').'/'.$directory;
+                    $instructor_size = getFileSize('instructor');
+                    $instructor_file = fileUploader($request->profile_img,$instructor_path,$instructor_size);
+                    $user->instructor_img = $instructor_file;
+                }
+
+                $profile_path = getFilePath('userProfile').'/'.$directory;
+                $profile_size = getFileSize('userProfile');
+                $profile_file = fileUploader($request->profile_img, $profile_path,$profile_size);
+
+                $user->image = $profile_file;
                 $user->img_path = $directory;
-                
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Couldn\'t upload your profile image'];
                 return back()->withNotify($notify);
@@ -79,7 +85,6 @@ class ProfileController extends Controller
             'current_password' => 'required',
             'password' => ['required','confirmed',$passwordValidation]
         ]);
-
         $user = auth()->user();
         if (Hash::check($request->current_password, $user->password)) {
             $password = Hash::make($request->password);
