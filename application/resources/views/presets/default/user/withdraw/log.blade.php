@@ -48,11 +48,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-muted text-center">
-                                    <div class="center-content">
-                                        <img src="{{ asset('assets/images/empty.png') }}" alt="emptyImage"><br>
-                                        {{ __($emptyMessage) }}
-                                    </div>
+                                <td colspan="6" class="text-center">
+                                    <img src="{{ asset('assets/images/empty.png') }}" alt="emptyImage">
+                                    <p>{{ __($emptyMessage) }}</p>
                                 </td>
                             </tr>
 

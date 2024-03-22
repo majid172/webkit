@@ -223,7 +223,6 @@ class PaymentController extends Controller
     {
         $track = session()->get('trx');
         $data = Deposit::with('gateway')->where('status', 0)->where('trx', $track)->first();
-
         if (!$data) {
             return to_route(gatewayRedirectUrl());
         }

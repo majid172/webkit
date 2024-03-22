@@ -13,18 +13,22 @@ class RatingController extends Controller
                     'course_id' => $request->course_id,
                     'user_id' => auth()->user()->id
                 ])->first();
-        
+
         if ($exist) {
             $rating = $exist;
         } else {
             $rating = new Rating();
         }
-        $rating->course_id = $request->course_id;
-        $rating->user_id = auth()->user()->id;
-        $rating->rating = $request->rating;
-        $rating->save();
+        if($request->creator_id != auth()->user()->id)
+        {
+            $rating->course_id = $request->course_id;
+            $rating->user_id = auth()->user()->id;
+            $rating->rating = $request->rating;
+            $rating->save();
+
+        }
         return 'ok';
         // return response()->json(['rating' => $rating]);
-        
+
     }
 }

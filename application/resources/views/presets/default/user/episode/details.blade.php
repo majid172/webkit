@@ -18,19 +18,19 @@
                         <div class="rating left">
                         <div class="stars right">
                             @php
-                                $maxRating = 5; 
+                                $maxRating = 5;
                                 $rating = App\Models\Rating::where([
                                         'course_id' => $details->course_id,
                                         'user_id' => auth()->user()->id
                                     ])->first();
 
-                                $currentRating = $rating->rating; 
+                                $currentRating = $rating ? $rating->rating : null;
                                 for ($i = 1; $i <= $maxRating; $i++) {
                                     $starClass = ($i <= $currentRating) ? 'rated' : '';
-                                    echo "<a class='star $starClass' data-course_id='{$details->course_id}'></a>";
+                                    echo "<a class='star $starClass' data-course_id='{$details->course_id}' data-creator_id='{$creator_id}'></a>";
                                 }
-                            @endphp     
-                            
+                            @endphp
+
 
                         </div>
                         </div>
@@ -48,17 +48,17 @@
                                 <div class="title px-3 py-2">
                                     <h5 class="text-primary">{{Str::limit($item->title,15, '...')}}</h5>
                                     <p class="text-secondary">{{Str::limit($item->description,50)}}</p>
-                                </div>   
+                                </div>
                                 <div class="px-3 pb-3">
                                     <a class="btn btn-primary" href="{{ route('user.episode.details',$item->id ) }}">@lang('See More')</a>
                                 </div>
                             </div>
                         </div>
                         @empty
-                            
+
                         @endforelse
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
@@ -113,36 +113,37 @@
             $(this).removeClass('to_rate').addClass('rated');
             $(this).parent().find('.star:lt(' + $(this).index() + ')').removeClass('to_rate').addClass('rated');
             $(this).parent().find('.star:gt(' + $(this).index() + ')').removeClass('no_to_rate').removeClass('rated');
-            /*Save your rate*/
-            /*TODO*/
+
         });
 });
 </script>
 
 <script>
-    
+
     $('.star').on('click', function() {
         var rating = $(this).index() + 1;
         var course_id = $(this).data('course_id');
-        
+        var creator_id = $(this).data('creator_id');
+
         $.ajax({
             url: "{{route('user.rating')}}",
             method: 'GET',
             data:{
                 rating:rating,
                 course_id:course_id,
+                creator_id:creator_id,
                 // _token: '{{ csrf_token() }}'
-            }, 
+            },
             success: function(data) {
                 console.log(data.rating.user_id);
-               
+
             },
             error: function(xhr, status, error) {
                 console.log('error');
             }
         });
     });
-  
+
 </script>
 
 @endpush
