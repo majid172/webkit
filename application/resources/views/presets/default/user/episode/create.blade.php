@@ -20,8 +20,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -36,7 +34,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-2 px-3 py-2">
                                 <div class="col-md-12">
                                     <label for="description" class="mb-1">@lang('Description')</label>
@@ -46,7 +43,7 @@
                                     <button type="submit" class="btn btn-sm btn-primary w-100">@lang('Create Episode')</button>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

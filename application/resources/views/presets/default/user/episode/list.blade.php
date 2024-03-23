@@ -36,6 +36,11 @@
                                                     class="badge bg-primary mx-3"
                                                 >{{
                                $duration }}</span></a>
+                                            @if (auth()->user()->user_type==1)
+
+                                                    <i class="las la-pen edit" title="edit_episode"   data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="{{ucfirst($item->title)}}" data-description="{{$item->description}}" data-id="{{$item->id}}"></i>
+
+                                            @endif
                                         </button>
                                     </h2>
 
@@ -63,6 +68,52 @@
         </div>
     </div>
 </div>
+
+{{--    modal --}}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2 px-3 py-2">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title" class="mb-1">@lang('Title')</label>
+                            <input type="text" name="title" class="form-control" id="title">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2 px-3 py-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="link" class="mb-1">@lang('Episode Link')</label>
+                            <input type="text" class="form-control" name="file_link" placeholder="@lang('Episode link')" value="{{old('file_link')}}" id="link">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="file" class="mb-1">@lang('Episode Upload')</label>
+                            <input type="file" class="form-control" name="file" value="{{old('file')}}" placeholder="@lang('File')" id="file">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2 px-3 py-2">
+                    <div class="col-md-12">
+                        <label for="description" class="mb-1">@lang('Description')</label>
+                        <textarea name="description" value="{{old('description')}}" id="description" class="form-control" cols="30" rows="5"></textarea>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">@lang('Update')</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('style')
     <style>
@@ -70,4 +121,18 @@
             width: 100% !important;
         }
     </style>
+@endpush
+@push('script')
+    <script>
+        $('.edit').on('click',function(){
+
+            let title = $(this).data('title');
+
+            let description = $(this).data('description');
+            let modal = $('#staticBackdrop');
+            modal.find('input[name="title"]').val(title);
+            modal.find('textarea[name="description"]').val(description);
+            $('.modal-title').text("Title : "+title);
+        })
+    </script>
 @endpush
