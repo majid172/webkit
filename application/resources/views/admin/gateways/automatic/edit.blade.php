@@ -11,7 +11,7 @@
                 <input type="hidden" name="description" value="{{ $gateway->description }}">
 
                 <div class="card  mt-2">
-                    
+
                         <div class="card-body">
                             <div class="payment-method-item block-item">
                                 <div class="px-2">
@@ -30,14 +30,14 @@
                                                         @empty
                                                         <option value="">@lang('No available currency support')</option>
                                                         @endforelse
-    
+
                                                     </select>
                                                     <button type="button"
                                                         class="btn btn--primary input-group-text bg--primary newCurrencyBtn"
                                                         data-crypto="{{ $gateway->crypto }}"
                                                         data-name="{{ $gateway->name }}">@lang('Add Currency')</button>
                                                 </div>
-                                            
+
                                             </div>
                                             @endif
                                             <p>{{ __($gateway->description) }}</p>
@@ -109,7 +109,7 @@
                             <div class="card-body">
                                 <input type="hidden" name="currency[{{ $currencyIndex }}][symbol]"
                                 value="{{ $gatewayCurrency->symbol }}">
-                                <div class=" block-item child--item mb-1"> 
+                                <div class=" block-item child--item mb-1">
                                     <div class="payment-method-body">
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -210,8 +210,20 @@
                                                                 </div>
 
                                                             </div>
+
                                                         </div>
-                                                        
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="mt-2">
+                                                    <div class="">
+                                                        <div class="input-field">
+                                                            <label class="active">@lang('Image')</label>
+                                                            <input type="file" id="demo" class="dropify">
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -385,7 +397,7 @@
                             <!-- **new payment-method-item end -->
 
                         </div>
-                        
+
                     </div>
                 </div>
                 <button type="submit" class="btn btn--primary w-100 btn-global my-4">
@@ -405,7 +417,16 @@
         class="la la-undo"></i>@lang('Back')</a>
 @endpush
 
+@push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
+
 @push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.dropify').dropify();
+
+    </script>
 <script>
     (function ($) {
         "use strict";

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EpisodeEditRequest;
 use App\Models\Category;
 use App\Models\CategoryDetails;
 use App\Models\Episode;
@@ -86,11 +87,10 @@ class EpisodeController extends Controller
         if(($is_subscribe) || ($creator_id == auth()->user()->id))
         {
             $details = Episode::where('id',$id)->first();
-            $relateds = Episode::where('id','!=',$id)->with('course')
+            $relateds = Episode::where('id','!=',$id)->where('status',1)->with('course')
                 ->whereHas('course',function ($q) use($details){
                     $q->where('id',$details->course_id);
-                })
-                ->limit(3)->get();
+                })->inRandomOrder()->limit(3)->get();
         }
         else
         {
@@ -111,14 +111,19 @@ class EpisodeController extends Controller
     }
 
 
-    public function update(Request $request, string $id)
+    public function episodeEdit(EpisodeEditRequest $request)
     {
-        //
+        $validateData = $request->validated();
+        $episode = Episode::where('id',$validateData['id'])->firstOrFail();
+        $episode->title = $validateData['title'];
+        $episode->file = $validateData['file'];
+        $episode->file_link = $request->file_link;
+        $episode->description = $validateData['description'];
+        $episode->save();
+        $notify[] = ['success', $episode->title . ' has been updated successfully'];
+        return redirect()->back()->withNotify($notify);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

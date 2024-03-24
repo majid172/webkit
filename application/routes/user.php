@@ -73,7 +73,6 @@ Route::middleware('auth')->name('user.')->group(function () {
                Route::get('/edit/{courseId}','edit')->name('edit');
                Route::post('/update/{couserId}','update')->name('update');
                Route::get('/episode/list/{category_id}','episodeList')->name('episode.list');
-               Route::post('/episode/edit','episodeEdit')->name('episode.edit');
                Route::get('/episode/details/{category_id}/{ep_id}', 'details')->name('episode.details');
 
             });
@@ -83,6 +82,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::get('/create/{course_id}','create')->name('create');
                 Route::post('/store','store')->name('store');
                 Route::get('/details/{id}','details')->name('details');
+                Route::post('/edit','episodeEdit')->name('edit');
             });
             Route::get('/rating',[RatingController::class,'rating'])->name('rating');
 

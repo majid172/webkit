@@ -64,6 +64,27 @@
                     </div>
                 </form>
             </div>
+
+            <div class="row">
+                @foreach($gatewayCurrency as $data)
+                    <div class="col-lg-4">
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <h6 class="text-primary text-center">{{$data->name}}</h6>
+                            <div class="list-group">
+                                <label class="list-group-item text-secondary">
+                                    <i class="las la-check-circle"></i>
+                                    @lang('Min') : {{__($general->cur_sym)}}{{showAmount($data->min_amount)}}
+                                </label>
+                                <label class="list-group-item text-secondary">
+                                    <i class="las la-check-circle"></i>
+                                    @lang('Max') : {{__($general->cur_sym)}}{{showAmount($data->max_amount)}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 </div>
