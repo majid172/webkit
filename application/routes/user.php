@@ -73,6 +73,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                Route::get('/edit/{courseId}','edit')->name('edit');
                Route::post('/update/{couserId}','update')->name('update');
                Route::get('/episode/list/{category_id}','episodeList')->name('episode.list');
+               Route::post('/episode/edit','episodeEdit')->name('episode.edit');
                Route::get('/episode/details/{category_id}/{ep_id}', 'details')->name('episode.details');
 
             });

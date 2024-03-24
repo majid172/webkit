@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EpisodeEditRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Episode;
@@ -26,7 +27,7 @@ class CourseController extends Controller
                         ->whereHas('subscription',function($q) use ($user){
                             $q->where('user_id',$user->id);
                         })->get();
-                       
+
         }
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }
@@ -74,6 +75,18 @@ class CourseController extends Controller
         $episodes = Episode::where('category_id',$category_id)->where('status',1)->with('category')->get();
         return view($this->activeTemplate.'user.course.episode',compact('pageTitle','episodes'));
     }
+    public function episodeEdit(EpisodeEditRequest $request)
+    {
+        $validateData = $request->validated();
+        $episode = Episode::where('id',$validateData['id'])->firstOrFail();
+        $episode->title = $validateData['title'];
+        $episode->file = $validateData['file'];
+        $episode->file_link = $request->file_link;
+        $episode->description = $validateData['description'];
+        $episode->save();
+        $notify[] = ['success', $episode->title . ' has been updated successfully'];
+        return redirect()->back()->withNotify($notify);
+    }
 
     public function details($category_id,$ep_id)
     {
@@ -84,7 +97,7 @@ class CourseController extends Controller
         {
             return $this->subscribe($category_id,$user);
         }
-        
+
         $details = Episode::where(['id' => $ep_id])->with('category')->first();
         $relateds = Episode::where('id','!=',$ep_id)->where('category_id',$category_id)->with('category')->limit(3)->get();
         return view($this->activeTemplate.'user.course.details',compact('pageTitle','details','relateds'));
