@@ -1,4 +1,4 @@
-<div class="col-md-3 mb-5">
+<div class="col-lg-3 mb-5">
     <div class="card">
         <div class="card-body">
             <ul class="list-group list-group-flush">
