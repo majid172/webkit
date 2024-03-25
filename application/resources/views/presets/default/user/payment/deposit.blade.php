@@ -1,6 +1,6 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
+{{--@include($activeTemplate.'includes.breadcumb')--}}
 <div class="container">
     <div class="row justify-content-center">
         @include($activeTemplate.'includes.sidebar')
@@ -64,39 +64,63 @@
                     </div>
                 </form>
             </div>
-
-            <div class="row">
                 @foreach($gatewayCurrency as $data)
-                    <div class="col-lg-4">
-                        <div class="shadow p-3 mb-3 bg-body rounded">
-                            @if(isset($data->image))
-                                <img src="{{getImage(getFilePath('automaticGateway').'/' . @$data->img_path .'/'.
-                            @$data->image)
-                            }}" alt="gateway_img">
-                            @endif
+                    <div class="shadow p-3 mb-5 bg-body rounded ">
+                        <ul class="list-group list-group-flush details" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold text-primary">{{__($data->name)}}</div>
+                                    <span class="badge text-secondary mt-3">@lang("Limit") : {{$data->symbol}}{{showAmount($data->min_amount)
+                                    }} - {{$data->symbol}}{{showAmount($data->max_amount)}}
+                                    </span>
+                                </div>
+                                <span class="badge ">
+                                    @if(isset($data->image))
+                                        <img src="{{getImage(getFilePath('automaticGateway').'/'.@$data->img_path.'/'.@$data->image)}}" alt="">
+                                    @else
+                                        <img src="{{asset('assets/images/empty.png')}}" alt="no_gateway"
+                                             style="width: 40px;height: 40px;">
+                                    @endif
 
-                            <h6 class="text-primary text-center">{{$data->name}}</h6>
-                            <div class="list-group">
-                                <label class="list-group-item text-secondary">
-                                    <i class="las la-check-circle"></i>
-                                    @lang('Min') : {{__($general->cur_sym)}}{{showAmount($data->min_amount)}}
-                                </label>
-                                <label class="list-group-item text-secondary">
-                                    <i class="las la-check-circle"></i>
-                                    @lang('Max') : {{__($general->cur_sym)}}{{showAmount($data->max_amount)}}
-                                </label>
-                            </div>
-                        </div>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 @endforeach
-            </div>
 
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
         </div>
     </div>
 </div>
 @endsection
 
 @push('script')
+    <script>
+
+            $('.details').on('click',function(){
+                alert('ok')
+            });
+
+    </script>
 <script>
     (function ($) {
         "use strict";
