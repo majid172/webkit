@@ -54,6 +54,10 @@ trait FileInfo
             'path'      =>'assets/images/user/profile',
             'size'      =>'80x80',
         ];
+        $data['automaticGateway'] = [
+            'path'      =>'assets/images/admin/automatic/gateway',
+            'size'      =>'344x344',
+        ];
         $data['instructor'] =[
             'path' => 'assets/images/instructor',
             'size' => '500x500',

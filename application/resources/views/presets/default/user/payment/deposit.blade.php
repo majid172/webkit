@@ -69,6 +69,12 @@
                 @foreach($gatewayCurrency as $data)
                     <div class="col-lg-4">
                         <div class="shadow p-3 mb-3 bg-body rounded">
+                            @if(isset($data->image))
+                                <img src="{{getImage(getFilePath('automaticGateway').'/' . @$data->img_path .'/'.
+                            @$data->image)
+                            }}" alt="gateway_img">
+                            @endif
+
                             <h6 class="text-primary text-center">{{$data->name}}</h6>
                             <div class="list-group">
                                 <label class="list-group-item text-secondary">

@@ -40,6 +40,7 @@ class AutomaticGatewayController extends Controller
 
     public function update(Request $request, $code)
     {
+
         $gateway = Gateway::where('code',$code)->firstOrFail();
         $this->gatewayValidator($request)->validate();
         $this->gatewayCurrencyValidator($request, $gateway)->validate();
@@ -55,9 +56,7 @@ class AutomaticGatewayController extends Controller
         $gateway->save();
 
         if ($request->has('currency')) {
-
             $gateway->currencies()->delete();
-
             foreach ($request->currency as $key => $currency) {
                 $currencyIdentifier = $this->currencyIdentifier($currency['name'], $gateway->name . ' ' . $currency['currency']);
 
@@ -69,7 +68,6 @@ class AutomaticGatewayController extends Controller
                 foreach ($parameters->where('global', false) as $param_key => $param_value) {
                     $param[$param_key] = $currency['param'][$param_key];
                 }
-
                 $gatewayCurrency = new GatewayCurrency();
                 $gatewayCurrency->name = $currency['name'];
                 $gatewayCurrency->gateway_alias = $gateway->alias;
@@ -81,6 +79,20 @@ class AutomaticGatewayController extends Controller
                 $gatewayCurrency->rate = $currency['rate'];
                 $gatewayCurrency->symbol = $currency['symbol'];
                 $gatewayCurrency->method_code = $code;
+                if($currency['image']){
+                    try {
+                        $directory = date("Y")."/".date("m");
+                        $path = getFilePath('automaticGateway').'/'.$directory;
+                        $size = getFileSize('automaticGateway');
+                        $file = fileUploader($currency['image'], $path,$size);
+
+                        $gatewayCurrency->image = $file;
+                        $gatewayCurrency->img_path = $directory;
+                    } catch (\Exception $exp) {
+                        $notify[] = ['error', 'Couldn\'t upload your gateway image'];
+                        return back()->withNotify($notify);
+                    }
+                }
                 $gatewayCurrency->gateway_parameter = json_encode($param);
                 $gatewayCurrency->save();
             }
