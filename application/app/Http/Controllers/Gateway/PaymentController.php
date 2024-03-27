@@ -38,7 +38,6 @@ class PaymentController extends Controller
     public function depositInsert(Request $request)
     {
         $user = auth()->user();
-
         if($request->gateway == 1)
         {
             $courseCharge = Charge::first();
