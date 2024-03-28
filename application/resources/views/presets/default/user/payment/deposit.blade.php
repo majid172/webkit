@@ -23,7 +23,8 @@
                                 </div>
                                 <span class="badge ">
                                     @if(isset($data->image))
-                                        <img src="{{getImage(getFilePath('automaticGateway').'/'.@$data->img_path.'/'.@$data->image)}}" alt="">
+                                        <img src="{{getImage(getFilePath('gatewayImage').'/'.@$data->img_path.'/'
+                                        .@$data->image)}}" alt="">
                                     @else
                                         <img src="{{asset('assets/images/empty.png')}}" alt="no_gateway"
                                              style="width: 40px;height: 40px;">

@@ -110,6 +110,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="input-field">
+                                    <label class="active">@lang('Image')</label>
+                                    <input type="file" name="image" id="demo" class="dropify">
+                                </div>
+                            </div>
                         </div>
                         <div class="payment-method-body">
                             <div class="row">
@@ -219,6 +225,7 @@
 @endpush
 
 @push('style')
+    <link rel="stylesheet" href="{{asset('assets/common/css/dropify.min.css')}}" />
 <style>
     .btn-sm {
         line-height: 5px;
@@ -227,7 +234,11 @@
 @endpush
 
 @push('script')
-<script>
+    <script src="{{asset('assets/common/js/dropify.min.js')}}"></script>
+    <script>
+        $('.dropify').dropify();
+    </script>
+    <script>
 
     (function ($) {
         "use strict";

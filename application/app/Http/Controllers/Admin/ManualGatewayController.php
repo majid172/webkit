@@ -100,6 +100,20 @@ class ManualGatewayController extends Controller
         $singleCurrency->fixed_charge = $request->fixed_charge;
         $singleCurrency->percent_charge = $request->percent_charge;
         $singleCurrency->rate = $request->rate;
+        if($request->hasFile('image')){
+            try {
+                $directory = date("Y")."/".date("m");
+                $path = getFilePath('gatewayImage').'/'.$directory;
+                $size = getFileSize('gatewayImage');
+                $file = fileUploader($request->image, $path,$size);
+
+                $singleCurrency->image = $file;
+                $singleCurrency->img_path = $directory;
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your gateway image'];
+                return back()->withNotify($notify);
+            }
+        }
         $singleCurrency->save();
 
 

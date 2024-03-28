@@ -109,6 +109,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="input-field">
+                                    <label class="active">@lang('Image')</label>
+                                    <input type="file" name="image" id="demo" class="dropify">
+                                </div>
+                            </div>
                         </div>
                         <div class="payment-method-body">
                             <div class="row">
@@ -192,6 +198,7 @@
 <x-form-generator></x-form-generator>
 @endsection
 @push('style')
+    <link rel="stylesheet" href="{{asset('assets/common/css/dropify.min.css')}}" />
 <style>
     .trumbowyg-box,
     .trumbowyg-editor {
@@ -200,6 +207,12 @@
     }
 </style>
 @endpush
+
+@push('breadcrumb-plugins')
+    <a href="{{ route('admin.withdraw.method.index') }}" class="btn btn-sm btn--primary">@lang('Back')
+    </a>
+@endpush
+
 @push('script')
 <script>
     "use strict"
@@ -209,15 +222,11 @@
 </script>
 
 <script src="{{ asset('assets/common/js/form_actions.js') }}"></script>
-@endpush
+<script src="{{asset('assets/common/js/dropify.min.js')}}"></script>
+<script>
+    $('.dropify').dropify();
+</script>
 
-
-@push('breadcrumb-plugins')
-<a href="{{ route('admin.withdraw.method.index') }}" class="btn btn-sm btn--primary">@lang('Back')
-</a>
-@endpush
-
-@push('script')
 <script>
     (function ($) {
         "use strict";

@@ -80,14 +80,12 @@ class WithdrawMethodController extends Controller
             'currency'       => 'required',
             'instruction'    => 'required'
         ];
-
         $formProcessor = new FormProcessor();
         $generatorValidation = $formProcessor->generatorValidation();
         $validation = array_merge($validation,$generatorValidation['rules']);
         $request->validate($validation,$generatorValidation['messages']);
 
         $method = WithdrawMethod::findOrFail($id);
-
         $generate = $formProcessor->generate('withdraw_method',true,'id',$method->form_id);
         $method->form_id        = @$generate->id ?? 0;
         $method->name           = $request->name;
@@ -98,6 +96,20 @@ class WithdrawMethodController extends Controller
         $method->percent_charge = $request->percent_charge;
         $method->description    = $request->instruction;
         $method->currency       = $request->currency;
+        if ($request->hasFile('image')){
+            try {
+                $directory = date("Y")."/".date("m");
+                $path = getFilePath('gatewayImage').'/'.$directory;
+                $size = getFileSize('gatewayImage');
+                $file = fileUploader($request->image, $path,$size);
+
+                $method->image = $file;
+                $method->path = $directory;
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Couldn\'t upload your gateway image'];
+                return back()->withNotify($notify);
+            }
+        }
         $method->save();
 
 

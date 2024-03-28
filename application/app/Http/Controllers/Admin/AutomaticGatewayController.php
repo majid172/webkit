@@ -82,8 +82,8 @@ class AutomaticGatewayController extends Controller
                 if($currency['image']){
                     try {
                         $directory = date("Y")."/".date("m");
-                        $path = getFilePath('automaticGateway').'/'.$directory;
-                        $size = getFileSize('automaticGateway');
+                        $path = getFilePath('gatewayImage').'/'.$directory;
+                        $size = getFileSize('gatewayImage');
                         $file = fileUploader($currency['image'], $path,$size);
 
                         $gatewayCurrency->image = $file;
