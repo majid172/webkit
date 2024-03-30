@@ -1,6 +1,6 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
+
 <div class="py-5 ">
     <div class="container">
         <div class="row justify-content-center">
@@ -22,7 +22,7 @@
                                     <div class="form-group">
                                         <label for="category" class="mb-1">@lang('Category')</label>
                                         <select type="text" name="category_id" class="form-control" placeholder="Choose category" id="category">
-                                            
+
                                             @foreach ($categories as $item)
                                                 <option value="{{$item->id}}" class="text-primary">{{ucwords($item->name)}}</option>
                                             @endforeach
@@ -31,12 +31,12 @@
                                 </div>
                             </div>
                             <div class="row mb-2 px-3 py-2">
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price" class="mb-1">@lang('Price')</label>
                                         <input type="number" name="price" class="form-control" placeholder="ex.10.00 USD" id="price">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -52,7 +52,7 @@
                                     <button type="submit" class="btn  btn-primary w-100">@lang('Save Course')</button>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

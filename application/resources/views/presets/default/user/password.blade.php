@@ -1,7 +1,6 @@
 @extends($activeTemplate.'layouts.master')
-
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
+
 <div class="py-5 ">
     <div class="container">
         <div class="row justify-content-center">
@@ -12,7 +11,7 @@
                         <h5 class="card-title">@lang('Change Password')</h5>
                     </div>
                     <div class="card-body">
-    
+
                         <form action="" method="post">
                             @csrf
                             <div class="form-group">

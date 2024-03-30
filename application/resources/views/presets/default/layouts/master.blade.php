@@ -71,7 +71,9 @@
 </div>
 <!-- Spinner End -->
     @include($activeTemplate.'includes.header')
-
+    @if(request()->route()->uri !='/')
+        @include($activeTemplate.'includes.breadcumb')
+    @endif
     <div class="page-wrapper">
         @yield('content')
     </div>

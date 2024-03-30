@@ -1,6 +1,6 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
+
 <div class="py-5 ">
     <div class="container">
         <div class="row justify-content-center">
@@ -25,17 +25,17 @@
                                 <div class="title px-3 py-2">
                                     <h5 class="text-primary">{{Str::limit($item->title,15, '...')}}</h5>
                                     <p class="text-secondary">{{Str::limit($item->description,60)}}</p>
-                                </div>   
+                                </div>
                                 <div class="px-3 pb-3">
                                     <a class="btn btn-primary" href="{{ route('user.course.episode.details', ['category_id'=>$item->category_id,'ep_id'=>$item->id]) }}">@lang('See More')</a>
                                 </div>
                             </div>
                         </div>
                         @empty
-                            
+
                         @endforelse
-                        
-                        
+
+
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
 <div class="py-5 ">
     <div class="container">
         <div class="row justify-content-center">
@@ -50,7 +49,7 @@
                                                 {{__($general->cur_text)}}</span>
                                         </li>
                                         <li class="list-group-item justify-content-between d-none rate-element">
-    
+
                                         </li>
                                         <li class="list-group-item justify-content-between d-none in-site-cur">
                                             <span>@lang('In') <span class="base-currency"></span></span>

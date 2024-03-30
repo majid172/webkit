@@ -1,6 +1,6 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
-@include($activeTemplate.'includes.breadcumb')
+
 <div class="py-5 ">
     <div class="container">
         <div class="row justify-content-center">
@@ -13,16 +13,16 @@
                     <div class="text-primary">
                         <h5 class="card-title">@lang('Add Your Account')</h5>
                     </div>
-    
+
                     <div class="card-body">
                         <h6 class="mb-3">
                             @lang('Use the QR code or setup key on your Google Authenticator app to add your account. ')
                         </h6>
-    
+
                         <div class="form-group mx-auto text-center">
                             <img class="mx-auto" src="{{$qrCodeUrl}}">
                         </div>
-    
+
                         <div class="form-group">
                             <label class="form-label">@lang('Setup Key')</label>
                             <div class="input-group">
@@ -32,7 +32,7 @@
                                         class="fa fa-copy text-primary"></i> </button>
                             </div>
                         </div>
-    
+
                         <label><i class="fa fa-info-circle"></i> @lang('Help')</label>
                         <p>@lang('Google Authenticator is a multifactor app for mobile devices. It generates timed codes
                             used during the 2-step verification process. To use Google Authenticator, install the Google
@@ -42,11 +42,11 @@
                     </div>
                 </div>
             </div>
-    
+
             @endif
-    
+
             <div class="col-md-5">
-    
+
                 @if(auth()->user()->ts)
                 <div class="shadow p-3 mb-5 bg-body rounded">
                     <div class="text-primary">
