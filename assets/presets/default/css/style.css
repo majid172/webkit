@@ -37,7 +37,9 @@
     opacity: 1;
 }
 
-
+.show{
+    width: 100% !important;
+}
 /*** Button ***/
 .btn {
     font-family: 'Nunito', sans-serif;
@@ -89,6 +91,10 @@
 .form-check-input:checked {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
+}
+
+.footer a{
+    text-decoration: none;
 }
 /* In your CSS file */
 .card_icon i {

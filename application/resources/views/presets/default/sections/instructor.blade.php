@@ -32,7 +32,8 @@
                             @else
                                 <a href="{{route('instructor.details',$instructor->id)}}" class="text-primary">{{ucfirst($instructor->username)}}</a>
                             @endif</h5>
-                        <small>{{ucfirst($instructor->designation)}}</small>
+                            <small>{{ ucfirst($instructor->designation) ?? 'Empty Designation' }}</small>
+
                     </div>
                 </div>
             </div>

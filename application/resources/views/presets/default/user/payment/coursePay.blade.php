@@ -51,7 +51,7 @@
                             <div class="mt-2 px-3">
                                 <input type="hidden" name="gateway">
                                 <div class="form-group">
-                                    <label class="form-label">@lang('Amount')</label>
+                                    <label class="form-label">@lang('Course Amount ')</label>
                                     <div class="input-group">
                                         <input type="number" step="any" name="amount" class="form-control form--control
                                     amount" value="{{ showAmount($amount) }}" autocomplete="off" required readonly>

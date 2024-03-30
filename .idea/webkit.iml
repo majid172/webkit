@@ -123,6 +123,16 @@
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/carbonphp/carbon-doctrine-types" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/james-heinrich/getid3" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/laravel/prompts" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/laravel/socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/league/oauth1-client" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/stripe/stripe-php" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/symfony/polyfill-php83" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/stripe/stripe-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

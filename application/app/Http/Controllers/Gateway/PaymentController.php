@@ -73,6 +73,12 @@ class PaymentController extends Controller
             $instructor = instructor($request->course_id);
 
         }
+
+        if($instructor->creator_id == $user->id){
+        $notify[]=['error','Course instructor can\'t buy '];
+        return back()->withNotify($notify);
+        }
+
         $data = new Deposit();
         $data->user_id = ($instructor)?$instructor->creator_id:$user->id;
         $data->method_code = $gate->method_code;

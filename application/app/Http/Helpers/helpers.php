@@ -503,6 +503,7 @@ function fromBalance($request,$user,$charge)
 
 function instructor($courseId)
 {
+    $user_id=auth()->user()->id;
     $course = Course::where('id',$courseId)->first();
     return $course;
 }

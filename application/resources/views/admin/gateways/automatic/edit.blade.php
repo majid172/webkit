@@ -219,14 +219,14 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                     <div class="mt-2">
-                                                        <div class="">
-                                                            <div class="input-field">
-                                                                <label class="active">@lang('Image')</label>
-                                                                <input type="file" name="gateway_img" id="demo"
-                                                                       class="dropify">
 
-                                                            </div>
+                                                        <div class="input-field">
+                                                            <label class="active">@lang('Image')</label>
+                                                            <input type="file" name="gateway_img" id="demo"
+                                                                    class="dropify">
+
                                                         </div>
+
                                                     </div>
                                                 </div>
                                                 @if($parameters->where('global', false)->count() != 0 )
