@@ -64,7 +64,7 @@
                             <div class="mt-3 preview-details d-none">
                                 <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <span>@lang('Limit')</span>
+                                        <span>@lang('Transaction Range')</span>
                                         <span><span class="min fw-bold">0</span> {{__($general->cur_text)}} - <span
                                                 class="max fw-bold">0</span> {{__($general->cur_text)}}</span>
                                     </li>
@@ -73,7 +73,7 @@
                                         <span><span class="charge fw-bold">0</span> {{__($general->cur_text)}}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <span>@lang('Payable')</span> <span><span class="payable fw-bold"> 0</span>
+                                        <span>@lang('Total Pay')</span> <span><span class="payable fw-bold"> 0</span>
                                             {{__($general->cur_text)}}</span>
                                     </li>
                                     <li class="list-group-item justify-content-between d-none rate-element">
