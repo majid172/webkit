@@ -452,12 +452,12 @@ function fromBalance($request,$user,$charge)
     $subscriptions->course_id = $request->course_id;
     $subscriptions->save();
     $payable_amount = $request->amount;
-   
+
      // update creator account
     $course = Course::find($courseId);
     $instructor = User::find($course->creator_id);
     $instructor->balance += $payable_amount - ($charge->fixed_charge + $charge->percentage_charge/100);
-    
+
     if($user->balance < $payable_amount)
     {
         $notify[] = ['error', 'You don\'t have sufficient balance.'];
@@ -476,7 +476,7 @@ function fromBalance($request,$user,$charge)
     $transaction->remark = 'Purchase_from_wallet';
     $transaction->save();
     $user->save();
-    $instructor->save();  
+    $instructor->save();
 
     $adminNotification = new AdminNotification();
     $adminNotification->user_id = $user->id;
@@ -493,7 +493,7 @@ function fromBalance($request,$user,$charge)
                 $q->where('course_id',$courseId)
                     ->where('user_id',$userId);
                 })->exists();
-                    
+
         if($is_subscribe)
         {
             $notify[] = ['error', 'Already buy this course.'];
@@ -501,11 +501,10 @@ function fromBalance($request,$user,$charge)
         }
     }
 
-function instructorBalance($courseId,$amount,$charge)
+function instructor($courseId)
 {
-    
-    
-    
+    $course = Course::where('id',$courseId)->first();
+    return $course;
 }
 function gs()
 {
