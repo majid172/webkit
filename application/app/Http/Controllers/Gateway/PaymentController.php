@@ -43,13 +43,11 @@ class PaymentController extends Controller
             $courseCharge = Charge::first();
            return  fromBalance($request,$user,$courseCharge);
         }
-
         $request->validate([
             'amount' => 'required|numeric|gt:0',
             'method_code' => 'required',
             'currency' => 'required',
         ]);
-
 
         $gate = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
@@ -82,13 +80,14 @@ class PaymentController extends Controller
         $data->trx = getTrx();
         $data->try = 0;
         $data->status = 0;
-        $data->save();
+
         session()->put('trx', $data->trx);
-        if($request->course_id && $request->user_id)
+        if($request->course_id && ($user==true))
         {
             session()->put('course_id',$request->course_id);
-            session()->put('user_id',$request->user_id);
+            session()->put('user_id',$user->id);
         }
+        $data->save();
         return to_route('user.deposit.confirm');
     }
 
@@ -109,6 +108,7 @@ class PaymentController extends Controller
 
     public function depositConfirm()
     {
+
         $trx = session()->get('trx');
         if((session()->get('course_id')) || (session()->get('user_id')))
         {

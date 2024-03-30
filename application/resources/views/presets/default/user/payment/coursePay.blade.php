@@ -47,6 +47,7 @@
                     <div class="modal-body">
                         <input type="hidden" name="method_code">
                         <input type="hidden" name="currency">
+                        <input type="hidden" name="course_id" value="{{$courseId}}">
                         <div class="text-primary custom--card">
                             <div class="mt-2 px-3">
                                 <input type="hidden" name="gateway">
