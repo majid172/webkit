@@ -60,6 +60,13 @@ class EpisodeController extends Controller
         }
         $episode->description = $request->description;
         $episode->save();
+
+        $adminNotification = new AdminNotification();
+        $adminNotification->user_id = $user_id;
+        $adminNotification->title = $episode->title." ".'new episode stored ';
+        $adminNotification->click_url = urlPath('admin.course.episode.list',$episode->course_id);
+        $adminNotification->save();
+
         $notify[] = ['success', $episode->title . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
 
