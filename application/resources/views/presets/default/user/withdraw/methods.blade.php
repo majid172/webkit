@@ -10,7 +10,8 @@
                         <ul class="list-group list-group-flush details" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop" data-name="{{$data->name}}"
                             data-min_amount="{{$data->min_amount}}" data-max_amount = "{{$data->max_amount}}"
-                            data-method_code = "{{$data->method_code}}" data-currency = "{{$data->currency}}" data-gateway="{{ $data }}">
+                            data-method_code = "{{$data->id}}" data-currency = "{{$data->currency}}"
+                            data-gateway="{{ $data }}">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                                 <div class="ms-2 me-auto">
@@ -53,6 +54,7 @@
                         <div class="text-primary custom--card">
                             <div class="mt-2 px-3">
                                 <input type="hidden" name="gateway">
+
                                 <div class="form-group">
                                     <label class="form-label">@lang('Amount')</label>
                                     <div class="input-group">

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="shadow p-3 mb-5 bg-body rounded mt-5">
                 <div >
                     <div class="text-primary">

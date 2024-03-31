@@ -124,8 +124,8 @@
 </script>
 <script>
     $(document).ready(function() {
-            $('#gateway, #trx_id, #status').on('input ', function() {
-                let trx = $('#trx_id').val();
+            $('#trx, #status,#max,#min').on('input ', function() {
+                let trx = $('#trx').val();
                 let min = $('#min').val();
                 let max = $('#max').val();
                 let status = $('#status').val();

@@ -26,6 +26,7 @@ class WithdrawController extends Controller
             'method_code' => 'required',
             'amount' => 'required|numeric'
         ]);
+
         $method = WithdrawMethod::where('id', $request->method_code)->where('status', 1)->firstOrFail();
         $user = auth()->user();
         if ($request->amount < $method->min_limit) {
