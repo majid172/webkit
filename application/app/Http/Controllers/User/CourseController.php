@@ -23,15 +23,15 @@ class CourseController extends Controller
             $courses = Course::where('creator_id',auth()->user()->id)->with('episodes')->get();
         }
         else{
-            $courses = Course::with('episodes','subscription')
+            $courses = Course::with(['episodes'=>function ($query) {
+                $query->where('status','1');
+            },'subscription'])
                         ->whereHas('subscription',function($q) use ($user){
                             $q->where('user_id',$user->id);
                         })->get();
-
         }
         return view($this->activeTemplate.'user.course.list',compact('courses','pageTitle'));
     }
-
     public function create()
     {
         $pageTitle = 'Create Course';
