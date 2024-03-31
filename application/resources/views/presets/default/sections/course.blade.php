@@ -1,6 +1,12 @@
 @php
 $content = getContent('course.content',true);
-$courses = \App\Models\Course::with('episodes','creator','subscription','rating')->limit(4)->inRandomOrder()->get();
+$courses = \App\Models\Course::with(['episodes' => function ($query) {
+        $query->where('status', '1');
+    }, 'creator', 'subscription', 'rating'])
+
+    ->limit(4)
+    ->inRandomOrder()
+    ->get();
 
 @endphp
 <div class="container-xxl py-5">
@@ -54,10 +60,10 @@ $courses = \App\Models\Course::with('episodes','creator','subscription','rating'
                 </div>
             </div>
             @empty
-                
+
             @endforelse
-            
-           
+
+
         </div>
     </div>
 </div>

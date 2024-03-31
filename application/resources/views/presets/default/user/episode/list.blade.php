@@ -31,13 +31,10 @@
                                     <h2 class="accordion-header" id="flush-heading_{{$item->id}}">
                                         <button class="accordion-button collapsed fw-bold text-secondary" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapse_{{$item->id}}" aria-expanded="false" aria-controls="flush-collapse_{{$item->id}}">
-
-                                            <i class="las la-play-circle text-primary fs-1"></i><a href="{{route('user.episode.details',$item->id)}}" class="text-primary">  {{ucfirst($item->title)}}
-
-                                                <span
-                                                    class="badge bg-primary mx-3"
-                                                >{{
-                               empty($duration)?'00:00:00': $duration}}</span></a>
+                                            <a href="{{route('user.episode.details',$item->id)}}" class="text-primary">
+                                            <i class="las la-play-circle text-primary fs-1"></i></a>  {{ucfirst($item->title)}}
+                                                <span class="badge bg-primary mx-3">
+                                                    {{empty($duration)?'00:00:00': $duration}}</span>
                                             @if (auth()->user()->user_type==1)
 
                                                     <i class="las la-pen edit" title="edit_episode"   data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="{{ucfirst($item->title)}}" data-description="{{$item->description}}" data-id="{{$item->id}}"></i>

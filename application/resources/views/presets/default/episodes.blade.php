@@ -4,45 +4,55 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="shadow p-3 mb-5 bg-body rounded">
-                    <ul class="list-group list-group-flush">
-                        @forelse ($episodes as $item)
-                        <li class="list-group-item d-flex justify-content-between align-items-start py-3">
-                            <div class=" ms-2 me-auto">
-                                <div class="fw-bold">
-                                    <a href="{{route('user.episode.details',$item->id)}}" class="text-primary">{{ucfirst($item->title)}}</a>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    @forelse ($episodes as $item)
+                        @php
+                            $duration = ''; // Initialize duration variable
+                            $path = (getFilePath('episode').'/' . @$item->file_path .'/'. @$item->file);
+                            $file = $getID3->analyze($path);
 
+                            // Check if 'playtime_seconds' key exists in the $file array
+                            if (isset($file['playtime_seconds'])) {
+                                $playtime_seconds = (int)$file['playtime_seconds']; // Convert to integer
+                                $duration = date('H:i:s', $playtime_seconds);
+                            }
+                        @endphp
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <div class="accordion-item ">
+                                <h2 class="accordion-header" id="flush-heading_{{$item->id}}">
+                                    <button class="accordion-button collapsed fw-bold text-secondary" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapse_{{$item->id}}" aria-expanded="false" aria-controls="flush-collapse_{{$item->id}}">
+                                        <a href="{{route('user.episode.details',$item->id)}}" class="text-primary">
+                                            <i class="las la-play-circle text-primary fs-1"></i> </a> {{ucfirst
+                                        ($item->title)}}
+
+                                            <span
+                                                class="badge bg-primary mx-3"
+                                            >{{
+                               empty($duration)?'00:00:00': $duration}}</span>
+
+                                    </button>
+                                </h2>
+
+                                <div id="flush-collapse_{{$item->id}}" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-heading_{{$item->id}}"
+                                     data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">{{$item->description}}</div>
                                 </div>
-                                <p>
-{{--                                    @php--}}
-{{--                                        $path = (getFilePath('episode').'/' . @$item->file_path .'/'. @$item->file);--}}
-{{--                                        $file = $getID3->analyze($path);--}}
-{{--                                        $duration = date('H:i:s', $file['playtime_seconds']);--}}
-{{--                                    @endphp--}}
-
-{{--                                    <span class="badge bg-primary">@lang('Duration') - {{$duration}}</span>--}}
-
-                                </p>
-                                <a href="{{route('user.episode.details',$item->id)}}" class="text-secondary">{{Str::limit($item->description, 200, '...')}}</a>
                             </div>
-                            <div>
-                                <a href="{{route('user.episode.details',$item->id)}}"><i class="las la-play-circle text-primary fs-1"></i></a>
+                        </div>
+                    @empty
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        @lang('No episodes are available')
+                                    </button>
+                                </h2>
                             </div>
+                        </div>
 
-
-                        </li>
-
-                        @empty
-                            <li class="list-group-item d-flex justify-content-center align-items-center">
-                                <div>
-                                    <img src="{{asset('assets/images/no_episode.png')}}" alt="no_episode">
-                                </div>
-                                <p class="text-danger text-center">@lang('No episodes are available')</p>
-                            </li>
-
-                        @endforelse
-
-                    </ul>
+                    @endforelse
                 </div>
             </div>
         </div>
