@@ -65,6 +65,13 @@ class CourseController extends Controller
         }
 
         $course->save();
+
+        $adminNotification = new AdminNotification();
+        $adminNotification->user_id =$course->creator_id;
+        $adminNotification->title = $course->title." ".'created by '.auth()->user()->fullname;
+        $adminNotification->click_url = urlPath('admin.category.course.list',$course->category_id);
+        $adminNotification->save();
+
         $notify[] = ['success', $course->title . ' has been created successfully'];
         return redirect()->back()->withNotify($notify);
 
