@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class  User extends Authenticatable
 {
 
     /**
@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'address' => 'object',
         'kyc_data' => 'object',
-        'ver_code_send_at' => 'datetime'
+        'ver_code_send_at' => 'datetime',
+        'social_link' => 'object'
     ];
 
 

@@ -38,6 +38,11 @@ class ProfileController extends Controller
             'country' => @$user->address->country,
             'city' => $request->city,
         ];
+        $user->social_link = [
+            'fb' => $request->fb,
+            'twitter' => $request->twitter,
+            'linkedin' => $request->linkedin,
+        ];
 
         if($request->hasFile('profile_img')){
             try {

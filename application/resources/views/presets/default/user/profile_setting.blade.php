@@ -60,13 +60,34 @@
                                         value="{{@$user->address->city}}">
                                 </div>
 
+
                                 <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Country')</label>
                                     <input class="form-control form--control" value="{{@$user->address->country}}" disabled>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Profile Image')</label>
-                                    <input type="file" class="form-control form--control" value="" name="profile_img">
+                                    <input type="file" class="form-control form--control" value="{{getImage
+                                    (getFilePath('episode').'/' . @$user->image .'/'. @$user->img_path)}}"
+                                           name="profile_img">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="form-label">@lang('Facebook')</label>
+                                    <input class="form-control form--control" value="{{@$user->social_link->fb}}"
+                                           name="fb"
+                                           type="text" placeholder="@lang('Facebook Link')">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="form-label">@lang('Twitter')</label>
+                                    <input class="form-control form--control"
+                                           value="{{@$user->social_link->twitter}}" name="twitter"
+                                           type="text" placeholder="@lang('Twitter Link')">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="form-label">@lang('Linked In')</label>
+                                    <input class="form-control form--control"
+                                           value="{{@$user->social_link->linkedin}}" name="linkedin"
+                                           type="text" placeholder="@lang('LinkedIn Link')">
                                 </div>
 
                             </div>
