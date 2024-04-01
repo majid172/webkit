@@ -45,8 +45,7 @@ class PaymentController extends Controller
         }
         $request->validate([
             'amount' => 'required|numeric|gt:0',
-            'method_code' => 'required',
-            'currency' => 'required',
+            'method_code' => 'nullable',
         ]);
 
         $gate = GatewayCurrency::whereHas('method', function ($gate) {

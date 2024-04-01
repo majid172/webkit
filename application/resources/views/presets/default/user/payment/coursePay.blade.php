@@ -4,6 +4,28 @@
         <div class="row justify-content-center mt-5">
             @include($activeTemplate.'includes.sidebar')
             <div class="col-lg-8">
+
+                <div class="shadow p-3 mb-5 bg-body rounded ">
+                    <ul class="list-group list-group-flush details" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop" data-amount="{{$amount}}" data-method_code="1">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold text-primary">@lang('From Wallet')</div>
+                                <span class="badge text-secondary mt-3">@lang("Amount") :
+                                    {{$general->cur_sym}}{{showAmount(auth()
+                                ->user()
+                                ->balance)}}
+                                </span>
+                            </div>
+                            <span class="badge ">
+                                <img src="{{asset('assets/images/wallet.png')}}" alt="no_gateway"
+                                         style="width: 40px;height: 40px;">
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
                 @foreach($gatewayCurrency as $data)
                     <div class="shadow p-3 mb-5 bg-body rounded ">
                         <ul class="list-group list-group-flush details" data-bs-toggle="modal"
@@ -47,9 +69,9 @@
                         <input type="hidden" name="method_code">
                         <input type="hidden" name="currency">
                         <input type="hidden" name="course_id" value="{{$courseId}}">
+                        <input type="hidden" name="gateway">
                         <div class="text-primary custom--card">
                             <div class="mt-2 px-3">
-                                <input type="hidden" name="gateway">
                                 <div class="form-group">
                                     <label class="form-label">@lang('Course Amount ')</label>
                                     <div class="input-group">
@@ -115,6 +137,7 @@
             let currency = $(this).data('currency');
 
             modal.find('input[name="amount"]').val(amount);
+            modal.find('input[name="gateway"]').val(method_code);
 
             let fixed_charge = parseFloat(resource.fixed_charge);
             let percent_charge = parseFloat(resource.percent_charge);
@@ -161,7 +184,6 @@
 
             $('.title').text(resource.name);
 
-            modal.find('input[name="method_code"]').val(method_code);
             modal.find('input[name="currency"]').val(currency);
             modal.find('input[name="gateway"]').val(method_code);
 
