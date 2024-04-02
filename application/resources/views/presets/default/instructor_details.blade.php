@@ -47,16 +47,16 @@
             </div>
 
             <div class="col-md-8">
-                <div class="row g-4">
-                    @foreach($courses as $course)
+                <div class="row justify-content-center g-4">
+                    @forelse($courses as $course)
                     <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item bg-light">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid" src="{{getImage(getFilePath('course').'/' . @$course->img_path .'/'. @$course->image )}}" alt="{{@$course->image}}">
                                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                    <a href="{{route('allEpisodes',$course->id)}}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">@lang('View Episodes')</a> 
+                                    <a href="{{route('allEpisodes',$course->id)}}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">@lang('View Episodes')</a>
                                     <a href="{{ route('user.payment', ['amount' => $course->price, 'courseId' => $course->id]) }}" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">@lang('Buy Now')</a>
-        
+
                                 </div>
                             </div>
                             <div class="text-center p-4 pb-0">
@@ -66,14 +66,14 @@
                                         $total = 0;
                                         $count = $course->rating->count();
                                         $avg = 0;
-        
+
                                         if ($count > 0) {
                                             foreach ($course->rating as $rating) {
                                                 $total += $rating['rating'];
                                             }
                                             $avg = $total / $count;
                                         }
-        
+
                                         $maxRating = 5;
                                         for ($i = 1; $i <= $maxRating; $i++) {
                                             $starClass = ($i <= $avg) ? 'fas fa-star text-warning' : 'far fa-star';
@@ -91,7 +91,42 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="course-item bg-light">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="{{getImage(getFilePath('course').'/' . @$course->img_path .'/'. @$course->image )}}" alt="{{@$course->image}}">
+                                    <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                        <a href="javascript:void(0)" class="flex-shrink-0 btn btn-sm btn-primary px-3
+                                        border-end" style="border-radius: 30px 0 0 30px;">@lang('View Episodes')</a>
+                                        <a href="javascript:void(0)" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">@lang('Buy Now')</a>
+
+                                    </div>
+                                </div>
+                                <div class="text-center p-4 pb-0">
+                                    <h3 class="mb-0 text-primary">{{$general->cur_sym}}{{__('0')}}</h3>
+                                    <div class="mb-3">
+                                        @php
+                                            for($i = 0; $i < 5; $i++) {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        @endphp
+                                        <small>({{ '0' }})</small>
+                                    </div>
+
+                                    <h5 class="mb-4">{{ucwords('No Course Available')}}</h5>
+                                </div>
+                                <div class="d-flex border-top">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie
+                                    text-primary me-2"></i>{{__($instructor->firstname)}} {{__($instructor->lastname)}}</small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-play-circle
+                                    text-primary me-2"></i>@lang('Episodes')  (@lang('0'))</small>
+                                    <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary
+                                    me-2"></i>@lang('Students') (@lang('0'))</small>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
 
 
                 </div>
@@ -124,8 +159,8 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    margin-right: 10px; 
-    color: #3498db; 
+    margin-right: 10px;
+    color: #3498db;
   }
     </style>
 @endpush

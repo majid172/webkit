@@ -66,33 +66,7 @@
         </div>
     </div>
 </div>
-
-{{-- APPROVE MODAL --}}
-{{-- <div id="detailModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">@lang('Details')</h5>
-                <span type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="las la-times"></i>
-                </span>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group userData mb-2">
-                </ul>
-                <div class="feedback"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">@lang('Close')</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-{{-- create episode --}}
-
 @endsection
-
 
 @push('script')
 <script>

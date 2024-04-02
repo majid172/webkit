@@ -79,20 +79,7 @@ class AutomaticGatewayController extends Controller
                 $gatewayCurrency->rate = $currency['rate'];
                 $gatewayCurrency->symbol = $currency['symbol'];
                 $gatewayCurrency->method_code = $code;
-                if($currency['image']){
-                    try {
-                        $directory = date("Y")."/".date("m");
-                        $path = getFilePath('gatewayImage').'/'.$directory;
-                        $size = getFileSize('gatewayImage');
-                        $file = fileUploader($currency['image'], $path,$size);
 
-                        $gatewayCurrency->image = $file;
-                        $gatewayCurrency->img_path = $directory;
-                    } catch (\Exception $exp) {
-                        $notify[] = ['error', 'Couldn\'t upload your gateway image'];
-                        return back()->withNotify($notify);
-                    }
-                }
                 $gatewayCurrency->gateway_parameter = json_encode($param);
                 $gatewayCurrency->save();
             }
@@ -150,7 +137,6 @@ class AutomaticGatewayController extends Controller
             $validationRule['global.' . $key] = 'required';
             $customAttributes['global.' . $key] = keyToTitle($key);
         }
-
 
         if ($request->has('currency')) {
             foreach ($request->currency as $key => $currency) {

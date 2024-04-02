@@ -63,36 +63,32 @@ class PaymentController extends Controller
 
         $charge = $gate->fixed_charge + ($request->amount * $gate->percent_charge / 100);
         $payable = $request->amount + $charge;
-
         $final_amo = $payable * $gate->rate;
+
         if($request->course_id && ($user==true))
         {
             session()->put('course_id',$request->course_id);
             session()->put('user_id',$user->id);
-            $instructor = instructor($request->course_id);
-
+            $course = instructor($request->course_id,$gate,$request->amount,$charge,$final_amo);
+        }
+        else{
+            $data = new Deposit();
+            $data->user_id = $user->id;
+            $data->method_code = $gate->method_code;
+            $data->method_currency = strtoupper($gate->currency);
+            $data->amount = $request->amount;
+            $data->charge = $charge;
+            $data->rate = $gate->rate;
+            $data->final_amo = $final_amo;
+            $data->btc_amo = 0;
+            $data->btc_wallet = "";
+            $data->trx = getTrx();
+            $data->try = 0;
+            $data->status = 0;
+            session()->put('trx', $data->trx);
+            $data->save();
         }
 
-        if($instructor->creator_id == $user->id){
-        $notify[]=['error','Course instructor can\'t buy '];
-        return back()->withNotify($notify);
-        }
-
-        $data = new Deposit();
-        $data->user_id = ($instructor)?$instructor->creator_id:$user->id;
-        $data->method_code = $gate->method_code;
-        $data->method_currency = strtoupper($gate->currency);
-        $data->amount = $request->amount;
-        $data->charge = $charge;
-        $data->rate = $gate->rate;
-        $data->final_amo = $final_amo;
-        $data->btc_amo = 0;
-        $data->btc_wallet = "";
-        $data->trx = getTrx();
-        $data->try = 0;
-        $data->status = 0;
-        session()->put('trx', $data->trx);
-        $data->save();
         return to_route('user.deposit.confirm');
     }
 

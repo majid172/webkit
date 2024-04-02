@@ -2,6 +2,7 @@
 
 use App\Lib\GoogleAuthenticator;
 use App\Models\Course;
+use App\Models\Deposit;
 use App\Models\Extension;
 use App\Models\Frontend;
 use App\Models\GeneralSetting;
@@ -310,7 +311,7 @@ function diffForHumans($date)
 }
 
 
-function showDateTime($date, $format = 'M Y, h:i A')
+function showDateTime($date, $format = 'd M, Y')
 {
     $lang = session()->get('lang');
     Carbon::setlocale($lang);
@@ -501,10 +502,29 @@ function fromBalance($request,$user,$charge)
         }
     }
 
-function instructor($courseId)
+function instructor($courseId,$gate,$amount,$charge,$final_amo)
 {
     $user_id=auth()->user()->id;
     $course = Course::where('id',$courseId)->first();
+    if($course->creator_id == $user_id){
+        $notify[]=['error','Course instructor can\'t buy '];
+        return back()->withNotify($notify);
+    }
+    $data = new Deposit();
+    $data->user_id = $courseId;
+    $data->method_code = $gate->method_code;
+    $data->method_currency = strtoupper($gate->currency);
+    $data->amount = $amount;
+    $data->charge = $charge;
+    $data->rate = $gate->rate;
+    $data->final_amo = $final_amo;
+    $data->btc_amo = 0;
+    $data->btc_wallet = "";
+    $data->trx = getTrx();
+    $data->try = 0;
+    $data->status = 0;
+    session()->put('trx', $data->trx);
+    $data->save();
     return $course;
 }
 function gs()

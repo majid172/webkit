@@ -71,19 +71,27 @@
                                     (getFilePath('episode').'/' . @$user->image .'/'. @$user->img_path)}}"
                                            name="profile_img">
                                 </div>
-                                <div class="form-group col-sm-4">
+
+                                <div class="form-group col-sm-6">
+                                    <label class="form-label">@lang('Designation')</label>
+                                    <input class="form-control form--control" value="{{@$user->designation}}"
+                                           name="designation"
+                                           type="text" placeholder="@lang('Designation')">
+                                </div>
+
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Facebook')</label>
                                     <input class="form-control form--control" value="{{@$user->social_link->fb}}"
                                            name="fb"
                                            type="text" placeholder="@lang('Facebook Link')">
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Twitter')</label>
                                     <input class="form-control form--control"
                                            value="{{@$user->social_link->twitter}}" name="twitter"
                                            type="text" placeholder="@lang('Twitter Link')">
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="form-label">@lang('Linked In')</label>
                                     <input class="form-control form--control"
                                            value="{{@$user->social_link->linkedin}}" name="linkedin"

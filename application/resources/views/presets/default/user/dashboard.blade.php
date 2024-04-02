@@ -92,12 +92,11 @@
                                     <i class="las la-money-check text-light" style="font-size: 2.5rem;"></i>
                                 </div>
                                 <div class="col-lg-8 p-3">
-                                    <h6 class="text-secondary">@lang('Pending Funds')</h6>
-                                    <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($deposit_pending)}}</h4>
+                                    <h6 class="text-secondary">@lang('No. of Pending Funds')</h6>
+                                    <h4 class="text-primary">{{$deposit_pending}}</h4>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-4">
                         <div class="shadow mb-5 bg-body rounded">
@@ -106,8 +105,8 @@
                                     <i class="las la-money-check-alt text-light" style="font-size: 2.5rem;"></i>
                                 </div>
                                 <div class="col-lg-8 p-3">
-                                    <h6 class="text-secondary">@lang('Pending Payouts')</h6>
-                                    <h4 class="text-primary">{{gs()->cur_sym}}{{getAmount($withdraw_pending)}}</h4>
+                                    <h6 class="text-secondary">@lang('No. of Pending Payouts')</h6>
+                                    <h4 class="text-primary">{{getAmount($withdraw_pending)}}</h4>
                                 </div>
                             </div>
                         </div>

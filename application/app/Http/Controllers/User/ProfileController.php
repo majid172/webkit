@@ -30,7 +30,7 @@ class ProfileController extends Controller
 
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
-
+        $user->designation = $request->designation;
         $user->address = [
             'address' => $request->address,
             'state' => $request->state,
