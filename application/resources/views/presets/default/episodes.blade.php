@@ -7,11 +7,9 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     @forelse ($episodes as $item)
                         @php
-                            $duration = ''; // Initialize duration variable
+                            $duration = '';
                             $path = (getFilePath('episode').'/' . @$item->file_path .'/'. @$item->file);
                             $file = $getID3->analyze($path);
-
-                            // Check if 'playtime_seconds' key exists in the $file array
                             if (isset($file['playtime_seconds'])) {
                                 $playtime_seconds = (int)$file['playtime_seconds']; // Convert to integer
                                 $duration = date('H:i:s', $playtime_seconds);
@@ -42,14 +40,11 @@
                             </div>
                         </div>
                     @empty
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        @lang('No episodes are available')
-                                    </button>
-                                </h2>
+                        <div class="shadow-none py-5 mb-5 bg-light rounded ">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="{{asset('assets/images/empty.png')}}" alt="no_episode" class="img-fluid">
                             </div>
+                            <h6 class="text-center text-secondary">@lang('No episodes are available')</h6>
                         </div>
 
                     @endforelse

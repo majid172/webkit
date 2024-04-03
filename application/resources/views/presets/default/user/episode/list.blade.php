@@ -51,14 +51,11 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                            @lang('No episodes are available')
-                                        </button>
-                                    </h2>
+                            <div class="shadow-none py-5 mb-5 bg-light rounded ">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <img src="{{asset('assets/images/empty.png')}}" alt="no_episode" class="img-fluid">
                                 </div>
+                                <h6 class="text-center text-secondary">@lang('No episodes are available')</h6>
                             </div>
 
                         @endforelse

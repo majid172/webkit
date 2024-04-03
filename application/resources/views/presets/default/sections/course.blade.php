@@ -4,7 +4,7 @@ $courses = \App\Models\Course::with(['episodes' => function ($query) {
         $query->where('status', '1');
     }, 'creator', 'subscription', 'rating'])
 
-    ->limit(4)
+    ->limit(6)
     ->inRandomOrder()
     ->get();
 

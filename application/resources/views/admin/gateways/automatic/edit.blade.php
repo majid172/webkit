@@ -55,7 +55,6 @@
                                         </div>
                                     </div>
                                     @if($gateway->code < 1000 && $gateway->extra)
-
                                         <div class="payment-method-body">
                                             <div class="row">
                                                 @foreach($gateway->extra as $key => $param)
@@ -217,7 +216,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                     <div class="mt-2">
 
                                                         <div class="input-field">
