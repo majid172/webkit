@@ -24,7 +24,9 @@
                                         <select type="text" name="category_id" class="form-control" placeholder="Choose category" id="category">
 
                                             @foreach ($categories as $item)
-                                                <option value="{{$item->id}}" class="text-primary">{{ucwords($item->name)}}</option>
+                                                <option value="{{$item->id}}" {{($item->id)?'selected':''}}
+                                                class="text-primary">{{ucwords
+                                                ($item->name)}}</option>
                                             @endforeach
                                         </select>
                                     </div>
