@@ -31,17 +31,17 @@ class SupportTicket extends Model
     public function badgeData(){
         $html = '';
         if($this->status == 0){
-            $html = '<span class="badge badge--success">'.trans("Open").'</span>';
+            $html = '<span class="badge bg-success">'.trans("Open").'</span>';
         }
         elseif($this->status == 1){
-            $html = '<span class="badge badge--primary">'.trans("Answered").'</span>';
+            $html = '<span class="badge bg-primary">'.trans("Answered").'</span>';
         }
 
         elseif($this->status == 2){
-            $html = '<span class="badge badge--warning">'.trans("Customer Reply").'</span>';
+            $html = '<span class="badge bg-warning">'.trans("Customer Reply").'</span>';
         }
         elseif($this->status == 3){
-            $html = '<span class="badge badge--dark">'.trans("Closed").'</span>';
+            $html = '<span class="badge bg-dark">'.trans("Closed").'</span>';
         }
         return $html;
     }
