@@ -2,7 +2,7 @@
 @section('content')
 <div style="background-image: url('{{ asset('assets/admin/images/login.png') }}')" class="login_area">
     <div class="login">
-        <div class="login__header">
+        <div class="login__header text-center">
             <h2>@lang('Reset Password')</h2>
             <p>@lang('Provide a new to log in')</p>
         </div>
@@ -22,7 +22,7 @@
                     <span class="show-pass"><i class="fas fa-lock"></i></span>
                 </div>
                 <div class="field">
-                    <button type="submit" class="sign-in">@lang('Reset')</button>
+                    <button type="submit" class="sign-in bg--primary">@lang('Reset')</button>
                 </div>
                 <div class="login__footer d-flex justify-content-center">
                     <a class="float-end" href="{{ route('admin.login') }}">@lang('Go back')</a>

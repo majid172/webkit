@@ -27,9 +27,6 @@
 <body>
     @yield('content')
 
-
-
-
     <script src="{{asset('assets/common/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/common/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/admin/js/bootstrap-toggle.min.js')}}"></script>

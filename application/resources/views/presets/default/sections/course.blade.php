@@ -1,5 +1,6 @@
 @php
 $content = getContent('course.content',true);
+if(request()->url() == url('/').'/courses'){
 $courses = \App\Models\Course::with(['episodes' => function ($query) {
         $query->where('status', '1');
     }, 'creator', 'subscription', 'rating'])
@@ -7,7 +8,15 @@ $courses = \App\Models\Course::with(['episodes' => function ($query) {
     ->limit(6)
     ->inRandomOrder()
     ->get();
+}else{
+    $courses = \App\Models\Course::with(['episodes' => function ($query) {
+        $query->where('status', '1');
+    }, 'creator', 'subscription', 'rating'])
 
+    ->limit(3)
+    ->inRandomOrder()
+    ->get();
+}
 @endphp
 <div class="container-xxl py-5">
     <div class="container">
