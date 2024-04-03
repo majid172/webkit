@@ -72,12 +72,10 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="row border border-warning border-radius-3 my-3 py-3 mx-2" style="background-color: #ffd96729">
-                                        <div class="col-md-3 border-end text-end">
-                                            <h5 class="my-3">{{ $message->admin->name }}</h5>
-                                            <p class="lead text-muted">@lang('Staff')</p>
-                                        </div>
-                                        <div class="col-md-9">
+                                    <div class="row border border-primary border-radius-3 my-3 py-3 mx-2"
+                                         style="background-color: #eeecf7">
+
+                                        <div class="col-md-9 border-end">
                                             <p class="text-muted fw-bold my-3">
                                                 @lang('Posted on') {{ $message->created_at->format('l, dS F Y @ H:i') }}</p>
                                             <p>{{$message->message}}</p>
@@ -88,6 +86,10 @@
                                                     @endforeach
                                                 </div>
                                             @endif
+                                        </div>
+                                        <div class="col-md-3  text-end">
+                                            <h5 class="my-3">{{ $message->admin->name }}</h5>
+                                            <p class="lead text-muted">@lang('Staff')</p>
                                         </div>
                                     </div>
                                 @endif
