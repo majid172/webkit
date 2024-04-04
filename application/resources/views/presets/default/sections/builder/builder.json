@@ -8,7 +8,15 @@
             "subheading1": "text",
             "subheading2": "text",
             "paragraph1": "text",
-            "paragraph2": "text"
+            "paragraph2": "text",
+            "images":{
+                "first_img":{
+                    "size":"1366x768"
+                },
+                "second_img": {
+                    "size":"1366x768"
+                }
+            }
         }
     },
     "service": {
@@ -26,7 +34,6 @@
         "name": "About Us",
         "content": {
             "images":{
-
                 "about_image":{
                     "size":"700x700",
                     "thumb":"100x100"
@@ -52,7 +59,7 @@
             "heading": "text",
             "subheading": "text"
         }
-        
+
     },
     "testimonial": {
         "builder": true,
@@ -94,7 +101,7 @@
         }
     },
 
-   
+
     "policy_pages": {
         "builder": false,
         "no_selection":true,
@@ -105,8 +112,8 @@
             "modal": false
         }
     },
-    
-    
+
+
     "subscribe": {
         "builder": true,
         "name": "Subscribe Section",

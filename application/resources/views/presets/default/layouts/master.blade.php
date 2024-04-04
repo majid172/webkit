@@ -13,7 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{asset($activeTemplateTrue.'css/fontawesome.min.css')}}" rel="stylesheet">
-    {{--    <link href="{{asset($activeTemplateTrue.'css/bootstrap-icons.css')}}" rel="stylesheet">--}}
+    <link href="{{asset($activeTemplateTrue.'css/bootstrap-icons.css')}}" rel="stylesheet">
 
     <link href="{{asset($activeTemplateTrue.'css/lib/animate/animate.min.css')}}" rel="stylesheet">
     <link href="{{asset($activeTemplateTrue.'css/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">

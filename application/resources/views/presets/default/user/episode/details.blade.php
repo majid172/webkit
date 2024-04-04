@@ -6,9 +6,15 @@
             @include($activeTemplate.'includes.sidebar')
             <div class="col-md-9">
                 <div class="shadow p-3 mb-5 bg-body rounded">
-                    <video width="100%" controls autoplay>
-                        <source src="{{getImage(getFilePath('episode').'/' . @$details->file_path .'/'. @$details->file)}}" type="video/mp4">
-                    </video>
+                    @if($details->file)
+                        <video width="100%" controls autoplay>
+                            <source src="{{getImage(getFilePath('episode').'/' . @$details->file_path .'/'. @$details->file)}}" type="video/mp4">
+                        </video>
+                    @else
+                        <iframe width="100%" height="450" src="{{$details->file_link}}"> </iframe>
+
+                    @endif
+
                     <p class="text-secondary p-3">{{__($details->description)}}</p>
 
                     <hr>

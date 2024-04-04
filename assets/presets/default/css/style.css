@@ -297,7 +297,7 @@ a{
 
 .service-item:hover {
     margin-top: -10px;
-    background: var(--service);
+    background: var(--primary);
 }
 
 .service-item * {

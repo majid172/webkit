@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3f5b4ec0-6eb4-48ea-82ee-ec8faaff2dfb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/course/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/course/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/frontend.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/banner.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/banner.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/sections/builder/builder.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/login_old.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register_old.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/presets/default/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/presets/default/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,11 +237,23 @@
       <workItem from="1711944915934" duration="12774000" />
       <workItem from="1712028584060" duration="18124000" />
       <workItem from="1712052584665" duration="155000" />
-      <workItem from="1712116064996" duration="15363000" />
+      <workItem from="1712116064996" duration="15433000" />
+      <workItem from="1712202515750" duration="5356000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/resources/views/presets/default/user/auth/register.blade.php</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

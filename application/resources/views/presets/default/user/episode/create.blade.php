@@ -29,7 +29,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="file" class="mb-1">@lang('Episode Upload')</label>
-                                            <input type="file" class="form-control " name="file" value="{{old('file')}}" placeholder="@lang('File')" id="file">
+                                            <input type="file" class="form-control" name="file" value="{{old
+                                            ('file')}}" placeholder="@lang('File')" id="file">
 
                                         </div>
                                     </div>
@@ -40,7 +41,8 @@
                                         <textarea name="description" value="{{old('description')}}" id="description" class="form-control" cols="30" rows="5"></textarea>
                                     </div>
                                     <div class="col-md-12 mt-2">
-                                        <button type="submit" class="btn btn-sm btn-primary w-100">@lang('Create Episode')</button>
+                                        <button type="submit" class="btn btn-lg btn-primary mx-auto">@lang('Create
+                                        Episode')</button>
                                     </div>
                                 </div>
 
